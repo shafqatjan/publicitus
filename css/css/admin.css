@@ -1,0 +1,424 @@
+body
+{
+	margin: 0px;
+	background: #ababab URL('../images/background.jpg') repeat-x;
+	color: #555;
+}
+img
+{
+	border:none;
+}
+.welcome_text
+{
+	font-family:Arial;
+	font-size:20px;
+	font-weight:normal !important;
+	text-decoration:none;
+	text-align:center;
+}
+.textarea
+{
+	width:350px;
+	border: solid 1px #aaaaaa;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:2px;
+}
+.textarea_Size
+{
+	width:280px !important;
+}
+
+.txtin
+{
+	width: 200px;
+	border: solid 1px #aaaaaa;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:2px;
+}
+
+.txtin_full
+{
+	width:62%;
+	border: solid 1px #aaaaaa;
+	font-size:12px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding:2px;
+}
+.txtcheck
+{
+	width: 15px;
+}
+
+.txtlong
+{
+	width: 538px;
+	border: solid 1px #aaaaaa;
+	font-family:Verdana;
+}
+
+.button
+{
+	background-color:#ADBDC6;
+	border:solid 1px #888888;
+	padding:3px 5px 3px 5px;
+	color: #ffffff;
+	font-weight: bold;
+	font-size:13px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+.button:hover
+{
+	background-color:#61707b;
+	border:solid 1px #000000;
+	padding:3px 5px 3px 5px;
+	color: #ffffff;
+	font-weight: bold;
+	font-size:13px;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+
+.maintbl
+{
+	width: 100%;
+	height: 100%;
+	border: solid 1px #555555;
+}
+
+.logo
+{
+	height: 100px;
+	background: #eeeeee;
+	color: #555555;
+	text-align: center;
+	font-family: arial;
+	font-size: 26px;
+}
+.footer{
+	padding: 25px;
+	height: 15px;
+	background: #c4c4c4;
+	text-align: center;
+	border-top: solid 2px #a1a1a1;
+	font-size:11px;
+	font-family:Verdana;
+}
+
+.middlearea
+{
+	background: #ffffff;
+	height: 100%;
+	text-align: center;
+}
+
+#leftnav{
+	background: #dfdfdf;
+	font-family:Verdana;
+}
+	#leftnav a
+	{
+		color: #000;
+		font-size: 12px;
+		text-decoration: none;
+		font-weight:bold;
+	}
+	
+	#leftnav a:hover
+	{
+		color: #800000;
+	}
+
+.tbllisting
+{
+	border: solid 1px #d1d1d1;
+	
+}
+.mainhead
+{
+	background: #adbdc6;
+	color: #ffffff;
+	font-weight:bolder;
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:16px;
+	padding:8px;
+}
+#diverr
+{
+	height:auto;
+}
+.error
+{
+	background:#FBE3E4;
+	color:#8a1f11;
+	border-color:#FBC2C4;
+	font-size:11px;
+	font-family:Verdana;
+	padding:10px 10px 10px 5px;
+}
+.success 
+{
+	background:#BEDF37;
+	color:#005B7F;
+	border-color:#809F00; 
+	font-weight:normal;
+	font-size:11px;
+	font-family:Verdana;
+	padding:10px 10px 10px 30px;
+}
+.success_error
+{
+	background:#BEDF37;
+	color:#C00;
+	border-color:#809F00; 
+	font-weight:normal;
+	font-size:11px;
+	font-family:Verdana;
+	padding:10px 10px 10px 30px;
+}
+
+.Verdana_Black_11
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:normal;
+}
+.Verdana_Bold_Black_11
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:bold;
+}
+.content_table_head_td
+{
+	background-color:#ADBDC6;
+	color:#FFFFFF;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:bold;
+	padding:6px;
+}
+.content_table_data_td_border_lb
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:normal;
+	border:1px solid #d1d1d1;
+	border-top:none;
+	border-right:none;
+}
+.content_table_data_td_border_lrb
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:normal;
+	border:1px solid #d1d1d1;
+	border-top:none;
+}
+.Verdana_Bold_11_Link a
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:bold;	
+}
+.Verdana_Bold_11_Link a:hover
+{
+	text-decoration:underline;	
+}
+
+.Paging_Link
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:bold;
+}
+.Paging_Link a
+{
+	color:#333333;
+	font-size:11px;
+	font-family:Verdana;
+	text-decoration:none;
+	font-weight:normal;
+}
+.Paging_Link a:hover
+{
+	text-decoration: underline;
+}
+/*Tooltip CSS Start*/
+p#vtip
+{
+	display: none;
+	position: absolute;
+	padding: 6px;
+	left: 5px;
+	font-size: 0.9em;
+	font-family:Arial;
+	color:#333333;
+	background-color: white;
+	border: 1px solid #a6c9e2;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	z-index: 9999;
+	width:auto;		
+}
+p#vtip #vtipArrow
+{
+	position: absolute;
+	top: -10px;
+	left: 3px;
+}
+/*Tooltip CSS End*/
+/*Poll Graph Start*/
+#poll-yes-graph
+{
+	height:12px;
+	background-color:#009300;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFF;
+	text-align:center;
+	padding:4px 20px 4px 4px;
+}
+#poll-no-graph
+{
+	height:12px;
+	background-color:#B73C00;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	color:#FFF;
+	text-align:center;
+	padding:4px 20px 4px 4px;
+}
+/*Poll Graph End */
+.add-author-div
+{
+	float:left;position:absolute; margin-left:210px;width:auto; height:auto;
+}
+.readmore
+{
+    color: #333333;
+    font-family: Verdana;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+	margin-left:5px;
+}
+
+.script_includes
+{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+	font-size:14px;
+	padding:3px;	
+	
+}
+
+.maintbl
+{
+	font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#333333;
+}
+.maintbl th
+{
+	color:#FFFFFF;
+	background-color:#ADBDC6;
+	height:30px;
+	padding-left:8px;
+	font-weight:bold;
+}
+.maintbl .tdLB, .tdLBR
+{
+	border:1px solid #999999;
+	border-top:0px;
+	border-right:0px;
+	padding:5px 2px 5px 5px;
+}
+.maintbl .tdLBR
+{
+	border-right:1px solid #999999;
+}
+.textFull, .text
+{
+	border:1px solid #aaaaaa;
+	width:640px;
+	padding:4px;
+	font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#333333;
+	background-color:#f5f5f5;
+}
+
+.paginationClass
+{
+	clear:both;
+	padding:10px 0px 17px 0px;
+	text-align:center;
+}
+
+.paginationClass a
+{
+	border:1px solid #aaaaaa;
+	font-family:Arial;
+	font-size:13px;
+	color:#666666;
+	padding:4px 10px 4px 10px;
+	margin-right:1px;
+	background-color:#f5f5f5;
+	font-weight:normal;
+}
+
+.paginationClass a:hover
+{
+	border:1px solid #aaaaaa;
+	font-family:Arial;
+	font-size:13px;
+	color:#333333;
+	padding:4px 10px 4px 10px;
+	margin-right:1px;
+	background-color:#e5e5e5;
+	text-decoration:none;
+}
+
+.paginationClass span
+{
+	border:1px solid #555555;
+	font-family:Arial;
+	font-size:13px;
+	color:#333333;
+	font-weight:bold;
+	padding:4px 10px 4px 10px;
+	margin-right:1px;
+	background-color:#ffffff;
+}
+
+th.light {
+    background: none repeat scroll 0 0 #F1E9D3;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 12px;
+	color:#000;
+}
+th.sunday {
+    background: none repeat scroll 0 0 #F6F2E8;
+    border: 1px solid #EADCBC;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13px;
+	color:#000;
+}
+th.calLink {
+    color: #333333;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+.admin_msg{
+	width:400px;
+}
