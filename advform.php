@@ -2,9 +2,6 @@
 include('settings/settings.php');
 include('helpers/helper.php');
 
-
-
-
 $objSession = new Session();
  
 $objDb = new Database();
@@ -20,7 +17,7 @@ $firstName 				= '';
 $lastName 				= '';
 $email 					= '';
 $password 				= '';
-$cpassword 		= '';
+$cpassword 				= '';
 $company 				= '';
 $website 				= '';
 $address 				= '';
@@ -49,7 +46,7 @@ if(isset($_POST['btn_save']))
     $lastName 				= isset($_POST['lastName'])?$_POST['lastName']:'';
     $email 					= isset($_POST['email'])?$_POST['email']:'';
     $password 				= isset($_POST['password'])?$_POST['password']:'';
-    $cpassword 		= isset($_POST['cpassword'])?$_POST['cpassword']:'';
+    $cpassword 				= isset($_POST['cpassword'])?$_POST['cpassword']:'';
     $company 				= isset($_POST['company'])?$_POST['company']:'';
     $website 				= isset($_POST['website'])?$_POST['website']:'';
     $address 				= isset($_POST['address'])?$_POST['address']:'';

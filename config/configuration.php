@@ -62,19 +62,19 @@
 	/************************************************************
 	DATEBASE CONSTANTS
 	/************************************************************/
-
+/*
 	define("DB_HOST", '50.63.226.146');
 	define('DB_USER', 'publicitus');
 	define('DB_PASS', 'Java1234PHP');
 	define('DB_NAME', 'publicitus');
+*/
 
-
-/*	
+	
 	define("DB_HOST", 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
 	define('DB_NAME', 'publicitus');
-*/	
+	
 	define("EMAIL_NO_REPLY","no-reply@publicitus.com");
 	define("EMAIL_INFO","info@publicitus.com");
 	define("EMAIL_SIGNATURE","Regards,<br />School Support Team<br />");
