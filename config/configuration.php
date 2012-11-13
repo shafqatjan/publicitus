@@ -68,9 +68,7 @@
 	define('DB_PASS', 'Java1234PHP');
 	define('DB_NAME', 'publicitus');
 
-
-/*	
-	define("DB_HOST", 'localhost');
+/*	define("DB_HOST", 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
 	define('DB_NAME', 'publicitus');
