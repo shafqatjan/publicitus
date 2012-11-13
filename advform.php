@@ -1,8 +1,7 @@
 <?php 
 include('settings/settings.php');
 include('helpers/helper.php');
-include('classes/UserCategoriesMap.php');
-//include('classes/Categories.php');
+
 
 
 
