@@ -1,4 +1,6 @@
 <?php
+/*cart class*/
+
 	class Cart{
 		var $items;
 		var $lastitemid;
