@@ -93,7 +93,7 @@ if(isset($_POST['btn_save']))
 	  if(!empty($_POST['cat_'.$i]))
 		  array_push($categories, $_POST['cat_'.$i]);
 
-	if(empty($categories))		
+	if(count($categories)==0)		
 			$error .= '&nbsp;&bull;&nbsp;Select categoties.<br>';
 			//printArray($categories);exit;
 	if(empty($error))

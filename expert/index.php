@@ -52,7 +52,7 @@ $objSession->checkSession(CLIENT_ROLE_EXPERT,"../index.php") ;
      <div class="three-col-row">
     
     <div class="three-col"><a href="change-password.php"><img src="../images/icons/schedule.png" > <p class="dashboard-text"> Change Password </p></a></div>
-    <div class="three-col"><a href="./"><img src="../images/icons/attendance.png" > <p class="dashboard-text"> Dashboard </p></a></div>
+    <div class="three-col"><a href="profile.php"><img src="../images/icons/attendance.png" > <p class="dashboard-text"> Viwe Profile </p></a></div>
     <div class="three-col"><a href="./"><img src="../images/icons/books.png" > <p class="dashboard-text"> Dashboard </p></a></div>
     
     </div>

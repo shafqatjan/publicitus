@@ -9,11 +9,11 @@ define(BASE_PATH, $temp[0]);
 $temp = '';
 unset($temp);
 
-//define(SITE_ROOT, "http://localhost/publicitus/");
-//define(SITE_ROOTADMIN, "http://localhost/publicitus/admin/");
+define(SITE_ROOT, "http://localhost/publicitus/");
+define(SITE_ROOTADMIN, "http://localhost/publicitus/admin/");
 
-define(SITE_ROOT, "http://www.publicitus.com/");
-define(SITE_ROOTADMIN, "http://www.publicitus/admin/");
+//define(SITE_ROOT, "http://www.publicitus.com/");
+//define(SITE_ROOTADMIN, "http://www.publicitus/admin/");
 
 define(SITE_TITLE, 'Welcome publicitus for uloading!');
 

@@ -419,10 +419,10 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
    </div> <!-- form warrper -->
   </form>
   </div> <!-- content -->
-  
+
   <!-- footer -->
     <?php include('includes/footer.php');?>
- 
+   
  </div> <!-- Warpper -->
 
 </body>
