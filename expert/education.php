@@ -46,27 +46,26 @@ $cat_Array = $objDb->getArray($sqlAllCat);
 <title>Publicitus</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
-<!--[if IE 6]>
-<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
-<![endif]-->
-
-<!--[if IE 7]>
-<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
-<![endif]-->
-
-<!--[if IE 8]>
-<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
-<![endif]-->
+<script src="../js/bgiframe-2.1.2.js"></script>
 
 
-
-
-</head>
-
-<body>
-
-<div id="warpper">
-  <?php include('../includes/header.php');?>
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
+    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script src="/resources/demos/external/jquery.bgiframe-2.1.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <style>
+        body { font-size: 62.5%; }
+        label, input { display:block; }
+        input.text { margin-bottom:12px; width:95%; padding: .4em; }
+        fieldset { padding:0; border:0; margin-top:25px; }
+        h1 { font-size: 1.2em; margin: .6em 0; }
+        div#users-contain { width: 350px; margin: 20px 0; }
+        div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+        div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+        .ui-dialog .ui-state-error { padding: .3em; }
+        .validateTips { border: 1px solid transparent; padding: 0.3em; }
+    </style>
     <script>
     $(function() {
         var name = $( "#name" ),
@@ -145,12 +144,32 @@ $cat_Array = $objDb->getArray($sqlAllCat);
         $( "#create-user" )
             .button()
             .click(function() {
-				alert("Function called....");
                 $( "#dialog-form" ).dialog( "open" );
             });
     });
     </script>
-  
+
+<!--[if IE 6]>
+<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+<!--[if IE 7]>
+<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+<!--[if IE 8]>
+<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
+<![endif]-->
+
+
+
+
+</head>
+
+<body>
+
+<div id="warpper">
+  <?php include('../includes/header.php');?>
   <div id="content">
   
    <div id="profile-warrper">
@@ -233,41 +252,45 @@ $cat_Array = $objDb->getArray($sqlAllCat);
     <div class="eductaion-heading">
      <h3 class="background-heading"> Education</h3>
     </div>
-    
-    <div class="education-detail">
-    
-    
-    </div>
-   
-    </div>
-    
-     <div class="profile-third-box-detail">
-    
-    <div class="eductaion-heading">
-     <h3 class="background-heading"> Education </h3>
-    </div>
-    
-    <div class="education-detail">
+<div id="dialog-form" title="Create new user">
+    <p class="validateTips">All form fields are required.</p>
+ 
+    <form>
+    <fieldset>
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+    </fieldset>
+    </form>
+</div>
+ 
+ 
+<div id="users-contain" class="ui-widget">
+    <h1>Existing Users:</h1>
+    <table id="users" class="ui-widget ui-widget-content">
+        <thead>
+            <tr class="ui-widget-header ">
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John Doe</td>
+                <td>john.doe@example.com</td>
+                <td>johndoe1</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<button id="create-user">Create new user</button>
      
-      <h4> SouthEast University </h4>
-      <p class="degree-detail"> Master of Science (MS), Mechatronic Engineering </p> 
-      <p class="degree-year"> 2010 - 2014 (expeted) </p>
-      <p class="degree-decribtion"> I am doing master degree at Southeast University </p>
-    
-    </div>
-    
-      <div class="education-detail">
-     
-      <h4> SouthEast University </h4>
-      <p class="degree-detail"> Master of Science (MS), Mechatronic Engineering </p> 
-      <p class="degree-year"> 2010 - 2014 (expeted) </p>
-      <p class="degree-decribtion"> I am doing master degree at Southeast University </p>
-    
-    </div>
    
-    </div>
-    
-    
+    </div> 
  
     
     </div> <!-- profile-third-white-box -->
