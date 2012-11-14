@@ -51,7 +51,7 @@
 	define(ADMIN_PAGE_HEADING, "Administration Panel");
 	define(ADMIN_PAGE_FOOTER, "&copy; Website");	
 	define(CLIENT_PAGE_FOOTER, "Publicitus. ALL rights reserved.");	
-	
+	define(CLIENT_PAGE_TITLE, "Publicitus");		
 	/************************************************************
 	GRID COLOR CONTANTS
 	/************************************************************/	

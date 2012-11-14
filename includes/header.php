@@ -13,62 +13,48 @@ window.fbAsyncInit = function() {
 };
 
 function facebookLogout() {
-                            FB.logout(function(response) {
-
-                                logout(response);
-
-                            });	
+	FB.logout(function(response) {
+		logout(response);
+	});	
 }
 
 function facebookLogin() {
-	
 	FB.login(function(response) {
-
-                                if (response.authResponse) {
-
-                                    FB.api('/me', function(info) {
-										alert(info.username);
-										//jQuery.facebox({ajax: 'script-includes/loginPage.php'});
-										//jQuery("#myDivId").html(info.email).fadeIn(200);
-										//myLogout();
-										jQuery.colorbox({
-												href:"script-includes/FbRegister.php?email="+info.email,
-												onClosed: function(){myLogout();}
-										});
-										//alert(info.email);
-										//login(response, info);
-									});
-
-                                } else {
-
-                                    //user cancelled login or did not grant authorization
-
-                                    showLoader(false);
-
-                                }
-
-                            }, {scope:'email,user_birthday,status_update,publish_stream,user_about_me'});  		
-
+		if (response.authResponse) {
+		
+			FB.api('/me', function(info) {
+				//alert(info.username);
+				//jQuery.facebox({ajax: 'script-includes/loginPage.php'});
+				//jQuery("#myDivId").html(info.email).fadeIn(200);
+				//myLogout();
+				jQuery.colorbox({
+					href:"script-includes/FbRegister.php?email="+info.email,
+					onClosed: function(){myLogout();}
+				});
+				//alert(info.email);
+				//login(response, info);
+				});
+		
+			} 
+		else {
+			//user cancelled login or did not grant authorization
+			showLoader(false);
+		}
+	}, {scope:'email,user_birthday,status_update,publish_stream,user_about_me'});  		
 }
-            function logout(response){
+function logout(response){
+	userInfo.innerHTML =   "";
+	showLoader(false);
+}
 
-                userInfo.innerHTML =   "";
+function showLoader(status){
+	return false;
+	if (status)
+		document.getElementById('loader').style.display = 'block';
+	else
+		document.getElementById('loader').style.display = 'none';
+}
 
-                showLoader(false);
-
-            }
-
-		  function showLoader(status){
-return false;
-                if (status)
-
-                    document.getElementById('loader').style.display = 'block';
-
-                else
-
-                    document.getElementById('loader').style.display = 'none';
-
-            }
 (function(d) {
     var js,
     id = 'facebook-jssdk';
@@ -81,8 +67,7 @@ return false;
     js.src = "//connect.facebook.net/en_US/all.js";
     d.getElementsByTagName('head')[0].appendChild(js);
 } (document));
-</script>
-<script>
+
 function myLogout()
 {
 	FB.logout(function(response) {
@@ -117,9 +102,9 @@ function reloadMe()
 		  if($objSession->user_type==ADVERTISER) $myFolder = 'advertiser/';
 		  if($objSession->user_type==MEDIA) $myFolder = 'media/';		  		  		  
 	  ?>
-      <li style="width:110px;"> <a href="<?php echo SITE_ROOT.$myFolder?>"> Dashboard </a> </li>   
+      <li style="width:110px;"> <a href="<?php echo SITE_ROOT.$myFolder?>"> Dashboard </a> </li>
       <li style="width:85px;"> <a href="<?php echo SITE_ROOT?>logout.php"> Sign Out </a> </li>
-      <li style="width:85px;border:none;"> <a href="<?php echo SITE_ROOT.$myFolder?>"> Welcome <?php echo $objSession->user_name;?></a> </li>      
+      <li style="width:170px;border:none;"> <a href="<?php echo SITE_ROOT.$myFolder?>"> Welcome <?php echo $objSession->user_name;?></a> </li>
       <?php
 	  }
 	  else

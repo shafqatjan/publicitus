@@ -17,8 +17,8 @@ define(SITE_ROOTADMIN, "http://localhost/publicitus/admin/");
 
 define(SITE_TITLE, 'Welcome publicitus!');
 
-//define(CLASSES_DIR, BASE_PATH.'classes\\');
-define(CLASSES_DIR, BASE_PATH.'classes/');
+define(CLASSES_DIR, BASE_PATH.'classes\\');
+//define(CLASSES_DIR, BASE_PATH.'classes/');
 
 require_once(BASE_PATH."config/configuration.php");
 
@@ -26,8 +26,11 @@ function __autoload($className)
 {
 	if (!class_exists($className, false))
 	{
+		
 		if(file_exists(CLASSES_DIR.$className.'.class.php'))
 			require_once(CLASSES_DIR.$className.'.class.php');
+			
+		//echo CLASSES_DIR.$className.'.class.php';
 	}
 }
 	

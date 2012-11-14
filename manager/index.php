@@ -10,7 +10,7 @@ $objSession->checkSession(CLIENT_ROLE_MANAGER,"../index.php") ;
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="utf-8">
-<title>Publicitus</title>
+<title><?php echo CLIENT_PAGE_TITLE;?></title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
 <!--[if IE 6]>

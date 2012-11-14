@@ -141,23 +141,20 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 <html class="no-js" lang="en">
 <head>
 <meta charset="utf-8">
-<title>Publicitus</title>
+<title><?php echo CLIENT_PAGE_TITLE;?></title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
 <!--[if IE 6]>
-<link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 7]>
-<link href="css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 8]>
-<link href="css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
 <![endif]-->
-
-
-
 
 </head>
 
