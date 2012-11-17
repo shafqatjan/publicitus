@@ -11,6 +11,9 @@ $objDb->connect();
 $objCat = new Categories();
 $objMediaType = new MediaType();
 $objUser = new User();
+$objEducation = new Education();
+$objExperience = new Experience();
+
 $objUserCategoriesMap = new UserCategoriesMap();
 
 $sql = $objUser->PopulateGrid("*"," AND id= ".$objSession->id);  
