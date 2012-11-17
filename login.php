@@ -82,7 +82,7 @@ if(isset($_POST['btn_login']))
 <meta charset="utf-8">
 <title>Publicitus</title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<script src="js/lib/jquery-1.6.4.js"></script>
+<script src="js/lib/jquery.js"></script>
 <script src="js/modernizr.js"></script>
 <!--[if IE 6]>
 <link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">

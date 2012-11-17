@@ -3,7 +3,7 @@
 
 
 <script>
-jQuery.noConflict();
+
 window.fbAsyncInit = function() {
     FB.init({
         appId: '166495106822437',

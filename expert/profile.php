@@ -46,6 +46,7 @@ $cat_Array = $objDb->getArray($sqlAllCat);
 <title>Publicitus</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
+<script src="../js/lib/jquery.js"></script>
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
     <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
@@ -63,12 +64,12 @@ $cat_Array = $objDb->getArray($sqlAllCat);
         .validateTips { border: 1px solid transparent; padding: 0.3em; }
     </style>
     <script>
-    $(function() {
-        var name = $( "#name" ),
-            email = $( "#email" ),
-            password = $( "#password" ),
-            allFields = $( [] ).add( name ).add( email ).add( password ),
-            tips = $( ".validateTips" );
+    jQuery(function() {
+        var name = jQuery( "#name" ),
+            email = jQuery( "#email" ),
+            password = jQuery( "#password" ),
+            allFields = jQuery( [] ).add( name ).add( email ).add( password ),
+            tips = jQuery( ".validateTips" );
  
         function updateTips( t ) {
             tips
@@ -100,7 +101,7 @@ $cat_Array = $objDb->getArray($sqlAllCat);
             }
         }
  
-        $( "#dialog-form" ).dialog({
+        jQuery( "#dialog-form" ).dialog({
             autoOpen: false,
             height: 300,
             width: 350,
@@ -120,16 +121,16 @@ $cat_Array = $objDb->getArray($sqlAllCat);
                     bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "Password field only allow : a-z 0-9" );
  
                     if ( bValid ) {
-                        $( "#users tbody" ).append( "<tr>" +
+                        jQuery( "#users tbody" ).append( "<tr>" +
                             "<td>" + name.val() + "</td>" + 
                             "<td>" + email.val() + "</td>" + 
                             "<td>" + password.val() + "</td>" +
                         "</tr>" ); 
-                        $( this ).dialog( "close" );
+                        jQuery( this ).dialog( "close" );
                     }
                 },
                 Cancel: function() {
-                    $( this ).dialog( "close" );
+                    jQuery( this ).dialog( "close" );
                 }
             },
             close: function() {
@@ -137,10 +138,10 @@ $cat_Array = $objDb->getArray($sqlAllCat);
             }
         });
  
-        $( "#create-user" )
+        jQuery( "#create-user" )
             .button()
             .click(function() {
-                $( "#dialog-form" ).dialog( "open" );
+                jQuery( "#dialog-form" ).dialog( "open" );
             });
     });
     </script>
