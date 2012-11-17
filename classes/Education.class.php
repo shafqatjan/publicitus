@@ -11,6 +11,8 @@ class Education
 	private $school; //tinyint(3)
 	private $is_present; //int(11)
 	private $user_id; //int(11)
+	private $status;
+	private $dated; 
 	
 
 	public function __construct()
@@ -23,6 +25,9 @@ class Education
 		$this->school = '';
 		$this->user_id = '';
 		$this->is_present = '';
+		$this->status = '';
+		$this->dated = '';
+		
 		
 		$this->table = TBL_EDUCATION;
 	}
@@ -90,15 +95,11 @@ class Education
 		return "UPDATE ".$this->table." SET 
 		degree = '".hlpMysqlRealScape($this->degree)."',
 		subject = '".hlpMysqlRealScape($this->subject)."',
-		company = '".hlpMysqlRealScape($this->company)."',
-		website = '".hlpMysqlRealScape($this->website)."',
-		address = '".hlpMysqlRealScape($this->address)."',
-		school = '".hlpMysqlRealScape($this->school)."',
-		cell = '".hlpMysqlRealScape($this->cell)."',
-		city =   '".hlpMysqlRealScape($this->city)."',
-		state =  '".hlpMysqlRealScape($this->state)."',
-		country = '".hlpMysqlRealScape($this->country)."',
-		zipcode = '".hlpMysqlRealScape($this->zipcode)."' WHERE id = ".intval($this->id);
+		start_date = '".hlpMysqlRealScape($this->start_date)."', 
+		end_date = '".md5(hlpMysqlRealScape($this->end_date))."', 
+		school = '".hlpMysqlRealScape($this->school)."', 
+		is_present = '".hlpMysqlRealScape($this->is_present)."',
+		user_id = '".hlpMysqlRealScape($this->user_id)."', WHERE id = ".intval($this->id);
 	}
 
 	public function PopulateGrid($pram='*',$whr_clz='')
@@ -122,18 +123,6 @@ class Education
 		return "UPDATE ".$this->table." SET ".$col." = ".hlpMysqlRealScape($val)." WHERE id = ".intval($this->id);
 	}	
 	
-	public function start_dateExists()
-	{
-		return 'Select 1 from '.$this->table.'  
-		WHERE  start_date	= "'.hlpSafeString($this->start_date, 'char').'" LIMIT 1';
-	}
-	public function checkLogin()
-	{
-		return 'Select id, start_date,user_id,degree from '.$this->table.' WHERE is_present=1 AND start_date = "'.$this->start_date.'" AND end_date = "'.md5($this->end_date).'" LIMIT 1';
-	}
-	
-
-
 	public function UpdateVarificationCode()
 	{
 		return 'UPDATE '.$this->table.' SET
@@ -146,58 +135,18 @@ class Education
 		end_date 	="'.md5($this->nend_date).'"
 		where start_date 	= '.hlpSafeString($this->start_date,'char').' LIMIT 1';
 	}
-	public function ChangePassword()
-	{
-		return 'Update '.$this->table.' SET end_date 	="'.md5($this->nend_date).'" where id 	= '.hlpSafeString($this->id,'int').' LIMIT 1';
-	}
 	
 	public function checkOldPassword()
 	{
 		return 'Select 1 from '.$this->table.' WHERE end_date	= "'.md5($this->end_date).'" AND id	= '.hlpSafeString($this->id, 'int').' LIMIT 1;';
 	}
-	
-	
-	public function addAdminEmail()
-	{
-		return 'UPDATE '.$this->table.' 
-		set start_date    = "'.hlpSafeString($this->start_date).'"
-		WHERE id= '.intval($this->id).';';
-	}
-	
-
-	
-	public function UpdatePwdViaEmail()
-	{
-		return 'UPDATE '.$this->table.' SET
-				end_date = "'.md5(hlpSafeString($this->end_date,'char')).'"
-				WHERE start_date = "'.hlpSafeString($this->start_date,'char').'"';
-	}	
-
-	
-	public function userExists()
+		
+	public function degreeExists()
 	{
 		return 'Select 1 from '.$this->table.'  
-		WHERE user_name	= "'.hlpSafeString($this->user_name, 'char').'" LIMIT 1';
+		WHERE degree	= "'.hlpSafeString($this->degree, 'char').'" LIMIT 1';
 	}
 	
-	public function PasswordValidate()
-	{
-		
-		$error = '';
-		if(!$this->end_date)
-			$error .= '&bull;&nbsp;Old Password cannot be left blank.<br />';
-		if(!$this->nend_date)
-			$error .= '&bull;&nbsp;New end_date cannot be left blank.<br />';
-		if(!$this->cend_date)
-			$error .= '&bull;&nbsp;Confirm passord cannot be left blank.<br />';	
-		
-		if($this->nend_date!=$this->cend_date)
-			$error .= '&bull;&nbsp;Password mismatch.<br />';
-		return $error;
-	}
-
-	
-
 }
 
 ?>
