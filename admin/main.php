@@ -15,7 +15,7 @@ $Today = date('M d, Y',time());
 <title><?php echo ADMIN_PAGE_TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="../css/admin.css"/>
 
-<script type="text/javascript" src="../js/lib/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
 <script type="text/javascript" src="../js/script.js"></script>
 </head>
 <body>

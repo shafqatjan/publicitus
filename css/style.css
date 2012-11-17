@@ -1111,3 +1111,204 @@ p.upfront-payment{
 	font-family:'Arial';
 	 margin-top: 5px;
 }
+
+
+/********** list of jobs ***********/
+
+
+.search-bar-box{
+	border-bottom: 1px solid #033770;
+    float: left;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+	
+}
+
+.search-bar-box .search-title{
+	padding:2px;
+	float:left;
+	margin-right:5px;
+	color: #FFFFFF;
+    font-family: 'Arial';
+    font-size: 20px;
+}
+
+.search-bar-box .search-bar{
+	float:left;
+	margin-right:5px;
+	background:#0F0;
+}
+
+.search-bar-box .search-bar input[type='text']{
+	 border: 1px solid #CCCCCC;
+    color: #151515;
+    font-family: 'Arial';
+    font-size: 15px;
+    height: 30px;
+    padding-left: 5px;
+    width: 385px;
+ }
+ 
+ .search-bar-box .search-btn input[type='button']{
+	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+	border:1px solid #E9AD1B;
+	border-radius: 3px;
+    padding: 6px 15px;
+	cursor:pointer;
+}
+ .search-bar-box .search-btn input[type='submit']{
+	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+	border:1px solid #E9AD1B;
+	border-radius: 3px;
+    padding: 6px 15px;
+	cursor:pointer;
+}
+
+.search-bar-box .search-btn input[type='button']:hover{
+	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
+}
+
+.search-catagry-box{
+	
+}
+
+.search-catagry-box .search-catagry-title{
+	color: #FFFFFF;
+    font-family: 'Arial';
+    font-size: 20px;
+	float:left;
+	margin-bottom:10px;
+}
+
+.search-catagry-box .search-catagry-row{
+	width:100%;
+	float:left;
+	
+}
+
+.search-catagry-box .search-catagry-row .search-catagry-col{
+	float:left;
+	padding:5px;
+	margin-right:5px;
+	width:30%;
+	
+}
+
+.search-catagry-box .search-catagry-row .search-catagry-col .search-catagry-col-check-box{
+	display:block;
+	float:left;
+	margin-right: 5px;
+}
+
+.search-catagry-box .search-catagry-row .search-catagry-col .search-catagry-col-title{
+	color: #fff;
+    font-family: 'Calibri';
+    font-size: 14px;
+	
+}
+
+.job-list-margin{
+	margin-top:20px !important;
+}
+
+.job-post-title{
+	float:left;
+}
+
+.apply-for-job-btn{
+	float:right;
+}
+
+.job-list-bold-text{
+	color: #545450;
+    font-family: 'Arial';
+    font-size: 14px;
+	font-weight:bold;
+}
+
+.job-post-title h3{
+	color:#02A3E3 !important;
+	font-size:22px !important;
+	text-shadow:none !important;
+}
+
+.apply-for-job-btn input[type="button"] {
+    background: linear-gradient(to bottom, #EDEDED 0%, #D1D1D1 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+    padding: 6px 15px;
+}
+
+.apply-for-job-btn input[type='button']:hover{
+	background: linear-gradient(to bottom, #f9f9f9 0%, #dfdfdf 100%) repeat scroll 0 0 transparent;
+}
+
+.job-list-pagination{
+	float:right;
+}
+
+.job-list-pagination ul li{
+	 float: left;
+	 display:block;
+}
+
+.job-list-pagination ul li a{
+	color:#039CE0;
+	text-decoration:none;
+	font-family:'Arial';
+	font-size:11px;
+	border: 1px solid #CCCCCC;
+    display: block;
+    margin-right: 3px;
+    padding: 3px 6px;
+}
+
+.job-list-pagination ul li a:hover{
+	background:#2F659B;
+	color:#fff;
+}
+
+.job-list-pagination ul li a.active{
+	background:#2F659B;
+	color:#fff;
+	text-decoration:none;
+	font-family:'Arial';
+	font-size:11px;
+	border: 1px solid #CCCCCC;
+    display: block;
+    margin-right: 3px;
+    padding: 3px 6px;
+}
+
+.pagination-dot-dot{
+	padding: 0px 6px;
+}
+.job-list-search-result{
+	float:left;
+}
+
+.job-list-search-result select {
+    border: 1px solid #CCCCCC;
+    color: #999999;
+    font-size: 12px;
+    font-style: italic;
+    padding: 2px;
+    width: 130px;
+}
+
+.job-list-search-result label{
+	color:#898989;
+	font-weight:bold;
+	font-family:'Arial';
+	font-size:14px;
+}
+
+.job-list-search-result p.job-list-total-jobs{
+	color: #000000;
+    font-family: 'Arial';
+    font-size: 14px;
+    font-weight: 800;
+    margin-bottom: 5px;
+}

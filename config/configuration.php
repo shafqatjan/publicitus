@@ -99,4 +99,5 @@
 	define(TBL_USER,"pub_users");
 	define(TBL_USER_EXPERTISE,"pub_users_categories_map");
 	define(TBL_USER_MEDIA,"pub_users_media_map");
+	define(TBL_JOB_POST,"pub_job_post");
 ?>
