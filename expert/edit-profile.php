@@ -269,13 +269,7 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           </div>
           <div class="error"></div>
         </div>
-    
-    <div class="form-head">  
-    	<h3> Experties </h3>
-    </div>
-    
-    <!--  Looop    echo '<pre>';print_r($_POST); -->
-        <div class="three-col">
+
 
 
     <?php 
@@ -283,7 +277,14 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 // Retrieve Categories 
 
 	if(count($cat_Array)>0)
-	{
+	{ ?>   
+    <div class="form-head">  
+    	<h3> Experties </h3>
+    </div>
+    
+    <!--  Looop    echo '<pre>';print_r($_POST); -->
+        <div class="three-col">
+        <?php
 		$co = 0;
 		foreach($cat_Array as $Data_row)
 		{
@@ -303,14 +304,14 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           </div>
           <?php
 		}
-		
+		?>  </div><?php
 	}
 	?>
-    <input type="hidden" id="catCount" name="catCount" value="<?php echo $co;?>">
-    </div>  
+    
+    
     <!--  End Looop   -->
         
- 
+ <input type="hidden" id="catCount" name="catCount" value="<?php echo $co;?>">
     
     <div class="submit-btn">
     <input type="submit" id="btn_save"  name="btn_save" value="Update">
