@@ -51,7 +51,7 @@
 	define(ADMIN_PAGE_HEADING, "Administration Panel");
 	define(ADMIN_PAGE_FOOTER, "&copy; Website");	
 	define(CLIENT_PAGE_FOOTER, "Publicitus. ALL rights reserved.");	
-	
+	define(CLIENT_PAGE_TITLE, "Publicitus");		
 	/************************************************************
 	GRID COLOR CONTANTS
 	/************************************************************/	
@@ -99,7 +99,11 @@
 	define(TBL_USER,"pub_users");
 	define(TBL_USER_EXPERTISE,"pub_users_categories_map");
 	define(TBL_USER_MEDIA,"pub_users_media_map");
+<<<<<<< HEAD
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
 	
+=======
+	define(TBL_JOB_POST,"pub_job_post");
+>>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
 ?>

@@ -160,23 +160,20 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 <html class="no-js" lang="en">
 <head>
 <meta charset="utf-8">
-<title>Publicitus</title>
+<title><?php echo CLIENT_PAGE_TITLE;?></title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
 <!--[if IE 6]>
-<link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 7]>
-<link href="css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 8]>
-<link href="css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
 <![endif]-->
-
-
-
 
 </head>
 
@@ -292,6 +289,7 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           <div class="error"></div>
         </div>
 
+<<<<<<< HEAD
         <div class="two-col">
           <div class="col-one">
             <label> Rate ($/minute)</label>
@@ -334,6 +332,8 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
     
     <!--  Looop    echo '<pre>';print_r($_POST); -->
         <div class="three-col">
+=======
+>>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
 
 
     <?php 
@@ -341,7 +341,14 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 // Retrieve Categories 
 
 	if(count($cat_Array)>0)
-	{
+	{ ?>   
+    <div class="form-head">  
+    	<h3> Experties </h3>
+    </div>
+    
+    <!--  Looop    echo '<pre>';print_r($_POST); -->
+        <div class="three-col">
+        <?php
 		$co = 0;
 		foreach($cat_Array as $Data_row)
 		{
@@ -361,14 +368,14 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           </div>
           <?php
 		}
-		
+		?>  </div><?php
 	}
 	?>
-    <input type="hidden" id="catCount" name="catCount" value="<?php echo $co;?>">
-    </div>  
+    
+    
     <!--  End Looop   -->
         
- 
+ <input type="hidden" id="catCount" name="catCount" value="<?php echo $co;?>">
     
     <div class="submit-btn">
     <input type="submit" id="btn_save"  name="btn_save" value="Update">

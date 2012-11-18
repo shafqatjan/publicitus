@@ -101,8 +101,6 @@ class ClientPaginate{
 
          for ($i=$pageStart;$i<=$pageEnd;$i++)
 		 	if ($i == $this->currentPage)
-			 	
-				//$ar[$i] = "";
 			 	 $ar[$i] = "<span>".$i."</span>";
 			else 
 				$ar[$i] = "<a href='".$this->url.$this->urlAppendString."start=".((($i-1)*$this->limit)+1)."' title='Go to page ". $i ."'>".$i."</a>";
@@ -139,14 +137,12 @@ class ClientPaginate{
          $output .= '';
 
          if(trim($output) ==  '')
-		
 		 	$output = '';
 		
 		if($output == '<span>1</span>')
-		return '';
-		 
-		 
-		 return $output;         
+			return '';
+	 
+		return $output;         
 	}
  
 }

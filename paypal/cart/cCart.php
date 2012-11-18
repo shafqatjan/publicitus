@@ -1,7 +1,7 @@
 <?php
 class cCart
 {
-	private $cart = array();
+	public  $cart = array();
 	function cCart()
 	{
 		$this->cart=array();
@@ -45,7 +45,7 @@ class cCart
 	{
 		$str='';
 		$str.="
-			<table>
+			<table border='1'>
 				<tr>
 					<th>Item</th>
 					<th>Price</th>
@@ -62,6 +62,15 @@ class cCart
 			$str.="<td>".$this->cart[$i]['totalprice']."</td>";
 			$str.="</tr>";
 		}
+		$str.="<tr>";
+			$str.="<th colspan='3' align='right'>";
+					$str.="<strong>Total Amound</strong>";					
+			$str.="</th>";
+			$str.="<td align='left'>";
+					$str.="<strong>".$this->checkOut()."</strong>";					
+			$str.="</td>";
+
+		$str.="</tr>";		
 		echo "</table>";
 		echo $str;
 	}
@@ -69,7 +78,7 @@ class cCart
 	{
 		$counts=count($this->cart);
 		echo $counts.' ';		
-		echo ($counts>1)?" Items found":" Item found";
+		echo ($counts>1)?" Item's found":" Item found";
 	}
 	function countCartItem($items)
 	{
@@ -92,7 +101,7 @@ class cCart
 		{
 			$total=$total+$this->cart[$i]['totalprice'];
 		}
-		echo $total;
+		return $total;
 	}		
 }
 session_start();

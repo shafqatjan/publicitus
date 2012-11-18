@@ -80,7 +80,7 @@ if(isset($_POST['btn_login']))
 
 <head>
 <meta charset="utf-8">
-<title>Publicitus</title>
+<title><?php echo CLIENT_PAGE_TITLE;?></title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="js/lib/jquery.js"></script>
 <script src="js/modernizr.js"></script>
