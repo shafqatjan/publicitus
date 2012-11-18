@@ -94,10 +94,18 @@ if($_POST['applybtn'])
     	<h3> Apply For Post </h3> <a href="job-detail.php?job=<?php echo $jobId;?>"> View Job Posting </a>
     </div>
    
+	<div class="two-col" style="text-align:left;margin: 15px 0;">
+     <div class="col-one"> <label> Job Rate </label> </div>     
+     <div class="col-two"> 
+     $<?php echo $jobInfoArray['budget'];?> per minut
+     <p class="upfront-payment"></p>
+     </div>
+     <div class="error"></div>
+    </div>   
     <div class="two-col" style="text-align:left;margin: 15px 0;">
      <div class="col-one"> <label> Your Rate </label> </div>     
      <div class="col-two"> 
-     <input type="text" style="width:100px" id="yourrate" name="yourrate" value="<?php echo $yourrate;?>"> Job Rate $<?php echo $jobInfoArray['budget'];?>
+     <input type="text" style="width:100px" id="yourrate" name="yourrate" value="<?php echo $yourrate;?>">
      <p class="upfront-payment"> Enter your rate against the job rate.</p>
      </div>
      <div class="error"></div>
