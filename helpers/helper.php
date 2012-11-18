@@ -161,17 +161,22 @@ function hlpUploadFile($fileArrayName,$dir)
 }
 function hlpValidImage($arrayName,$allowExtensionArray)
 {
-	//print_r(func_get_args());
-	//print_r($allowExtensionArray);
+	//printArray(func_get_args());
+	//printArray($allowExtensionArray);
 	$filename = $_FILES[$arrayName]['tmp_name'];
+	//printArray(($filename));
 	$m=array();
+
+exit;
 	if(function_exists("mime_content_type")) # if mime_content_type exists use it.
 	{
+		echo 'if';
 		 $m = @mime_content_type($filename);
 	}
 	
 	else if(function_exists(""))
 	{
+				echo 'else if';
 		# if Pecl installed use it
 		$finfo = finfo_open(FILEINFO_MIME);
 		$m = finfo_file($finfo, $filename);
@@ -179,6 +184,7 @@ function hlpValidImage($arrayName,$allowExtensionArray)
 	}
 	else
 	{   
+			echo 'else';
 		 # if nothing left try shell
 		if(strstr($_SERVER[HTTP_USER_AGENT], "Windows"))
 		# Nothing to do on windows
@@ -192,7 +198,7 @@ function hlpValidImage($arrayName,$allowExtensionArray)
 		$m = trim(exec('file -bi '.escapeshellarg($filename)));
 	}
 	//$m = explode(";", $m);
-	//echo '<pre>';print_r($m);exit;
+	printArray($m);exit;
 	//echo '<pre>';print_r($allowExtensionArray);exit;
 	if(in_array(trim($m),$allowExtensionArray))
 		return 1;

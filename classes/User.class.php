@@ -199,7 +199,7 @@ class User
 	}
 	public function checkLogin()
 	{
-		return 'Select id, email,user_type,first_name from '.$this->table.' WHERE status=1 AND email = "'.$this->email.'" AND password = "'.md5($this->password).'" LIMIT 1';
+		return 'Select id, email,user_type,last_name from '.$this->table.' WHERE status=1 AND email = "'.$this->email.'" AND password = "'.md5($this->password).'" LIMIT 1';
 	}
 	
 

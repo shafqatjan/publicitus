@@ -45,7 +45,7 @@ $cat_Array = $objDb->getArray($sqlCat);
 		$qry .= ' AND job_title like "%'.$srch_cri.'%"';
 	}
 	if(!empty($act) and $sortby)
-	{
+	{		
 		$qry .= ' order by ';
 
 		if($sortby == 1)
@@ -76,7 +76,7 @@ $cat_Array = $objDb->getArray($sqlCat);
 	} 
 	
 	$sqlJobPost = $objJobPost->PopulateGrid("*",$qry);
-    echo $sqlJobPost .= " LIMIT $paginate->start,$paginate->limit ;";
+    $sqlJobPost .= " LIMIT $paginate->start,$paginate->limit ;";
 	$Data_Array = array();
 	
 	if($objDb->query($sqlJobPost) and $objDb->get_num_rows()>0)
@@ -147,56 +147,53 @@ function goToLink(obj)
           </div>
         </form>
         <form method="post" id="catForm" name="catForm">
-        <div class="search-catagry-box">
-          <div class="search-catagry-title">
-            <label> Catagry </label>
-          </div>
-          <?php
+          <div class="search-catagry-box">
+            <div class="search-catagry-title">
+              <label> Catagry </label>
+            </div>
+            <?php
           if(count($cat_Array)>0)
 		  {
 			  //echo "asdfasdf";printArray($catsrch);
 		  ?>
-          <div class="search-catagry-row"> <!-- search-catagry-row -->
-            
-            
-            <?php 
+            <div class="search-catagry-row"> <!-- search-catagry-row -->
+              
+              <?php 
 			foreach($cat_Array as $cat_row)
 			{
 				//echo "asfsadfsdf = ".in_array($cat_row['id'],$catsrch)." asdfsdf id=".$cat_row['id'];
 			?>
-            <div class="search-catagry-col">
-              <div class="search-catagry-col-check-box">
-                <input type="checkbox" id="cat[]" name="cat[]"  value="<?php echo $cat_row['id'];?>" on onClick="document.catForm.submit();" <?php if(in_array($cat_row['id'],$catsrch)){echo 'checked';}?>>
+              <div class="search-catagry-col">
+                <div class="search-catagry-col-check-box">
+                  <input type="checkbox" id="cat[]" name="cat[]"  value="<?php echo $cat_row['id'];?>" on onClick="document.catForm.submit();" <?php if(in_array($cat_row['id'],$catsrch)){echo 'checked';}?>>
+                </div>
+                <div class="search-catagry-col-title">
+                  <label> <?php echo $cat_row['title'];?> </label>
+                </div>
               </div>
-              <div class="search-catagry-col-title">
-                <label>  <?php echo $cat_row['title'];?> </label>
-              </div>
-            </div>
-            <?php
+              <?php
 			}
 			?>
-            
-            
-          </div>
-          <?php 
+            </div>
+            <?php 
 		  }
 		  else
 		  {
 			?>
-          <div class="search-catagry-row"> <!-- search-catagry-row -->
-            
-            <div class="search-catagry-col">
-              <div class="search-catagry-col-title">
-                <label> No categories found. </label>
+            <div class="search-catagry-row"> <!-- search-catagry-row -->
+              
+              <div class="search-catagry-col">
+                <div class="search-catagry-col-title">
+                  <label> No categories found. </label>
+                </div>
               </div>
             </div>
-          </div>
-          <?php  
+            <?php  
 	      }
 		  ?>
-          <!-- search-catagry-row --> 
-          
-        </div>
+            <!-- search-catagry-row --> 
+            
+          </div>
         </form>
       </div>
       <!-- first blue box -->
@@ -207,15 +204,14 @@ function goToLink(obj)
             <p class="job-list-total-jobs"> <?php echo $total;?> jobs found </p>
             <label> Sort by: </label>
             <select id="sortby" name="sortby" onChange="goToLink(this);">
-              <option value="1" <?php if($sortby==1){echo "selected";}?>> Newest  </option>
-              <option value="2" <?php if($sortby==2){echo "selected";}?>> Oldest </option>              
-              <option value="3" <?php if($sortby==3){echo "selected";}?>> Job Title Assending </option>  
-              <option value="4" <?php if($sortby==4){echo "selected";}?>> Job Title Descending </option>                
+              <option value="1" <?php if($sortby==1){echo "selected";}?>> Newest </option>
+              <option value="2" <?php if($sortby==2){echo "selected";}?>> Oldest </option>
+              <option value="3" <?php if($sortby==3){echo "selected";}?>> Job Title Assending </option>
+              <option value="4" <?php if($sortby==4){echo "selected";}?>> Job Title Descending </option>
             </select>
           </div>
-		
-          <div class="job-list-pagination"><div  class="paginationClass"><?php echo $paging;?></div>
-           
+          <div class="job-list-pagination">
+            <div  class="paginationClass"><?php echo $paging;?></div>
           </div>
         </div>
         <?php
@@ -226,17 +222,22 @@ function goToLink(obj)
 		?>
         <div class="profile-third-box-detail job-list-margin">
           <div class="eductaion-heading"> <span class="job-post-title">
-            <h3> <?php echo $Data_row['job_title'];?>. </h3>
+            <h3 onClick="window.location='job-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['job_title'];?>. </h3>
             </span> <span class="apply-for-job-btn">
-            <input type="button" value="Apply Now">
+            <?php if($objSession->id!=0 and $objSession->user_type==EXPERT){?>
+            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">
+            <?php }else{
+				?>
+            <input type="button" value="Login to apply" onClick="window.location='login.php'">
+            <?php
+			}?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
             <p class="degree-year"> <span class="job-list-bold-text"> Fixed - Price </span> - Est, Budget: $<?php echo $Data_row['budget']?> - Posted on <?php echo hlpDateFormat($Data_row['dated']);?> </p>
             <p class="degree-decribtion" style="margin-top:5px; margin-bottom:15px;"> <?php echo $Data_row['job_desc']?> </p>
-            <p class="degree-detail"> <span class="job-list-bold-text"> Last date: </span> <?php echo hlpDateFormat($Data_row['last_date']);?>  </p>
+            <p class="degree-detail"> <span class="job-list-bold-text"> Last date: </span> <?php echo hlpDateFormat($Data_row['last_date']);?> </p>
           </div>
         </div>
-        
         <?php
 			}
 		}
@@ -245,13 +246,11 @@ function goToLink(obj)
         <div class="profile-third-box-detail job-list-margin">
           <div class="eductaion-heading"> <span class="job-post-title">
             <h3>No jobs found. </h3>
-            </span>  </div>
-          
-        </div>        
+            </span> </div>
+        </div>
         <?php	
 		}
 		?>
-        
       </div>
       <!-- profile-third-white-box --> 
       

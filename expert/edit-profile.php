@@ -289,6 +289,10 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           <div class="error"></div>
         </div>
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
         <div class="two-col">
           <div class="col-one">
             <label> Rate ($/minute)</label>
@@ -331,6 +335,11 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
     
     <!--  Looop    echo '<pre>';print_r($_POST); -->
         <div class="three-col">
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
 
 
     <?php 
