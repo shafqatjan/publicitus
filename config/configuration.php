@@ -102,6 +102,10 @@
 
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
+<<<<<<< HEAD
+	define(TBL_JOB_POST,"pub_job_post");
+
+=======
 	
 
 	define(TBL_JOB_POST,"pub_job_post");
@@ -110,4 +114,5 @@
 	define(TBL_APP_FILE,"pub_app_file");		
 
 
+>>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
 ?>

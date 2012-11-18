@@ -91,8 +91,11 @@ function reloadMe()
   <div id="logo"><a href="<?php echo SITE_ROOT?>"><img id="logo-img" src="<?php echo SITE_ROOT?>images/logo.png" border="0" /></a></div>
   <div id="nav">
     <ul>
+<<<<<<< HEAD
+=======
       <li> <a href="<?php echo SITE_ROOT?>"> Home </a> </li>
       <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
+>>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
       <!--<li> <a href=""> Join </a> </li>-->
       <?php
 	  if($objSession->id)
@@ -113,6 +116,7 @@ function reloadMe()
 	  else
 	  {
 	  ?>
+      <li> <a href="<?php echo SITE_ROOT?>"> Home </a> </li>     
       <li style="border:none;"> <a href="<?php echo SITE_ROOT?>login.php"> Sign In </a> </li>
       <li style="border:none;"> <!--<a href="javascript:void(0);" id="fb-auth"> <img id="fb-btn-img" src="images/fb.png" /> </a> -->
         <input type="button" border="0" id="fb-auth" style="background:url(images/fb.png) no-repeat ; cursor:pointer ;border:none; width:107px; height: 25px;" onclick='facebookLogin()'>

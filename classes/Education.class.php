@@ -62,8 +62,11 @@ class Education
 
     if($this->school == '' && $this->school == '')
 		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
 		
 		
 		return $error;

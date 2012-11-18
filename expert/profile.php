@@ -259,7 +259,7 @@ function selectDate(id){
 
 <div id="warpper">
   <?php include('../includes/header.php');?>
-  
+  <?php include('../includes/dialog-form.php ');?> 
   <div id="content">
 
   
@@ -332,7 +332,7 @@ function selectDate(id){
     
     <div class="eductaion-heading">
      <h3 class="background-heading"> Education </h3>
-     <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" value="Add Info"> </span>  </span>
+     <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" id="add-exper" value="Add Info"> </span>  </span>
     </div>
     
     <div class="education-detail">
@@ -377,7 +377,7 @@ function selectDate(id){
     
        <div class="eductaion-heading">
          <h3 class="background-heading"> Experience </h3>
-         <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" value="Add Info"> </span>  </span>
+         <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" id="add-exper" value="Add Info"> </span>  </span>
         </div>
         
     <div class="education-detail">
