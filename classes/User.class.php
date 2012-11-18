@@ -25,6 +25,7 @@ class User
 	private $current_login;
 	private $npassword;
 	private $cpassword;
+	private $rate;
 
 	public function __construct()
 	{
@@ -49,9 +50,11 @@ class User
 		$this->last_login = '';
 		$this->current_login = '';
 		
+		
 		$this->table = TBL_USER;
     	$this->npassword = '';
 	    $this->cpassword = '';
+		$this->rate = 0;
 	}
 
 
@@ -164,6 +167,7 @@ class User
 		city =   '".hlpMysqlRealScape($this->city)."',
 		state =  '".hlpMysqlRealScape($this->state)."',
 		country = '".hlpMysqlRealScape($this->country)."',
+		rate = '".hlpMysqlRealScape($this->rate)."',
 		zipcode = '".hlpMysqlRealScape($this->zipcode)."' WHERE id = ".intval($this->id);
 	}
 

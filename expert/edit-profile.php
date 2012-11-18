@@ -12,6 +12,8 @@ $objCat = new Categories();
 $objMediaType = new MediaType();
 $objUser = new User();
 $objUserCategoriesMap = new UserCategoriesMap();
+$objUserMediaMap = new UserMediaMap();
+
 
 //get user info to edit
 $sql = $objUser->PopulateGrid("*"," AND id= ".$objSession->id);  
@@ -29,22 +31,27 @@ $city 					= $userInfo['city'];
 $state 					= $userInfo['state'];
 $zipCode 				= $userInfo['zipcode'];
 $country 				= $userInfo['country'];
+$rate 				    = $userInfo['rate'];
+$mediaType 				= $userInfo['mediaType'];
+
 
 $sqlUserCat = $objUserCategoriesMap->PopulateGrid("category_id"," AND status = 1 AND user_id= ".$objSession->id);  
 $ucategories = $objDb->getArray($sqlUserCat);
 $categories = array();
-
 foreach($ucategories as $ucat)
 array_push($categories, $ucat['category_id']);
-//printArray($categories);
 
-//$count = count($ucategories);
-//for($i = 0; $i< $count; $i++)
-	//  array_push($categories, $ucategories[$i]['id']);
+$sqlUserMedia = $objUserMediaMap->PopulateGrid("media_id"," AND status = 1 AND user_id= ".$objSession->id);  
+$umedia = $objDb->getArray($sqlUserMedia);
+$mediaArr = array();
+foreach($umedia as $umedi)
+array_push($mediaArr, $umedi['media_id']);
+
+//printArray($mediaArr); exit;
 
 
-//$mediaType 				= $userInfo['first_name'];
-//$catCount 				= $userInfo['first_name'];
+
+
 $error = '';
 
 $sqlAllCat = $objCat->PopulateGrid("*",' AND status = 1 ')." order by title";  
@@ -68,6 +75,7 @@ if(isset($_POST['btn_save']))
 	$country 				= isset($_POST['country'])?$_POST['country']:'';
 	$mediaType 				= isset($_POST['mediaType'])?$_POST['mediaType']:'';
 	$catCount 				= isset($_POST['catCount'])?$_POST['catCount']:'';
+	$rate                   = isset($_POST['rate'])?$_POST['rate']:'';
 
 //printArray($_POST);exit;
 
@@ -86,14 +94,19 @@ if(isset($_POST['btn_save']))
 	$objUser->state = $state;
 	$objUser->zipcode = $zipCode;
 	$objUser->country = $country;
+	$objUser->rate = $rate;
+	$objUser->mediaType = $mediaType;
+	
 	$categories = array();
     $error .= $objUser->validateUpdate();
+    if($objUser->mediaType == 0)
+ 	   $error .= '&nbsp;&bull;&nbsp;Please select media type.<br>';
 
 	for($i = 1; $i<= $catCount; $i++)
 	  if(!empty($_POST['cat_'.$i]))
 		  array_push($categories, $_POST['cat_'.$i]);
 
-	if(empty($categories))		
+	if(count($categories)==0)		
 			$error .= '&nbsp;&bull;&nbsp;Select categoties.<br>';
 			//printArray($categories);exit;
 	if(empty($error))
@@ -113,8 +126,14 @@ if(isset($_POST['btn_save']))
 				$valuesClause = trim($valuesClause,",");
 				//echo $valuesClause; exit;
 				$objDb->execute($objUserCategoriesMap->AddUserCat($valuesClause));
+				// add media 
+				$objUserMediaMap->user_id = $latestId;
+				$objUserMediaMap->media_id = $mediaType;
+				$objDb->execute($objUserMediaMap->UpdateUserMediaMap());
+
+				
 				$objSession->setSessMsg('Profile updated successfully.');							
-				$objSession->redirectTo(SITE_ROOT.'varify.php');
+				$objSession->redirectTo(SITE_ROOT.'/expert/profile.php');
 			
 				//exit;
 			}
@@ -270,6 +289,51 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           <div class="error"></div>
         </div>
 
+<<<<<<< HEAD
+        <div class="two-col">
+          <div class="col-one">
+            <label> Rate ($/minute)</label>
+          </div>
+          <div class="col-two">
+      <input type=text name="rate" id="rate" value="<?php echo $rate; ?>">
+          </div>
+          <div class="error"></div>
+        </div>
+
+        <div class="two-col">
+          <div class="col-one">
+            <label> Media Type <span style="color:red">*</span></label>
+          </div>
+          <div class="col-two">
+            <select name="mediaType" id="mediaType">
+              <option value="0"> Select Type Of Media... </option>
+              <?php 
+				if(count($Data_Array)>0)
+				{
+					foreach($Data_Array as $Data_row)
+					{
+						//echo $Data_row['id'] .' = '.$mediaArr['media_id'];
+				         if(in_array($Data_row['id'],$mediaArr))
+
+							echo "<option value=". $Data_row['id']." selected='selected'>". $Data_row['title']."</option>";
+						 else
+							echo "<option value=". $Data_row['id'].">". $Data_row['title']."</option>";						
+					}
+				}
+				
+				?>
+            </select>
+          </div>
+          <div class="error"></div>
+        </div>
+    <div class="form-head">  
+    	<h3> Categories </h3>
+    </div>
+    
+    <!--  Looop    echo '<pre>';print_r($_POST); -->
+        <div class="three-col">
+=======
+>>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
 
 
     <?php 

@@ -1,7 +1,9 @@
 <link href="colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
 <script src="colorbox/jquery.colorbox.js" type="text/javascript"></script>
+
+
 <script>
-jQuery.noConflict();
+
 window.fbAsyncInit = function() {
     FB.init({
         appId: '166495106822437',
