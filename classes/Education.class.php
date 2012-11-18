@@ -59,6 +59,8 @@ class Education
 		$error .= '&nbsp;&bull;&nbsp;Start Date cannot be left blank.<br>';
     if($this->end_date == '' && $this->is_present == '')
 		$error .= '&nbsp;&bull;&nbsp;Enter either End Date or check present .<br>';
+    if($this->school == '' && $this->school == '')
+		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
 		
 		
 		return $error;

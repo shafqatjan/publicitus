@@ -99,4 +99,7 @@
 	define(TBL_USER,"pub_users");
 	define(TBL_USER_EXPERTISE,"pub_users_categories_map");
 	define(TBL_USER_MEDIA,"pub_users_media_map");
+	define(TBL_EDUCATION,"pub_education");
+	define(TBL_EXPERIENCE,"pub_experience");
+	
 ?>
