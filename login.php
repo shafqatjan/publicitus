@@ -35,7 +35,7 @@ if(isset($_POST['btn_login']))
 				$objSession->id = $chkLogin['id'];
 				$objSession->email = $chkLogin['email'];
 				$objSession->user_type = $chkLogin['user_type'];	
-				$objSession->user_name = $chkLogin['first_name'];			
+				$objSession->user_name = $chkLogin['last_name'];			
 				//1=expert,2=manager,3=advertiser,4=media
 				$redirecto = '';
 				if($chkLogin['user_type']=='1')
