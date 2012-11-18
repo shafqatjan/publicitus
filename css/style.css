@@ -784,11 +784,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-family: 'Montserrat Alternates',sans-serif;
   font-size:16px;
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
+
 /************  Profile page ************/
 
 #profile-warrper{
@@ -802,10 +801,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	color:#fff;
 	font-size:20px;
 	font-family:'Arial';
-<<<<<<< HEAD
+
 	float: left;
-=======
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
+
 }
 
 #profile-warrper .profile-blue-box{
@@ -1015,11 +1014,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 .profile-second-white-box .send-message{
 	float:left;
-<<<<<<< HEAD
+
 	margin-top:144px;
-=======
+
 	margin-top:20px;
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
 }
 
 .profile-second-white-box .send-message-btn input[type="button"] {
@@ -1088,10 +1087,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	text-align:left;
 	float:left;
 	margin-top:15px;
-<<<<<<< HEAD
+
 	clear: both;
-=======
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
+
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1128,7 +1127,7 @@ p.upfront-payment{
 	 margin-top: 5px;
 }
 
-<<<<<<< HEAD
+
 .paid-to-you{
 	background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #CCCCCC;
@@ -1164,8 +1163,8 @@ p.upfront-payment{
     font-weight: bold;
     line-height: 29px;
 }
-=======
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
+
 
 /********** list of jobs ***********/
 
@@ -1211,8 +1210,8 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
-<<<<<<< HEAD
-=======
+
+
  .search-bar-box .search-btn input[type='submit']{
 	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
@@ -1220,7 +1219,7 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
 
 .search-bar-box .search-btn input[type='button']:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
@@ -1368,7 +1367,7 @@ p.upfront-payment{
     font-size: 14px;
     font-weight: 800;
     margin-bottom: 5px;
-<<<<<<< HEAD
+
 }
 
 table.gridtable {
@@ -1417,6 +1416,6 @@ table.gridtable td a:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
 
-=======
+
 }
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+

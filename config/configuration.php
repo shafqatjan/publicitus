@@ -99,16 +99,15 @@
 	define(TBL_USER,"pub_users");
 	define(TBL_USER_EXPERTISE,"pub_users_categories_map");
 	define(TBL_USER_MEDIA,"pub_users_media_map");
-<<<<<<< HEAD
+
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
 	
-=======
+
 	define(TBL_JOB_POST,"pub_job_post");
-<<<<<<< HEAD
+
 	define(TBL_JOB_APP,"pub_job_app");	
 	define(TBL_APP_FILE,"pub_app_file");		
-=======
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
->>>>>>> 3a12c91cc099ba4462fb3348a44d09aaebe6a10a
+
+
 ?>
