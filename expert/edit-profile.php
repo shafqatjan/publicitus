@@ -289,7 +289,6 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           <div class="error"></div>
         </div>
 
-<<<<<<< HEAD
         <div class="two-col">
           <div class="col-one">
             <label> Rate ($/minute)</label>
@@ -332,8 +331,6 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
     
     <!--  Looop    echo '<pre>';print_r($_POST); -->
         <div class="three-col">
-=======
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
 
 
     <?php 
@@ -382,8 +379,9 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
               <input type="button" value="Cancel" onclick="window.location='<?php echo SITE_ROOT.'expert/';?>'">
     </div>
     
-   </div> <!-- form warrper -->
+   </div> <!-- 3 colum -->
   </form>
+  </div><!-- form wrapper -->
   </div> <!-- content -->
   
   <!-- footer -->

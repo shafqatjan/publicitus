@@ -57,7 +57,7 @@ $cat_Array = $objDb->getArray($sqlAllCat);
 <html class="no-js" lang="en">
 <head>
 <meta charset="utf-8">
-<<<<<<< HEAD
+
 <title>Publicitus</title>
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
@@ -233,11 +233,11 @@ function selectDate(id){
 
     </script>
 
-=======
+
 <title><?php echo CLIENT_PAGE_TITLE;?></title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
 <script src="js/modernizr.js"></script>
->>>>>>> 9952f1c64c7adbaf049a88443e6dc5605529b10f
+
 <!--[if IE 6]>
 <link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
@@ -259,7 +259,7 @@ function selectDate(id){
 
 <div id="warpper">
   <?php include('../includes/header.php');?>
-  
+  <?php include('../includes/dialog-form.php ');?> 
   <div id="content">
 
   
@@ -332,7 +332,7 @@ function selectDate(id){
     
     <div class="eductaion-heading">
      <h3 class="background-heading"> Education </h3>
-     <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" value="Add Info"> </span>  </span>
+     <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" id="add-exper" value="Add Info"> </span>  </span>
     </div>
     
     <div class="education-detail">
@@ -377,7 +377,7 @@ function selectDate(id){
     
        <div class="eductaion-heading">
          <h3 class="background-heading"> Experience </h3>
-         <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" value="Add Info"> </span>  </span>
+         <span class="add-info">  <span class="blue-box-endorse-btn"> <input type="button" id="add-exper" value="Add Info"> </span>  </span>
         </div>
         
     <div class="education-detail">
