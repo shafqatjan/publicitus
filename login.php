@@ -35,7 +35,7 @@ if(isset($_POST['btn_login']))
 				$objSession->id = $chkLogin['id'];
 				$objSession->email = $chkLogin['email'];
 				$objSession->user_type = $chkLogin['user_type'];	
-				$objSession->user_name = $chkLogin['first_name'];			
+				$objSession->user_name = $chkLogin['last_name'];			
 				//1=expert,2=manager,3=advertiser,4=media
 				$redirecto = '';
 				if($chkLogin['user_type']=='1')
@@ -82,7 +82,7 @@ if(isset($_POST['btn_login']))
 <meta charset="utf-8">
 <title><?php echo CLIENT_PAGE_TITLE;?></title>
 <link href="css/style.css" rel="stylesheet" type="text/css">
-<script src="js/lib/jquery-1.6.4.js"></script>
+<script src="js/lib/jquery.js"></script>
 <script src="js/modernizr.js"></script>
 <!--[if IE 6]>
 <link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">

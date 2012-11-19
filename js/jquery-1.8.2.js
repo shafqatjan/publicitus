@@ -1,3 +1,4 @@
+// JavaScript Document
 /*!
  * jQuery JavaScript Library v1.8.2
  * http://jquery.com/

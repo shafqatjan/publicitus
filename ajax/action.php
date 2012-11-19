@@ -11,69 +11,39 @@
 	
     $action=isset($_GET['act'])?$_GET['act']:die(1);
 	
-
-	if($action=='callingCheckUsername')
-	{
-		$username = isset($_GET['user'])?$_GET['user']:'';
+    if(!empty($action)){
 		
-		echo $objDb->GetCountSql($objUser->table," and user_name='".$username."'");		
+		switch($action){
+			case "addEducation":
+					addEducation();
+			break;
+		}
+	}
+	else die("Invalid access");
+
+    function addEducation(){
+
+		$objEducation = new Education();
+		echo  "Session Id :: "+$objSession->id;
+
+		$objEducation->degree = isset($_GET['degree'])?$_GET['degree']:'';
+		$objEducation->subject = isset($_GET['subject'])?$_GET['subject']:'';
+		$objEducation->start_date = isset($_GET['start_date'])?$_GET['start_date']:'';
+		$objEducation->end_date = isset($_GET['end_date'])?$_GET['end_date']:'';
+		$objEducation->is_present = isset($_GET['is_present'])?$_GET['is_present']:'';
+		$objEducation->user_id = $objSession->id;
+		
+		$error = $objEducation->validate();
+		if(empty($error)){
+			$objEducation->Add();
+		}
+		
+		
+		
+		
+
 	}
 	
 
-	if($action=='callingFbRegister')
-	{
-		$register_email = isset($_GET['email'])?$_GET['email']:'';
-		$register_fname = isset($_GET['fname'])?$_GET['fname']:'';		
-		$register_userType = isset($_GET['userType'])?$_GET['userType']:'';		
-		$register_pass = isset($_GET['password'])?$_GET['password']:'';				
-		//echo $db->GetCountSql($objUser->table, " AND user_name='".$register_username."'");
-		if($objDb->GetCountSql($objUser->table, " AND email='".$register_email."'")>0 )
-		{
-			echo 2;exit;
-		}	
 
-		$register_password = $register_email;
-		$register_email = $_GET['email'];		
-		$objUser->email = $register_email;
-		$objUser->password =md5($register_pass);		
-		$objUser->user_type =$register_userType;			
-		$objUser->first_name =$register_fname;						
-
-	
-			$qryAdd=$objUser->AddByUsertype();
-	
-			if($objDb->execute($qryAdd))
-			{
-				sleep(0.5);		
-				//echo '<pre>';		print_r($objUser);
-				$objSession->id = mysql_insert_id();
-				$objSession->email = $objUser->email;
-				$objSession->user_type = $objUser->user_type;				
-				$objSession->user_name = $objUser->first_name;
-				//1=expert,2=manager,3=advertiser,4=media
-				if($userArray['user_type']=='1')
-					$objSession->role = CLIENT_ROLE_EXPERT;
-				if($userArray['user_type']=='2')
-					$objSession->role = CLIENT_ROLE_MANAGER;
-				if($userArray['user_type']=='3')
-					$objSession->role = CLIENT_ROLE_ADVERTISER;
-				if($userArray['user_type']=='4')
-					$objSession->role = CLIENT_ROLE_MEDIA;
-
-				$_SESSION['last_time'] = time();
-				$objSession->setSessionFB();
-			?>
-				<script>
-					parent.reloadMe();
-				</script>
-			<?php
-	
-				exit;				
-	
-			}
-	
-
-	
-	}
-	
 ?>

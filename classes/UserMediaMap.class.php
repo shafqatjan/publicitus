@@ -69,6 +69,12 @@ class UserMediaMap
 		WHERE id = ".intval($this->id);
 	}
 
+	public function UpdateUserMediaMap()
+	{
+		return "UPDATE ".$this->table." SET media_id = ".$this->media_id." WHERE user_id = ".intval($this->user_id);
+	}
+
+
 	public function PopulateGrid($pram='*',$whr_clz='')
 	{ 
 		return "SELECT ".$pram." FROM ".$this->table." WHERE 1=1 ".$whr_clz;

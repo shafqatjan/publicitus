@@ -53,7 +53,7 @@ if(isset($_POST['btn_login']))
 <link rel="stylesheet" type="text/css" href="../css/admin.css"/>
 <link rel="stylesheet" type="text/css" href="../css/login.css"/>
 
-<script type="text/javascript" src="../js/lib/jquery-1.6.4.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.js"></script>
 
 <script>
 jQuery(function()

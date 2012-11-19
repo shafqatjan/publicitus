@@ -29,22 +29,22 @@ $city 					= $userInfo['city'];
 $state 					= $userInfo['state'];
 $zipCode 				= $userInfo['zipcode'];
 $country 				= $userInfo['country'];
+$mediaType 				= $userInfo['mediaType'];
+
 
 $sqlUserCat = $objUserCategoriesMap->PopulateGrid("category_id"," AND status = 1 AND user_id= ".$objSession->id);  
 $ucategories = $objDb->getArray($sqlUserCat);
 $categories = array();
-
 foreach($ucategories as $ucat)
 array_push($categories, $ucat['category_id']);
-//printArray($categories);
 
-//$count = count($ucategories);
-//for($i = 0; $i< $count; $i++)
-	//  array_push($categories, $ucategories[$i]['id']);
+$sqlUserMedia = $objUserMediaMap->PopulateGrid("media_id"," AND status = 1 AND user_id= ".$objSession->id);  
+$umedia = $objDb->getArray($sqlUserMedia);
+$mediaArr = array();
+foreach($umedia as $umedi)
+array_push($mediaArr, $umedi['media_id']);
 
 
-//$mediaType 				= $userInfo['first_name'];
-//$catCount 				= $userInfo['first_name'];
 $error = '';
 
 $sqlAllCat = $objCat->PopulateGrid("*",' AND status = 1 ')." order by title";  
@@ -86,8 +86,14 @@ if(isset($_POST['btn_save']))
 	$objUser->state = $state;
 	$objUser->zipcode = $zipCode;
 	$objUser->country = $country;
+	$objUser->mediaType = $mediaType;
+	
 	$categories = array();
     $error .= $objUser->validateUpdate();
+    if($objUser->mediaType == 0)
+ 	   $error .= '&nbsp;&bull;&nbsp;Please select media type.<br>';
+
+	
 
 	for($i = 1; $i<= $catCount; $i++)
 	  if(!empty($_POST['cat_'.$i]))
@@ -113,6 +119,11 @@ if(isset($_POST['btn_save']))
 				$valuesClause = trim($valuesClause,",");
 				//echo $valuesClause; exit;
 				$objDb->execute($objUserCategoriesMap->AddUserCat($valuesClause));
+				// add media 
+				$objUserMediaMap->user_id = $latestId;
+				$objUserMediaMap->media_id = $mediaType;
+				$objDb->execute($objUserMediaMap->UpdateUserMediaMap());
+				
 				$objSession->setSessMsg('Profile updated successfully.');							
 				$objSession->redirectTo(SITE_ROOT.'varify.php');
 			
@@ -272,8 +283,32 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           </div>
           <div class="error"></div>
         </div>
-    
-    <div class="form-head">  
+<div class="two-col">
+          <div class="col-one">
+            <label> Media Type <span style="color:red">*</span></label>
+          </div>
+          <div class="col-two">
+            <select name="mediaType" id="mediaType">
+              <option value="0"> Select Type Of Media... </option>
+              <?php 
+				if(count($Data_Array)>0)
+				{
+					foreach($Data_Array as $Data_row)
+					{
+						//echo $Data_row['id'] .' = '.$mediaArr['media_id'];
+				         if(in_array($Data_row['id'],$mediaArr))
+
+							echo "<option value=". $Data_row['id']." selected='selected'>". $Data_row['title']."</option>";
+						 else
+							echo "<option value=". $Data_row['id'].">". $Data_row['title']."</option>";						
+					}
+				}
+				
+				?>
+            </select>
+          </div>
+          <div class="error"></div>
+        </div>    <div class="form-head">  
     	<h3> Experties </h3>
     </div>
     

@@ -342,7 +342,7 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 				
 				?>
             </select>
-          </div>         
+          </div><a href="script-includes">script-includes</a>         
           <div class="error"></div>
         </div>
     

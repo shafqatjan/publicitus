@@ -84,9 +84,9 @@
 	DIRECTORIES CONSTANTS
 	/************************************************************/
 	define(ADMIN_PREFIX , "../");
-	define(SITEDATA_DIR , "show/"); 
-	define(NEWS_DIR , "news_images/");
-	define(USER_IMG_DIR , "uploaded_images/");
+	define(SITEDATA_DIR , "sitedata/"); 
+	define(USER_APPLY_DIR , "uploaded_apply/");
+	define(USER_POST_DIR , "uploaded_post/");	
 
 	
 	/************************************************************
@@ -99,4 +99,20 @@
 	define(TBL_USER,"pub_users");
 	define(TBL_USER_EXPERTISE,"pub_users_categories_map");
 	define(TBL_USER_MEDIA,"pub_users_media_map");
+
+	define(TBL_EDUCATION,"pub_education");
+	define(TBL_EXPERIENCE,"pub_experience");
+<<<<<<< HEAD
+	define(TBL_JOB_POST,"pub_job_post");
+
+=======
+	
+
+	define(TBL_JOB_POST,"pub_job_post");
+
+	define(TBL_JOB_APP,"pub_job_app");	
+	define(TBL_APP_FILE,"pub_app_file");		
+
+
+>>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
 ?>

@@ -56,7 +56,7 @@ if(isset($_POST['btn_update']))
 <head>
 <title><?php echo ADMIN_PAGE_TITLE; ?></title>
 <link rel="stylesheet" type="text/css" href="../css/admin.css"/>
-<script language="javascript" src="../js/lib/jquery-1.6.4.js"></script>
+<script language="javascript" src="../js/lib/jquery.js"></script>
 </head>
 <body>
 	<table cellspacing="0" cellpadding="0" class="maintbl" align="center">
