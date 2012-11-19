@@ -785,12 +785,12 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-size:16px;
 }
 
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+
+
 /************  Profile page ************/
 
 #profile-warrper{
@@ -806,11 +806,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	font-family:'Arial';
 
 	float: left;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+
+
 }
 
 #profile-warrper .profile-blue-box{
@@ -1022,13 +1022,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	float:left;
 
 	margin-top:144px;
-<<<<<<< HEAD
-	margin-top:20px;
-=======
 
 	margin-top:20px;
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+	margin-top:20px;
+
+
 }
 
 .profile-second-white-box .send-message-btn input[type="button"] {
@@ -1099,11 +1099,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	margin-top:15px;
 
 	clear: both;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1176,11 +1175,10 @@ p.upfront-payment{
     font-weight: bold;
     line-height: 29px;
 }
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+
 
 /********** list of jobs ***********/
 
@@ -1227,10 +1225,10 @@ p.upfront-payment{
 	cursor:pointer;
 }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+
+
  .search-bar-box .search-btn input[type='submit']{
 	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
@@ -1238,10 +1236,10 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
+
+
+
 
 .search-bar-box .search-btn input[type='button']:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
@@ -1439,8 +1437,7 @@ table.gridtable td a:hover{
 }
 
 
-<<<<<<< HEAD
-=======
+
+
 }
 
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
