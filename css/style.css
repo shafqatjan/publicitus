@@ -772,7 +772,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-family: 'Montserrat Alternates',sans-serif;
   font-size:16px;
 }
-#dashboard-warrper a :hover{
+#dashboard-warrper a:hover{
 	text-decoration:underline;
 	color:#00F;
 	
