@@ -91,11 +91,8 @@ function reloadMe()
   <div id="logo"><a href="<?php echo SITE_ROOT?>"><img id="logo-img" src="<?php echo SITE_ROOT?>images/logo.png" border="0" /></a></div>
   <div id="nav">
     <ul>
-<<<<<<< HEAD
-=======
       <li> <a href="<?php echo SITE_ROOT?>"> Home </a> </li>
       <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
->>>>>>> 40142cded71b1ec55a567fbfd99ef0925bb49942
       <!--<li> <a href=""> Join </a> </li>-->
       <?php
 	  if($objSession->id)
