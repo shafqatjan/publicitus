@@ -26,7 +26,6 @@ function __autoload($className)
 {
 	if (!class_exists($className, false))
 	{
-		
 		if(file_exists(CLASSES_DIR.$className.'.class.php'))
 			require_once(CLASSES_DIR.$className.'.class.php');
 			

@@ -773,7 +773,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-family: 'Montserrat Alternates',sans-serif;
   font-size:16px;
 }
-#dashboard-warrper a:hover{
+#dashboard-warrper a :hover{
 	text-decoration:underline;
 	color:#00F;
 	
@@ -784,11 +784,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-family: 'Montserrat Alternates',sans-serif;
   font-size:16px;
 }
-
-
-
-
-
 
 
 /************  Profile page ************/
@@ -804,13 +799,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	color:#fff;
 	font-size:20px;
 	font-family:'Arial';
-
-	float: left;
-
-
-
-
-
 }
 
 #profile-warrper .profile-blue-box{
@@ -1020,15 +1008,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 .profile-second-white-box .send-message{
 	float:left;
-
-	margin-top:144px;
-
 	margin-top:20px;
-
-
-	margin-top:20px;
-
-
 }
 
 .profile-second-white-box .send-message-btn input[type="button"] {
@@ -1097,12 +1077,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	text-align:left;
 	float:left;
 	margin-top:15px;
-
-	clear: both;
-
-
-
-
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1138,46 +1112,6 @@ p.upfront-payment{
 	font-family:'Arial';
 	 margin-top: 5px;
 }
-
-
-.paid-to-you{
-	background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #CCCCCC;
-    padding: 10px;
-    width: 230px;
-	border-bottom:none;
-	float: right;
-    margin-right: 18px;	
-}
-.paid-to-you .paid-to-you-right-col{
-	float:right;
-}
-
-.paid-to-you .paid-to-you-left-col{
-    color: #151515;
-    font-family: 'Calibri';
-    font-size: 15px;
-    line-height: 29px;	
-}
-
-.paid-to-you .paid-to-you-left-col-one{
-    color: #151515;
-    font-family: 'Calibri';
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 30px;	
-}
-
-.paid-to-you span.client-payment{
-	color: #151515;
-    font-family: 'Calibri';
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 29px;
-}
-
-
-
 
 
 /********** list of jobs ***********/
@@ -1224,11 +1158,6 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
-
-
-
-
-
  .search-bar-box .search-btn input[type='submit']{
 	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
@@ -1236,10 +1165,6 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
-
-
-
-
 
 .search-bar-box .search-btn input[type='button']:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
@@ -1387,10 +1312,229 @@ p.upfront-payment{
     font-size: 14px;
     font-weight: 800;
     margin-bottom: 5px;
-
 }
 
-table.gridtable {
+/*********** Popup Box **************/
+
+.popup-background{
+	display: block;
+	background: none repeat scroll 0 0 #000000;    
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
+	opacity:0.5;
+}
+.popup-box-warpper{
+	width:100%;
+	position:fixed;
+}
+.popup-box{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 3px solid #444444;
+    display: block;
+    height: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    position: relative;
+    text-align: left;
+    width: 520px;
+    z-index: 9999;
+}
+.popup-heading{
+	background: none repeat scroll 0 0 #F4F4F4;
+    color: #2D2D2D;
+    font-family: 'Arial';
+    font-size: 20px;
+    padding: 5px;
+	border-bottom: 1px solid #D6D6D6;
+}
+.popup-form{
+	padding:40px 0px 40px 15px;
+	width:100%;
+}
+.popup-form-row{
+	padding-bottom:10px;
+	float: left;
+}
+.popup-form-text{
+	float: left;
+    width: 150px;
+	color: #151515;
+    font-family: 'Calibri';
+    font-size: 16px;
+	text-align:right;
+}
+.popup-box-input {
+    float: left;
+    margin-bottom: 10px;
+    margin-left: 10px;	
+}
+.popup-box-input input[type="text"] {
+    border: 1px solid #CCCCCC;
+    color: #151515;
+    font-family: 'Arial';
+    font-size: 15px;
+    height: 25px;
+    padding-left: 5px;
+    width: 205px;
+}
+
+.popup-box-input textarea {
+    border: 1px solid #CCCCCC;
+    height: 120px;
+    width: 255px;
+}
+
+.popup-box-input select {
+    border: 1px solid #CCCCCC;
+    color: #999999;
+    font-size: 12px;
+    font-style: italic;
+    height: 30px;
+    padding: 5px;
+    width: 256px;
+}
+ .popup-box-input input:focus, textarea:focus, select:focus{
+	  
+	  box-shadow: 0 0 5px 1px #badbfe;
+	  -moz-box-shadow: 0 0 5px 1px #badbfe;
+	  -webkit-shadow: 0 0 5px 1px #badbfe;
+	  -o-box-shadow: 0 0 5px 1px #badbfe;
+	  -ms-box-shadow: 0 0 5px 1px #badbfe;
+	  border: 1px solid #93c6fd;
+}
+
+.popup-box-input input[type="button"] {
+    background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #E9AD1B;
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+    padding: 6px 15px;
+}
+.popup-box-input input[type='button']:hover{
+	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
+}
+  
+/************ Job deatail Page *****************/
+.job-detail-page{
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #D2D2D2;
+    float: left;
+    margin-top: 20px;
+    padding: 20px 19px 30px;
+    width: 100%;
+}
+.job-detail-page-row-one{
+	color: #444444;
+    float: left;
+    font-family: 'Arial';
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+.job-detail-page-row-one-col {
+    float: left;
+    width: 200px;
+}
+.job-detail-page-job-heading-box{
+	float: left;
+    width: 400px;
+}
+.job-detail-page-apply-btn-box{
+	float: right;
+    text-align: center;
+    width: 180px;
+}
+.job-detail-page-row-title {
+    background: #EAEAEA;
+    float: left;
+    width: 100%;
+	border-radius: 3px 3px 3px 3px;
+}
+.job-detail-page-row-title-text {
+	padding-left:15px;
+}
+.job-detail-page-row-description {
+    float: left;
+    margin-top: 10px;
+    padding-left: 5px;
+    width: 100%;
+	color: #262626;
+    font-family: arial;
+    font-size: 14px;
+	margin-bottom: 25px;
+}
+.job-detail-page-row-one a:link,a:active,a:visited{
+    color: #039CE0;
+    font-family: 'Arial';
+    font-size: 14px;
+    text-decoration: none;
+
+}
+.job-detail-page-row-one a:hover{
+    text-decoration:underline;
+}
+.job-detail-page-job-heading {
+	color: #262626;
+    font-family: 'Arial';
+    font-size: 25px;
+    font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.job-detail-page-job-price {
+    color: #262626;
+    font-family: arial;
+    font-size: 14px;
+	padding-bottom: 15px;
+}
+
+.job-detail-page-apply-btn input[type="button"] {
+    background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #E9AD1B;
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+    padding: 6px 15px;
+}
+.job-detail-page-apply-btn input[type='button']:hover{
+	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
+}
+
+.job-detail-page-apply-btn-detail {
+    color: #5B5B5B;
+    font-family: arial;
+    font-size: 14px;
+	margin-top: 5px;
+}
+.job-detail-page-row-title-text {
+    color: #4F4F4F;
+    font-family: arial;
+    font-weight: bold;
+    padding: 4px 0 4px 15px;
+}
+
+.job-detail-page-skill-required-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.job-detail-page-skill-required-detail{
+    background: #CCE0FF;
+    border-radius: 3px 3px 3px 3px;
+    float: left;
+    padding: 4px 10px;
+	margin-right:3px;
+}
+
+.job-detail-page-skill-required-box{
+    clear: both;
+    float: left;
+}
+
+table.job-detail-page-tabel {
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;
 	color:#333333;
@@ -1398,46 +1542,56 @@ table.gridtable {
 	border-color: #666666;
 	border-collapse: collapse;
 }
-table.gridtable th {
-	border-width: 1px;
-	padding: 8px;
-	border-style: solid;
-	border-color: #D6D6D6;
-	background-color: #EFEFEF;
+table.job-detail-page-tabel th {
+	padding: 5px 15px 5px 0;
+	font-size:12px;
+	color:#7C7C7C;
+	text-align: left;
 }
-table.gridtable td {
-	border-width: 1px;
+table.job-detail-page-tabel td {
 	padding: 8px;
-	border-style: solid;
-	border-color: #D6D6D6;
-	background-color: #ffffff;
+	font-size: 12px;
 }
 
-table.gridtable td a{
+table.job-detail-page-tabel td a{
 	text-decoration:none;
 	color:#00F;
 }
-table.gridtable td a:hover{
+table.job-detail-page-tabel td a:hover{
 	text-decoration:underline;
 }
-
-.add-info{
-	float:right;
+.job-detail-page-row-job-description-row {
+    border-bottom: 1px solid #EAEAEA;
+    float: left;
+    margin-top: 10px;
+    padding-bottom: 15px;
+	margin-bottom: 25px;
+}
+.job-detail-page-row-job-description-row-col-one {
+    float: left;
+    width: 400px;
+}
+.job-detail-page-row-job-description-row-col-two {
+    float: right;
+    text-align: right;
+    width: 190px;
+}
+.job-detail-page-job-name {
+    color: #999999;
+    margin-bottom: 10px;
 }
 
-.add-info input[type="button"] {
-    background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
-    border: 1px solid #E9AD1B;
-    border-radius: 3px 3px 3px 3px;
-    cursor: pointer;
-    padding: 6px 15px;
+.job-detail-page-job-progress {
+    font-style: italic;
+    margin-bottom: 5px;
 }
-.add-info input[type='button']:hover{
-	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
+.job-detail-page-job-contractor {
+    font-weight: 600;
 }
-
-
-
-
+.job-detail-page-job-contractor a:link, a:visited, a:active{
+	text-decoration:none;
+	font-weight:normal;
 }
-
+.job-detail-page-job-contractor a:hover{
+	text-decoration:underline;
+}
