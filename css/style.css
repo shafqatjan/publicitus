@@ -773,7 +773,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-family: 'Montserrat Alternates',sans-serif;
   font-size:16px;
 }
-#dashboard-warrper a :hover{
+#dashboard-warrper a:hover{
 	text-decoration:underline;
 	color:#00F;
 	
@@ -785,6 +785,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-size:16px;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 /************  Profile page ************/
 
 #profile-warrper{
@@ -799,6 +808,14 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	font-size:20px;
 	font-family:'Arial';
 	float: left;
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 }
 
 #profile-warrper .profile-blue-box{
@@ -1009,8 +1026,18 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 .profile-second-white-box .send-message{
 	float:left;
 	margin-top:144px;
+<<<<<<< HEAD
 	margin-top:20px;
 	margin-top:20px;
+=======
+
+	margin-top:20px;
+
+
+	margin-top:20px;
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 }
 
 .profile-second-white-box .send-message-btn input[type="button"] {
@@ -1080,6 +1107,13 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	float:left;
 	margin-top:15px;
 	clear: both;
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1152,6 +1186,13 @@ p.upfront-payment{
     font-weight: bold;
     line-height: 29px;
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 
 /********** list of jobs ***********/
 
@@ -1197,6 +1238,13 @@ p.upfront-payment{
 	cursor:pointer;
 }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
  .search-bar-box .search-btn input[type='submit']{
 	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
@@ -1204,6 +1252,13 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 
 .search-bar-box .search-btn input[type='button']:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
@@ -1402,6 +1457,7 @@ table.gridtable td a:hover{
 
 /*********** Popup Box **************/
 
+<<<<<<< HEAD
 .popup-background{
 	display: block;
 	background: none repeat scroll 0 0 #000000;    
@@ -1503,3 +1559,9 @@ table.gridtable td a:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
   
+=======
+
+
+}
+
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b

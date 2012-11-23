@@ -68,6 +68,18 @@ class Education
     if($this->start_year > $this->end_year )
 		$error .= '&nbsp;&bull;&nbsp;Invalid start year.<br>';
 
+<<<<<<< HEAD
+=======
+    if($this->school == '' && $this->school == '')
+		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
+
+
+
+
+
+		
+		
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 		return $error;
 	}
 
