@@ -6,10 +6,12 @@ class Education
 	private $id; //int(11)
 	private $degree; //varchar(70)
 	private $subject; //varchar(70)	
-	private $start_date; //varchar(70)
-	private $end_date; //varchar(70)
+	private $start_month; //varchar(70)
+	private $end_month; //varchar(70)
+	private $start_year; //varchar(70)
+	private $end_year; //varchar(70)
 	private $school; //tinyint(3)
-	private $is_present; //int(11)
+	private $edu_description; //int(11)
 	private $user_id; //int(11)
 	private $status;
 	private $dated; 
@@ -20,11 +22,13 @@ class Education
 		$this->id='';
 		$this->degree = '';
 		$this->subject = '';
-		$this->start_date = '';
-		$this->end_date = '';
+		$this->start_month = '';
+		$this->end_month = '';
+		$this->start_year = '';
+		$this->end_year = '';
 		$this->school = '';
 		$this->user_id = '';
-		$this->is_present = '';
+		$this->edu_description = '';
 		$this->status = '';
 		$this->dated = '';
 		
@@ -55,11 +59,17 @@ class Education
 		$error='';
     if($this->degree == '')
 		$error .= '&nbsp;&bull;&nbsp;Degree cannot be left blank.<br>';
-    if($this->start_date == '')
-		$error .= '&nbsp;&bull;&nbsp;Start Date cannot be left blank.<br>';
-    if($this->end_date == '' && $this->is_present == '')
-		$error .= '&nbsp;&bull;&nbsp;Enter either End Date or check present .<br>';
+    if($this->school == '')
+		$error .= '&nbsp;&bull;&nbsp;school cannot be left blank.<br>';
+    if($this->subject == '')
+		$error .= '&nbsp;&bull;&nbsp;Subject cannot be left blank .<br>';
+    if($this->start_year == '00' && $this->end_year == '00' )
+		$error .= '&nbsp;&bull;&nbsp;Both start and end year can not set present  .<br>';
+    if($this->start_year > $this->end_year )
+		$error .= '&nbsp;&bull;&nbsp;Invalid start year.<br>';
 
+<<<<<<< HEAD
+=======
     if($this->school == '' && $this->school == '')
 		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
 
@@ -69,6 +79,7 @@ class Education
 
 		
 		
+>>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 		return $error;
 	}
 
@@ -77,24 +88,28 @@ class Education
 		$error='';
     if($this->degree == '')
 		$error .= '&nbsp;&bull;&nbsp;Degree cannot be left blank.<br>';
-    if($this->start_date == '')
-		$error .= '&nbsp;&bull;&nbsp;Start Date cannot be left blank.<br>';
-    if($this->end_date == '' && $this->is_present == '')
-		$error .= '&nbsp;&bull;&nbsp;Enter either End Date or check present .<br>';
-		
-		
+    if($this->school == '')
+		$error .= '&nbsp;&bull;&nbsp;school cannot be left blank.<br>';
+    if($this->subject == '')
+		$error .= '&nbsp;&bull;&nbsp;Subject cannot be left blank .<br>';		
+    if($this->start_year == '00' && $this->end_year == '00' )
+		$error .= '&nbsp;&bull;&nbsp;Both start and end year can not set present  .<br>';
+    if($this->start_year > $this->end_year )
+		$error .= '&nbsp;&bull;&nbsp;Invalid start year.<br>';
 		return $error;
 	}
 
 	public function Add()
 	{
-		return "INSERT INTO ".$this->table." SET 
+		return  "INSERT INTO ".$this->table." SET 
 		degree = '".hlpMysqlRealScape($this->degree)."', 
 		subject = '".hlpMysqlRealScape($this->subject)."', 
-		start_date = '".hlpMysqlRealScape($this->start_date)."', 
-		end_date = '".md5(hlpMysqlRealScape($this->end_date))."', 
+		start_month = '".hlpMysqlRealScape($this->start_month)."', 
+		end_month = '".hlpMysqlRealScape($this->end_month)."', 
+		start_year = '".hlpMysqlRealScape($this->start_year)."', 
+		end_year = '".hlpMysqlRealScape($this->end_year)."', 
 		school = '".hlpMysqlRealScape($this->school)."', 
-		is_present = '".hlpMysqlRealScape($this->is_present)."',
+		edu_description = '".hlpMysqlRealScape($this->edu_description)."',
 		user_id = '".hlpMysqlRealScape($this->user_id)."';";
 		
 	}
@@ -103,11 +118,10 @@ class Education
 		return "UPDATE ".$this->table." SET 
 		degree = '".hlpMysqlRealScape($this->degree)."',
 		subject = '".hlpMysqlRealScape($this->subject)."',
-		start_date = '".hlpMysqlRealScape($this->start_date)."', 
-		end_date = '".md5(hlpMysqlRealScape($this->end_date))."', 
+		start_month = '".hlpMysqlRealScape($this->start_month)."', 
+		end_month = '".hlpMysqlRealScape($this->end_month)."', 
 		school = '".hlpMysqlRealScape($this->school)."', 
-		is_present = '".hlpMysqlRealScape($this->is_present)."',
-		user_id = '".hlpMysqlRealScape($this->user_id)."', WHERE id = ".intval($this->id);
+		edu_description = '".hlpMysqlRealScape($this->edu_description)."' WHERE id = ".intval($this->id);
 	}
 
 	public function PopulateGrid($pram='*',$whr_clz='')
@@ -123,7 +137,7 @@ class Education
 	public function UpdateStatus()
 	{
 		return "UPDATE ".$this->table." SET 
-		is_present = '".hlpMysqlRealScape($this->is_present)."'
+		edu_description = '".hlpMysqlRealScape($this->edu_description)."'
 		WHERE id = ".intval($this->id);
 	}
 	public function UpdateField($col,$val)
@@ -135,18 +149,18 @@ class Education
 	{
 		return 'UPDATE '.$this->table.' SET
 				verification_code = "'.hlpSafeString($this->verification_code,'char').'" 
-				WHERE start_date = "'.hlpSafeString($this->start_date,'char').'"';
+				WHERE start_month = "'.hlpSafeString($this->start_month,'char').'"';
 	}
 	public function ChangePasswordEmail()
 	{
 		return 'Update '.$this->table.' SET
-		end_date 	="'.md5($this->nend_date).'"
-		where start_date 	= '.hlpSafeString($this->start_date,'char').' LIMIT 1';
+		end_month 	="'.md5($this->nend_month).'"
+		where start_month 	= '.hlpSafeString($this->start_month,'char').' LIMIT 1';
 	}
 	
 	public function checkOldPassword()
 	{
-		return 'Select 1 from '.$this->table.' WHERE end_date	= "'.md5($this->end_date).'" AND id	= '.hlpSafeString($this->id, 'int').' LIMIT 1;';
+		return 'Select 1 from '.$this->table.' WHERE end_month	= "'.md5($this->end_month).'" AND id	= '.hlpSafeString($this->id, 'int').' LIMIT 1;';
 	}
 		
 	public function degreeExists()

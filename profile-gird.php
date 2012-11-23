@@ -20,7 +20,14 @@ $sql = $objUser->PopulateGrid("*"," AND id= ".$objSession->id);
 $userInfo = $objDb->getArraySingle($sql);
 //Query to get education
 $sqlEduc = $objEducation->PopulateGrid("*"," AND status = 1  AND user_id= ".$objSession->id); 
-$educ_Array = $objDb->getArray($sqlEduc);
+$educ_Array =$objDb->getArray($sqlEduc);
+	$items = array();
+	while($row = mysql_fetch_object($educ_Array)){
+		array_push($items, $row);
+	}
+	$result["rows"] = $items;
+
+	echo json_encode($result);
 
 //Query to get experience
 $sqlExp = $objExperience->PopulateGrid("*"," AND status = 1 AND  user_id= ".$objSession->id); 
@@ -65,278 +72,92 @@ $cat_Array = $objDb->getArray($sqlAllCat);
 <link href="../css/style.css" rel="stylesheet" type="text/css">
 <script src="../js/modernizr.js"></script>
 <script src="../js/lib/jquery.js"></script>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
 
-    <style>
-        body { font-size: 62.5%; }
-        label, input { display:block; }
-        input.text { margin-bottom:12px; width:95%; padding: .4em; }
-        fieldset { padding:0; border:0; margin-top:25px; }
-        h1 { font-size: 1.2em; margin: .6em 0; }
-        div#users-contain { width: 350px; margin: 20px 0; }
-        div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-        div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-        .ui-dialog .ui-state-error { padding: .3em; }
-        .validateTips { border: 1px solid transparent; padding: 0.3em; }
-    </style>
-    <script>
-	function edit(id){
-	    var id = id;		
-		//window.location = ""
-         jQuery( "#msgDilog" ).dialog( "open" );
 
-        jQuery( "#msgDilog" ).dialog({
-            autoOpen: false,
-            height: 200,
-            width: 200,
-            modal: true,
-            buttons: {
-                "DELETE": function() {
-                    var bValid = true;
-                    allFields.removeClass( "ui-state-error" ); 
-					//var roleCatId=jQuery("#roleCatId").val();
-					param =  "action=delete&id="+id;
-					alert("param :: "+'ajax/action.php?'+param);
-					//jQuery('#roleSubCatDropDiv').html('');	
-					jQuery.ajax({
-							   type		: "GET",
-							   data 	: param,
-							   async	: false,
-							   url 		: '../ajax/action.php?'+param,
-							   success 	: function(msg)
-							   {
-									alert("Response msg :: "+msg);
-									//document.reload();
-									document.location.reload(true);
-								//jQuery('#roleSubCatDropDiv').html(msg);
-							   }
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+	<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/demo/demo.css">
+	<style type="text/css">
+		#fm{
+			margin:0;
+			padding:10px 30px;
+		}
+		.ftitle{
+			font-size:14px;
+			font-weight:bold;
+			color:#666;
+			padding:5px 0;
+			margin-bottom:10px;
+			border-bottom:1px solid #ccc;
+		}
+		.fitem{
+			margin-bottom:5px;
+		}
+		.fitem label{
+			display:inline-block;
+			width:80px;
+		}
+	</style>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.6.min.js"></script>
+	<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+	<script type="text/javascript">
+		var url;
+		function newEducation(){
+			$('#dlg').dialog('open').dialog('setTitle','New Education');
+			$('#fm').form('clear');
+			url = '../ajax/action.php?action=addEducation';
+		}
+		function editEducation(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$('#dlg').dialog('open').dialog('setTitle','Edit Education');
+				$('#fm').form('load',row);
+				url = '../ajax/action.php?action=editEducation&id='+row.id;
+			}
+		}
+		function saveEducation(){
+			$('#fm').form('submit',{
+				url: url,
+				onSubmit: function(){
+					alert("URL :: "+url);
+					return $(this).form('validate');
+				},
+				success: function(result){
+					var result = eval('('+result+')');
+					if (result.success){
+						$('#dlg').dialog('close');		// close the dialog
+						$('#dg').datagrid('reload');	// reload the user data
+					} else {
+						$.messager.show({
+							title: 'Error',
+							msg: result.msg
 						});
-                        jQuery( this ).dialog( "close" );
-                    
-                },
-                Cancel: function() {
-                    jQuery( this ).dialog( "close" );
-                }
-            },
-            close: function() {
-                allFields.val( "" ).removeClass( "ui-state-error" );
-            }
-        });
-
-	}
-
- 
-
-
-	function deleteRow(id){
-	    var id = id;		
-	    alert(" ID :: "+id)	;
-		window.location = ""
-	}
-
-    jQuery(function() {
-        var degree = jQuery( "#degree" ),
-            subject = jQuery( "#subject" ),
-            start_month = jQuery( "#start_month" ),
-			end_month = jQuery( "#end_month" ),
-            start_year = jQuery( "#start_year" ),
-			end_year = jQuery( "#end_year" ),
-			school = jQuery( "#school" ),
-			edu_description = jQuery( "#edu_description" ),
-            allFields = jQuery( [] ).add( degree ).add( subject ).add( start_month ).add( end_month ).add( start_year ).add( end_year ).add(school),
-            tips = jQuery( ".validateTips" );
-			
- 
-        function updateTips( t ) {
-            tips
-                .text( t )
-                .addClass( "ui-state-highlight" );
-            setTimeout(function() {
-                tips.removeClass( "ui-state-highlight", 1500 );
-            }, 500 );
-        }
- 
-        function checkLength( o, n, min, max ) {
+					}
+				}
+			});
+		}
+		function removeEducation(){
+			var row = $('#dg').datagrid('getSelected');
+			if (row){
+				$.messager.confirm('Confirm','Are you sure you want to remove this record?',function(r){
+					if (r){
+						$.post('remove_user.php',{id:row.id},function(result){
+							if (result.success){
+								$('#dg').datagrid('reload');	// reload the user data
+							} else {
+								$.messager.show({	// show error message
+									title: 'Error',
+									msg: result.msg
+								});
+							}
+						},'json');
+					}
+				});
+			}
+		}
+	</script>
 
 
-            if ( o.val().length > max || o.val().length < min ) {
-                o.addClass( "ui-state-error" );
-                updateTips( "Length of " + n + " must be between " +
-                    min + " and " + max + "." );
-                return false;
-            } else {
-                return true;
-            }
-        }
- 
-        function checkRegexp( o, regexp, n ) {
-            if ( !( regexp.test( o.val() ) ) ) {
-                o.addClass( "ui-state-error" );
-                updateTips( n );
-                return false;
-            } else {
-                return true;
-            }
-        }
- 
-        jQuery( "#edu-dialog-form" ).dialog({
-            autoOpen: false,
-            height: 575,
-            width: 575.6,
-            modal: true,
-            buttons: {
-                "Add": function() {
-                    var bValid = true;
-                    allFields.removeClass( "ui-state-error" ); 
-                    bValid = bValid && checkLength( degree, "degree", 2, 16 );
-                    bValid = bValid && checkLength( subject, "subject", 2, 80 );
-                    bValid = bValid && checkLength( school, "school", 3, 80 );
-                    if ( bValid ) {
-					//var roleCatId=jQuery("#roleCatId").val();
-					//param =  "action=add";
-					param = "action=add&degree="+jQuery("#degree").val()+"&subject="+jQuery("#subject").val()+"&school="+jQuery("#school").val()+"&start_month="+jQuery("#start_month").val()+"&end_month="+jQuery("#end_month").val()+"&start_year="+jQuery("#start_year").val()+"&end_year="+jQuery("#end_year").val()+"&edu_description="+jQuery("#edu_description").val();
-					//alert("val "+val);
-					alert("param :: "+'ajax/action.php?'+param);
-					//jQuery('#roleSubCatDropDiv').html('');	
-					jQuery.ajax({
-							   type		: "GET",
-							   data 	: param,
-							   async	: false,
-							   url 		: '../ajax/action.php?'+param,
-							   success 	: function(msg)
-							   {
-									alert("Response msg :: "+msg);
-									//document.reload();
-									document.location.reload(true);
-								//jQuery('#roleSubCatDropDiv').html(msg);
-							   }
-						});
-                        jQuery( this ).dialog( "close" );
-                    }
-                },
-                Cancel: function() {
-                    jQuery( this ).dialog( "close" );
-                }
-            },
-            close: function() {
-                allFields.val( "" ).removeClass( "ui-state-error" );
-            }
-        });
-
-
-        jQuery( "#edu-edit-dialog-form" ).dialog({
-            autoOpen: false,
-            height: 575,
-            width: 575.6,
-            modal: true,
-            buttons: {
-                "Add": function() {
-                    var bValid = true;
-                    allFields.removeClass( "ui-state-error" ); 
-                    bValid = bValid && checkLength( degree, "degree", 2, 16 );
-                    bValid = bValid && checkLength( subject, "subject", 2, 80 );
-                    bValid = bValid && checkLength( school, "school", 3, 16 );
-                    if ( bValid ) {
-					//var roleCatId=jQuery("#roleCatId").val();
-					param =  "action=edit&id";
-					href="action=edit&id=<?php echo $Data_row['id'];?>"
-					alert("param :: "+'ajax/action.php?'+param);
-					//jQuery('#roleSubCatDropDiv').html('');	
-					jQuery.ajax({
-							   type		: "GET",
-							   data 	: param,
-							   async	: false,
-							   url 		: 'ajax/action.php?'+param,
-							   success 	: function(msg)
-							   {
-									alert("url :: "+url);
-									alert("Response msg :: "+msg);
-									//jQuery('#roleSubCatDropDiv').html(msg);
-							   }
-						});
-                        jQuery( this ).dialog( "close" );
-                    }
-                },
-                Cancel: function() {
-                    jQuery( this ).dialog( "close" );
-                }
-            },
-            close: function() {
-                allFields.val( "" ).removeClass( "ui-state-error" );
-            }
-        });
-
-
- //add expeience
- 
-         jQuery( "#exper-dialog-form" ).dialog({
-            autoOpen: false,
-            height: 575,
-            width: 575.6,
-            modal: true,
-            buttons: {
-                "Add": function() {
-                    var bValid = true;
-                    allFields.removeClass( "ui-state-error" );
- 
-                    bValid = bValid && checkLength( job_title, "job_title", 2, 20 );
-                    bValid = bValid && checkLength( company, "company", 2, 80 );
-                    bValid = bValid && checkLength( start_date, "start_date", 1, 30 );
- 
-                    if ( bValid ) {
-                        jQuery( "#users tbody" ).append( "<tr>" +
-                            "<td>" + job_title.val() + "</td>" + 
-                            "<td>" + company.val() + "</td>" + 
-                            "<td>" + start_date.val() + "</td>" +
-                            "<td>" + start_date.val() + "</td>" +
-                        "</tr>" ); 
-                        jQuery( this ).dialog( "close" );
-                    }
-                },
-                Cancel: function() {
-                    jQuery( this ).dialog( "close" );
-                }
-            },
-            close: function() {
-                allFields.val( "" ).removeClass( "ui-state-error" );
-            }
-        });
-		
- 
-// end add experience
-        jQuery( "#add-exper" )
-            .button()
-            .click(function() {
-                jQuery( "#exper-dialog-form" ).dialog( "open" );
-            });
-        jQuery( "#add-edu" )
-            .button()
-            .click(function() {
-                jQuery( "#edu-dialog-form" ).dialog( "open" );
-            });
-
-
-   });
-		$(function() {
-           $( "#start_date" ).datepicker();
-        });
-
-		$(function() {
-           $( "#end_date" ).datepicker();
-        }); 
-
-		$(function() {
-           $( "#str_date" ).datepicker();
-        });
-
-function selectDate(id){
-	alert(id);
-	 $( id ).datepicker();
-}
-
-    </script>
 
 
 <title><?php echo CLIENT_PAGE_TITLE;?></title>
@@ -432,7 +253,7 @@ function selectDate(id){
     
     <div class="profile-background"> Background </div>
     
-    <div class="profile-third-box-detail">
+    <!--<div class="profile-third-box-detail">
     
     <div class="eductaion-heading">
      <h3 class="background-heading"> Education </h3>
@@ -462,10 +283,10 @@ function selectDate(id){
 			{
 		?>
             <tr>
-                <td>  <a id="edit-edu" onClick="edit(<?php echo $Data_row['id'] ?>)" > Edit</a>  <a  onClick="deleteRow(<?php echo $Data_row['id'] ?>)"> Delete</a> </td>
+                <td>  <a id="edit-edu" onClick="edit("+<?php echo $Data_row['id'] ?>+")" > Edit</a>  <a  onClick="deleteRow("+<?php echo $Data_row['id'] ?>+")"> Delete</a> </td>
 
-                <td>  <?php if($Data_row['start_year']==00){echo "present";} else echo $Data_row['start_year'];?> </td>
-                <td>  <?php if($Data_row['end_year']==00){echo "present";} else echo $Data_row['end_year'];?>  </td>
+                <td>  <?php echo $Data_row['start_date'];?> </td>
+                <td>  <?php echo $Data_row['end_date'];?> </td>
                 <td>  <?php echo $Data_row['school'];?> </td> 
                 <td>  <?php echo $Data_row['degree'].' '.$Data_row['subject'];?> </td>
                                                                
@@ -476,7 +297,49 @@ function selectDate(id){
     
    
     </div>
-</div>
+</div>-->
+	<table id="dg" title="My Education" class="easyui-datagrid" style="width:700px;height:250px"
+			url="profile.php"
+			toolbar="#toolbar" pagination="true"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr>
+				<th field="degree" width="50">Degree</th>
+				<th field="subject" width="50">Subject</th>
+				<th field="school" width="50">School</th>
+
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newEducation()">New Education</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editEducation()">Edit Education</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="removeEducation()">Remove Education</a>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px"
+			closed="true" buttons="#dlg-buttons">
+		<div class="ftitle">Education Information</div>
+		<form id="fm" method="post" novalidate>
+			<div class="fitem">
+				<label>Degree:</label>
+				<input name="degree" class="easyui-validatebox" required>
+			</div>
+			<div class="fitem">
+				<label>Subject:</label>
+				<input name="subject" class="easyui-validatebox" required>
+			</div>
+			<div class="fitem">
+				<label>School:</label>
+				<input name="school">
+			</div>
+		</form>
+	</div>
+	<div id="dlg-buttons">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveEducation()">Save</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+	</div>
+
   <div class="profile-third-box-detail">
     
        <div class="eductaion-heading">
@@ -519,6 +382,7 @@ function selectDate(id){
     
     </div>
     
+
     </div>
 
 
@@ -610,8 +474,7 @@ function selectDate(id){
    </div>  
   </div> <!-- popup-box -->
   </div> <!-- popup-box-warpper -->
-  <div id="msgDilog" style="display:none"> Do u want to delete this ?
-  </div>
+  
   <!-- edid education dialog -->
   <div id="edu-edit-dialog-form"  style="display:none" class="popup-box-warpper">
   <div class="popup-box"> 
@@ -691,6 +554,7 @@ function selectDate(id){
       
       <div class="popup-form-text"> &nbsp; </div>
    <!--     <div class="popup-box-input">
+
          <input type="button" value="Save">
          <input type="button" value="Save and Add More">
          <input type="button" value="Cancle">
