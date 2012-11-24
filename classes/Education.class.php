@@ -65,10 +65,6 @@ class Education
 		$error .= '&nbsp;&bull;&nbsp;Subject cannot be left blank .<br>';
 
 
-<<<<<<< HEAD
-    if($this->school == '' && $this->school == '')
-		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
-=======
 
     if($this->school == '' && $this->school == '')
 		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
@@ -76,11 +72,9 @@ class Education
 
 
 
-
 		
 		
 
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
 		return $error;
 	}
 

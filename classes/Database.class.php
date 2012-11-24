@@ -278,13 +278,7 @@ class Database
 			$sql = "";
 			
 			if($whr_calues)
-<<<<<<< HEAD
-				 $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
-=======
-			{
-				  $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
-			}
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+			 $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
 			else
 				$sql = "select ".$field." from ".$table." where id = ".$id."";				
 			

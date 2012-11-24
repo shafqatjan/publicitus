@@ -62,19 +62,19 @@
 	/************************************************************
 	DATEBASE CONSTANTS
 	/************************************************************/
-/*
+
 	define("DB_HOST", '50.63.226.146');
 	define('DB_USER', 'publicitus');
 	define('DB_PASS', 'Java1234PHP');
 	define('DB_NAME', 'publicitus');
-*/
 
-	
+
+/*	
 	define("DB_HOST", 'localhost');
 	define('DB_USER', 'root');
 	define('DB_PASS', '');
 	define('DB_NAME', 'publicitus');
-	
+*/	
 	define("EMAIL_NO_REPLY","no-reply@publicitus.com");
 	define("EMAIL_INFO","info@publicitus.com");
 	define("EMAIL_SIGNATURE","Regards,<br />School Support Team<br />");
@@ -101,49 +101,9 @@
 	define(TBL_USER_MEDIA,"pub_users_media_map");
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
-<<<<<<< HEAD
-	define(TBL_JOB_POST,"pub_job_post");
-	define(TBL_JOB_POST,"pub_job_post");
-=======
-<<<<<<< HEAD
-	define(TBL_JOB_POST,"pub_job_post");
-	define(TBL_JOB_POST,"pub_job_post");
-	define(TBL_JOB_POST,"pub_job_post");
 	define(TBL_JOB_POST,"pub_job_post");
 	define(TBL_JOB_APP,"pub_job_app");	
 	define(TBL_APP_FILE,"pub_job_app_file");		
-=======
-
-	define(TBL_JOB_POST,"pub_job_post");
-
-
-
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
-	define(TBL_JOB_POST,"pub_job_post");
-
-
-	define(TBL_JOB_POST,"pub_job_post");
-
-
 	define(TBL_PAKAGE_POST,"pub_pakage_post");
 	define(TBL_PAKAGE_APP,"pub_pakage_purchase");
-	
-
-
-	define(TBL_JOB_POST,"pub_job_post");
-	define(TBL_JOB_APP,"pub_job_app");	
-	define(TBL_APP_FILE,"pub_job_app_file");		
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
 ?>

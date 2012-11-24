@@ -331,7 +331,7 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 				?>
           </select>
         </div>
-<<<<<<< HEAD
+
         <div class="error"></div>
       </div>
       <div class="two-col" style="text-align:left;">
@@ -350,8 +350,8 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
       
       <!--  Looop    echo '<pre>';print_r($_POST); -->
       <div class="three-col">
-        <?php 
-=======
+        
+
     <div class="form-head">  
     	<h3> Categories </h3>
     </div>
@@ -359,17 +359,13 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
     <!--  Looop    echo '<pre>';print_r($_POST); -->
         <div class="three-col">
 
-<<<<<<< HEAD
-=======
 
 
 
 
 
-
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
     <?php 
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+
 
 // Retrieve Categories 
 
