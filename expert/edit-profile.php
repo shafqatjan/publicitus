@@ -333,13 +333,6 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
     <!--  Looop    echo '<pre>';print_r($_POST); -->
         <div class="three-col">
 
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
-
     <?php 
 
 // Retrieve Categories 

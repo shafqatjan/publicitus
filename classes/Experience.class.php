@@ -53,12 +53,9 @@ class Experience
 	{
 		$error='';
     if($this->job_title == '')
-		$error .= '&nbsp;&bull;&nbsp;Degree cannot be left blank.<br>';
-    if($this->start_date == '')
-		$error .= '&nbsp;&bull;&nbsp;Start Date cannot be left blank.<br>';
-    if($this->end_date == '' && $this->is_present == '')
-		$error .= '&nbsp;&bull;&nbsp;Enter either End Date or check present .<br>';
-		
+		$error .= '&nbsp;&bull;&nbsp;Job Title cannot be left blank.<br>';
+    if($this->company == '')
+		$error .= '&nbsp;&bull;&nbsp;Company cannot be left blank.<br>';
 		
 		return $error;
 	}
@@ -67,11 +64,9 @@ class Experience
 	{
 		$error='';
     if($this->job_title == '')
-		$error .= '&nbsp;&bull;&nbsp;Degree cannot be left blank.<br>';
-    if($this->start_date == '')
-		$error .= '&nbsp;&bull;&nbsp;Start Date cannot be left blank.<br>';
-    if($this->end_date == '' && $this->is_present == '')
-		$error .= '&nbsp;&bull;&nbsp;Enter either End Date or check present .<br>';
+		$error .= '&nbsp;&bull;&nbsp;Job Title cannot be left blank.<br>';
+    if($this->company == '')
+		$error .= '&nbsp;&bull;&nbsp;Company cannot be left blank.<br>';
 		
 		
 		return $error;
@@ -82,10 +77,11 @@ class Experience
 		return "INSERT INTO ".$this->table." SET 
 		job_title = '".hlpMysqlRealScape($this->job_title)."', 
 		company = '".hlpMysqlRealScape($this->company)."', 
-		start_date = '".hlpMysqlRealScape($this->start_date)."', 
-		end_date = '".md5(hlpMysqlRealScape($this->end_date))."', 
+		start_month = '".hlpMysqlRealScape($this->start_month)."', 
+		end_month = '".hlpMysqlRealScape($this->end_month)."', 
+		start_year = '".hlpMysqlRealScape($this->start_year)."', 
+		end_year = '".hlpMysqlRealScape($this->end_year)."', 
 		job_description = '".hlpMysqlRealScape($this->job_description)."', 
-		is_present = '".hlpMysqlRealScape($this->is_present)."',
 		user_id = '".hlpMysqlRealScape($this->user_id)."';";
 		
 	}
@@ -94,10 +90,11 @@ class Experience
 		return "UPDATE ".$this->table." SET 
 		job_title = '".hlpMysqlRealScape($this->job_title)."',
 		company = '".hlpMysqlRealScape($this->company)."',
-		start_date = '".hlpMysqlRealScape($this->start_date)."', 
-		end_date = '".md5(hlpMysqlRealScape($this->end_date))."', 
+		start_month = '".hlpMysqlRealScape($this->start_month)."', 
+		end_month = '".hlpMysqlRealScape($this->end_month)."', 
+		start_year = '".hlpMysqlRealScape($this->start_year)."', 
+		end_year = '".hlpMysqlRealScape($this->end_year)."', 
 		job_description = '".hlpMysqlRealScape($this->job_description)."', 
-		is_present = '".hlpMysqlRealScape($this->is_present)."',
 		user_id = '".hlpMysqlRealScape($this->user_id)."', WHERE id = ".intval($this->id);
 	}
 

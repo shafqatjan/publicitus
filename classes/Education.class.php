@@ -63,23 +63,10 @@ class Education
 		$error .= '&nbsp;&bull;&nbsp;school cannot be left blank.<br>';
     if($this->subject == '')
 		$error .= '&nbsp;&bull;&nbsp;Subject cannot be left blank .<br>';
-    if($this->start_year == '00' && $this->end_year == '00' )
-		$error .= '&nbsp;&bull;&nbsp;Both start and end year can not set present  .<br>';
-    if($this->start_year > $this->end_year )
-		$error .= '&nbsp;&bull;&nbsp;Invalid start year.<br>';
 
-<<<<<<< HEAD
-=======
+
     if($this->school == '' && $this->school == '')
 		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
-
-
-
-
-
-		
-		
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 		return $error;
 	}
 
@@ -92,10 +79,6 @@ class Education
 		$error .= '&nbsp;&bull;&nbsp;school cannot be left blank.<br>';
     if($this->subject == '')
 		$error .= '&nbsp;&bull;&nbsp;Subject cannot be left blank .<br>';		
-    if($this->start_year == '00' && $this->end_year == '00' )
-		$error .= '&nbsp;&bull;&nbsp;Both start and end year can not set present  .<br>';
-    if($this->start_year > $this->end_year )
-		$error .= '&nbsp;&bull;&nbsp;Invalid start year.<br>';
 		return $error;
 	}
 
@@ -120,6 +103,8 @@ class Education
 		subject = '".hlpMysqlRealScape($this->subject)."',
 		start_month = '".hlpMysqlRealScape($this->start_month)."', 
 		end_month = '".hlpMysqlRealScape($this->end_month)."', 
+		start_year = '".hlpMysqlRealScape($this->start_year)."', 
+		end_year = '".hlpMysqlRealScape($this->end_year)."', 	
 		school = '".hlpMysqlRealScape($this->school)."', 
 		edu_description = '".hlpMysqlRealScape($this->edu_description)."' WHERE id = ".intval($this->id);
 	}

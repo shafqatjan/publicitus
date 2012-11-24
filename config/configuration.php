@@ -102,25 +102,12 @@
 
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
-<<<<<<< HEAD
-
 	define(TBL_JOB_POST,"pub_job_post");
-=======
-
 	define(TBL_JOB_POST,"pub_job_post");
-
-
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
-	
-
 	define(TBL_JOB_POST,"pub_job_post");
 
 	define(TBL_JOB_APP,"pub_job_app");	
 	define(TBL_APP_FILE,"pub_app_file");		
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 ?>

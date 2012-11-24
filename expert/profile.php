@@ -84,56 +84,91 @@ $cat_Array = $objDb->getArray($sqlAllCat);
     <script>
 	function edit(id){
 	    var id = id;		
-		//window.location = ""
-         jQuery( "#msgDilog" ).dialog( "open" );
+						jQuery( ".popup-heading" ).html("Edit Education");
 
-        jQuery( "#msgDilog" ).dialog({
-            autoOpen: false,
-            height: 200,
-            width: 200,
-            modal: true,
-            buttons: {
-                "DELETE": function() {
-                    var bValid = true;
-                    allFields.removeClass( "ui-state-error" ); 
-					//var roleCatId=jQuery("#roleCatId").val();
-					param =  "action=delete&id="+id;
-					alert("param :: "+'ajax/action.php?'+param);
-					//jQuery('#roleSubCatDropDiv').html('');	
-					jQuery.ajax({
-							   type		: "GET",
-							   data 	: param,
-							   async	: false,
-							   url 		: '../ajax/action.php?'+param,
-							   success 	: function(msg)
-							   {
-									alert("Response msg :: "+msg);
-									//document.reload();
-									document.location.reload(true);
-								//jQuery('#roleSubCatDropDiv').html(msg);
-							   }
-						});
-                        jQuery( this ).dialog( "close" );
-                    
-                },
-                Cancel: function() {
-                    jQuery( this ).dialog( "close" );
-                }
-            },
-            close: function() {
-                allFields.val( "" ).removeClass( "ui-state-error" );
-            }
-        });
+		var url	= '../ajax/action.php?action=editExperience&id='+id;	
+				$.get(url,{language: "php", version: 5},  
+					function(responseText){  
+						var json = responseText;
+						obj = JSON.parse(json);
+						//alert(obj.degree+' '+obj.subject+' '+obj.start_month);
+						jQuery( "#degree" ).val(obj.degree);
+						jQuery("#subject").add(obj.subject);
+						jQuery( "#start_month" ).val(obj.start_month);
+						jQuery( "#end_month" ).val(obj.end_month);
+						jQuery( "#start_year" ).val(obj.start_year);
+						jQuery( "#end_year" ).val(obj.end_year);
+						jQuery( "#school" ).val(obj.school);
+						jQuery( "#edu_description" ).val(obj.edu_description);
+						jQuery( "#eduId" ).val(id);
+						
+						
+					},  
+					"html"  
+				);  
+		
+         jQuery( "#edu-dialog-form" ).dialog("open" );
 
 	}
 
- 
-
-
-	function deleteRow(id){
+	function editExperience(id){
 	    var id = id;		
-	    alert(" ID :: "+id)	;
-		window.location = ""
+		//window.location = ""
+		var url	= '../ajax/action.php?action=edit&id='+id;	
+				$.get(url,{language: "php", version: 5},  
+					function(responseText){  
+						var json = responseText;
+						obj = JSON.parse(json);
+						alert(obj.degree+' '+obj.subject+' '+obj.start_month);
+						jQuery( "#job_title" ).val(obj.job_title);
+						jQuery( "#company" ).add(obj.company);
+						jQuery( "#st_month" ).val(obj.start_month);
+						jQuery( "#e_month" ).val(obj.end_month);
+						jQuery( "#st_year" ).val(obj.start_year);
+						jQuery( "#e_year" ).val(obj.end_year);
+						jQuery( "#school" ).val(obj.school);
+						jQuery( "#job_description" ).val(obj.job_description);
+						jQuery( "#expId" ).val(id);
+						jQuery( ".popup-heading" ).html("Edit Experience");
+						
+						
+					},  
+					"html"  
+				);  
+		
+         jQuery( "#edu-dialog-form" ).dialog("open" );
+
+	}
+	
+	function deleteRow(id){
+	    var id = id;
+		var url	= '../ajax/action.php?action=delete&id='+id;	
+	    var res= confirm("Do you really want to delete this record ?");
+		if(res){
+				$.get(url,{language: "php", version: 5},  
+					function(responseText){  
+					//alert(responseText);
+						$("#row_"+id).hide();  
+					},  
+					"html"  
+				);  
+		}
+		
+	}
+	function deleteExperience(id){
+	    var id = id;
+		var url	= '../ajax/action.php?action=deleteExperience&id='+id;	
+	    var res= confirm("Do you really want to delete this record ?");
+		if(res){
+				$.get(url,{language: "php", version: 5},  
+					function(responseText){  
+					//alert(responseText);
+						$("#row_"+id).hide();  
+					},  
+					"html"  
+				);  
+		}
+		
 	}
 
     jQuery(function() {
@@ -187,29 +222,37 @@ $cat_Array = $objDb->getArray($sqlAllCat);
             width: 575.6,
             modal: true,
             buttons: {
-                "Add": function() {
+                "Save": function() {
                     var bValid = true;
                     allFields.removeClass( "ui-state-error" ); 
-                    bValid = bValid && checkLength( degree, "degree", 2, 16 );
-                    bValid = bValid && checkLength( subject, "subject", 2, 80 );
-                    bValid = bValid && checkLength( school, "school", 3, 80 );
+                    //bValid = bValid && checkLength( degree, "degree", 2, 20 );
+                    //bValid = bValid && checkLength( subject, "subject", 2, 80 );
+                    //bValid = bValid && checkLength( school, "school", 3, 100 );
                     if ( bValid ) {
-					//var roleCatId=jQuery("#roleCatId").val();
-					//param =  "action=add";
-					param = "action=add&degree="+jQuery("#degree").val()+"&subject="+jQuery("#subject").val()+"&school="+jQuery("#school").val()+"&start_month="+jQuery("#start_month").val()+"&end_month="+jQuery("#end_month").val()+"&start_year="+jQuery("#start_year").val()+"&end_year="+jQuery("#end_year").val()+"&edu_description="+jQuery("#edu_description").val();
-					//alert("val "+val);
-					alert("param :: "+'ajax/action.php?'+param);
-					//jQuery('#roleSubCatDropDiv').html('');	
+					param = "action=add&id="+jQuery("#eduId").val()+"&degree="+jQuery("#degree").val()+"&subject="+jQuery("#subject").val()+"&school="+jQuery("#school").val()+"&start_month="+jQuery("#start_month").val()+"&end_month="+jQuery("#end_month").val()+"&start_year="+jQuery("#start_year").val()+"&end_year="+jQuery("#end_year").val()+"&edu_description="+jQuery("#edu_description").val();
+					alert("param : "+param);
+
 					jQuery.ajax({
 							   type		: "GET",
 							   data 	: param,
 							   async	: false,
 							   url 		: '../ajax/action.php?'+param,
-							   success 	: function(msg)
+							   success 	: function(response)
 							   {
-									alert("Response msg :: "+msg);
-									//document.reload();
-									document.location.reload(true);
+									if(response.substr(0,6) == "sucadd")
+									   jQuery("#eduTab").append(response.substr(6));
+									if(response.substr(0,6) == "sucupd")
+									   jQuery("#eduTab #row_"+jQuery("#eduId").val()).html(response.substr(6));
+									   
+										jQuery( "#degree" ).val('');
+										jQuery( "#subject" ).val('');
+										jQuery( "#start_month" ).val('');
+										jQuery( "#end_month" ).val('');
+										jQuery( "#start_year" ).val('');
+										jQuery( "#end_year" ).val('');
+										jQuery( "#school" ).val('');
+										jQuery( "#edu_description" ).val('');									   
+									   
 								//jQuery('#roleSubCatDropDiv').html(msg);
 							   }
 						});
@@ -226,34 +269,52 @@ $cat_Array = $objDb->getArray($sqlAllCat);
         });
 
 
-        jQuery( "#edu-edit-dialog-form" ).dialog({
+
+
+ //add expeience
+ 
+         jQuery( "#exper-dialog-form" ).dialog({
             autoOpen: false,
             height: 575,
             width: 575.6,
             modal: true,
             buttons: {
-                "Add": function() {
+                "Save": function() {
                     var bValid = true;
                     allFields.removeClass( "ui-state-error" ); 
-                    bValid = bValid && checkLength( degree, "degree", 2, 16 );
-                    bValid = bValid && checkLength( subject, "subject", 2, 80 );
-                    bValid = bValid && checkLength( school, "school", 3, 16 );
+                   // bValid = bValid && checkLength( degree, "degree", 2, 16 );
+                    //bValid = bValid && checkLength( subject, "subject", 2, 80 );
+                    //bValid = bValid && checkLength( school, "school", 3, 80 );
                     if ( bValid ) {
 					//var roleCatId=jQuery("#roleCatId").val();
-					param =  "action=edit&id";
-					href="action=edit&id=<?php echo $Data_row['id'];?>"
+					//param =  "action=add";
+					param = "action=addExperience&id"+jQuery("#expId").val()+"=&job_title="+jQuery("#job_title").val()+"&company="+jQuery("#company").val()+"&start_month="+jQuery("#st_month").val()+"&end_month="+jQuery("#e_month").val()+"&start_year="+jQuery("#st_year").val()+"&e_year="+jQuery("#e_year").val()+"&job_description="+jQuery("#job_description").val();
+					//alert("val "+val);
 					alert("param :: "+'ajax/action.php?'+param);
 					//jQuery('#roleSubCatDropDiv').html('');	
 					jQuery.ajax({
 							   type		: "GET",
 							   data 	: param,
 							   async	: false,
-							   url 		: 'ajax/action.php?'+param,
-							   success 	: function(msg)
+							   url 		: '../ajax/action.php?'+param,
+							   success 	: function(response)
 							   {
-									alert("url :: "+url);
-									alert("Response msg :: "+msg);
-									//jQuery('#roleSubCatDropDiv').html(msg);
+								   alert(response);
+									if(response.substr(0,6) == "sucadd")
+									   jQuery("#expTab").append(response.substr(6));
+									if(response.substr(0,6) == "sucupd")
+									   jQuery("#expTab #row_"+jQuery("#expId").val()).html(response.substr(6));
+									   
+										jQuery( "#job_title" ).val('');
+										jQuery( "#company" ).val('');
+										jQuery( "#st_month" ).val('');
+										jQuery( "#e_month" ).val('');
+										jQuery( "#st_year" ).val('');
+										jQuery( "#e_year" ).val('');
+										jQuery( "#school" ).val('');
+										jQuery( "#job_description" ).val('');									   
+									   
+								//jQuery('#roleSubCatDropDiv').html(msg);
 							   }
 						});
                         jQuery( this ).dialog( "close" );
@@ -267,53 +328,18 @@ $cat_Array = $objDb->getArray($sqlAllCat);
                 allFields.val( "" ).removeClass( "ui-state-error" );
             }
         });
-
-
- //add expeience
- 
-         jQuery( "#exper-dialog-form" ).dialog({
-            autoOpen: false,
-            height: 575,
-            width: 575.6,
-            modal: true,
-            buttons: {
-                "Add": function() {
-                    var bValid = true;
-                    allFields.removeClass( "ui-state-error" );
- 
-                    bValid = bValid && checkLength( job_title, "job_title", 2, 20 );
-                    bValid = bValid && checkLength( company, "company", 2, 80 );
-                    bValid = bValid && checkLength( start_date, "start_date", 1, 30 );
- 
-                    if ( bValid ) {
-                        jQuery( "#users tbody" ).append( "<tr>" +
-                            "<td>" + job_title.val() + "</td>" + 
-                            "<td>" + company.val() + "</td>" + 
-                            "<td>" + start_date.val() + "</td>" +
-                            "<td>" + start_date.val() + "</td>" +
-                        "</tr>" ); 
-                        jQuery( this ).dialog( "close" );
-                    }
-                },
-                Cancel: function() {
-                    jQuery( this ).dialog( "close" );
-                }
-            },
-            close: function() {
-                allFields.val( "" ).removeClass( "ui-state-error" );
-            }
-        });
-		
  
 // end add experience
         jQuery( "#add-exper" )
             .button()
             .click(function() {
+				jQuery( ".popup-heading" ).html("Add Experience");
                 jQuery( "#exper-dialog-form" ).dialog( "open" );
             });
         jQuery( "#add-edu" )
             .button()
             .click(function() {
+				jQuery( ".popup-heading" ).html("Add Education");
                 jQuery( "#edu-dialog-form" ).dialog( "open" );
             });
 
@@ -447,21 +473,21 @@ function selectDate(id){
 			//printArray($educ_Array);
 	?>
      
-     <table class="gridtable">
+     <table id="eduTab" class="gridtable">
      
      <tr>
-      <th>Action</th>
-      <th>From</th>
-      <th>To</th>
-      <th>School</th>
-      <th>Degree</th>
+      <th width="100">Action</th>
+      <th width="50">From</th>
+      <th width="50">To</th>
+      <th width="200">School</th>
+      <th width="200">Degree</th>
      </tr>
      
 		<?php 
 			foreach($educ_Array as $Data_row)
 			{
 		?>
-            <tr>
+            <tr id="row_<?=$Data_row['id'];?>">
                 <td>  <a id="edit-edu" onClick="edit(<?php echo $Data_row['id'] ?>)" > Edit</a>  <a  onClick="deleteRow(<?php echo $Data_row['id'] ?>)"> Delete</a> </td>
 
                 <td>  <?php if($Data_row['start_year']==00){echo "present";} else echo $Data_row['start_year'];?> </td>
@@ -492,24 +518,24 @@ function selectDate(id){
 			//printArray($exper_Array);
 	?>
      
-       <table class="gridtable">
+       <table id="expTab" class="gridtable">
      
      <tr>
-      <th>Action</th>
-      <th>From</th>
-      <th>To</th>
-      <th>Company</th>
-      <th>Time/role</th>
+      <th width="100">Action</th>
+      <th width="50">From</th>
+      <th width="50">To</th>
+      <th width="200">Company</th>
+      <th width="200">Time/role</th>
      </tr>     
 		<?php 
 			foreach($exp_Array as $Data_row)
 			{
 		?>
      
-     <tr>
-      	<td> <a href="" > Edit </a><p> <a href="action=edit&id=<?php echo $Data_row['id'];?>" > Delete</a></p> </td>
-      	<td> <?php echo $Data_row['start_date'];?>  </td>
-      	<td> <?php echo $Data_row['end_date'];?> </td>
+            <tr id="row_<?=$Data_row['id'];?>">
+                <td>  <a id="edit-edu" onClick="editExperience(<?php echo $Data_row['id'] ?>)" > Edit</a>  <a  onClick="deleteExperience(<?php echo $Data_row['id'] ?>)"> Delete</a> </td>
+        <td>  <?php if($Data_row['st_year']==00){echo "present";} else echo $Data_row['st_year'];?> </td>
+        <td>  <?php if($Data_row['e_year']==00){echo "present";} else echo $Data_row['e_year'];?>  </td>
       	<td> <?php echo $Data_row['company'];?> </td>
       	<td><?php echo $Data_row['job_title'];?> </td>
       </tr>
@@ -525,20 +551,22 @@ function selectDate(id){
 <div id="edu-dialog-form"  style="display:none" class="popup-box-warpper">
   <div class="popup-box"> 
    <div class="popup-heading"> Add Education </div>
-   
    <div class="popup-form">
-   
       <div class="popup-form-row">
          <div class="popup-form-text"> School Name </div>
-         <div class="popup-box-input"> <input type="text" name="school" id="school"> </div>
+         <div class="popup-box-input"> <input class="text ui-widget-content ui-corner-all" type="text" name="school" id="school"> </div>
       </div>
       <div class="popup-form-row">
          <div class="popup-form-text"> Degree </div>
-         <div class="popup-box-input"> <select name="degree" id="degree"> <option value="Masters" > Masters </option> </select> </div>
+         <div class="popup-box-input"> 
+         <select name="degree" id="degree"> 
+             <option value="Masters" > Masters </option> 
+             <option value="Bachlor" > Bachlor </option> 
+         </select> </div>
       </div>
       <div class="popup-form-row">
          <div class="popup-form-text"> Area Of Study </div>
-         <div class="popup-box-input"> <input type="text" name="subject" id="subject"> </div>
+         <div class="popup-box-input"> <input class="text ui-widget-content ui-corner-all" type="text" name="subject" id="abcd"> </div>
       </div>
       <div class="popup-form-row">
          <div class="popup-form-text"> From </div>
@@ -594,6 +622,8 @@ function selectDate(id){
       <div class="popup-form-row">
          <div class="popup-form-text"> Description </div>
          <div class="popup-box-input"> <textarea name="edu_description" id="edu_description"> </textarea> </div>
+                    <input type="hidden" name="id" id="eduId"> </div>
+
       </div>
       
       <div class="popup-form-row">
@@ -613,94 +643,7 @@ function selectDate(id){
   <div id="msgDilog" style="display:none"> Do u want to delete this ?
   </div>
   <!-- edid education dialog -->
-  <div id="edu-edit-dialog-form"  style="display:none" class="popup-box-warpper">
-  <div class="popup-box"> 
-   <div class="popup-heading"> Add Employment </div>
-   
-   <div class="popup-form">
-   
-      <div class="popup-form-row">
-         <div class="popup-form-text"> School Name </div>
-         <div class="popup-box-input"> <input type="text" name="school" id="school"> </div>
-      </div>
-      <div class="popup-form-row">
-         <div class="popup-form-text"> Degree </div>
-         <div class="popup-box-input"> <select name="degree" id="degree"> <option> Master </option> </select> </div>
-      </div>
-      <div class="popup-form-row">
-         <div class="popup-form-text"> Area Of Study </div>
-         <div class="popup-box-input"> <input type="text" name="subject" id="subject"> </div>
-      </div>
-      <div class="popup-form-row">
-         <div class="popup-form-text"> From </div>
-         <div class="popup-box-input"> 
-         <select name="start_month" id="st_month" style="width:130px;">
-            <option value="0"> Present </option> 
-            <option value="1"> January </option> 
-            <option value="2"> February </option>             
-            <option value="3"> March </option>             
-            <option value="4"> April </option>             
-            <option value="5"> May </option>             
-            <option value="6"> June </option>             
-            <option value="7"> July </option>             
-            <option value="8"> August </option>             
-            <option value="9"> September </option>             
-            <option value="10"> October </option>             
-            <option value="11"> November </option>             
-            <option value="12"> December </option>             
-         </select> 
-         <select name="start_year" id="st_year" style="width:90px;">
-            <option value="00"> Present </option>          
-           <?php for ($y = $current_year; $y>=1995  ; $y-- ){?> 
-            <option value="<?php echo $y; ?> ">  <?php echo $y; ?> </option> 
-           <?php }?>
-         </select> </div>
-      </div>
-      <div class="popup-form-row">
-         <div class="popup-form-text"> To </div>
-         <div class="popup-box-input"> 
-         <select name="end_month" id="e_month" style="width:130px;"> 
-            <option value="0"> Present </option> 
-            <option value="1"> January </option> 
-            <option value="2"> February </option>             
-            <option value="3"> March </option>             
-            <option value="4"> April </option>             
-            <option value="5"> May </option>             
-            <option value="6"> June </option>             
-            <option value="7"> July </option>             
-            <option value="8"> August </option>             
-            <option value="9"> September </option>             
-            <option value="10"> October </option>             
-            <option value="11"> November </option>             
-            <option value="12"> December </option>             
-         </select> 
-         <select name="end_year" id="e_year" style="width:90px;"> 
-            <option value="00"> Present </option>                   
-           <?php for ($y = $current_year; $y>=1995  ; $y-- ){?> 
-            <option value="<?php echo $y; ?>" >  <?php echo $y; ?> </option> 
-           <?php }?>
-          
-         </select> </div>
-      </div>
-      <div class="popup-form-row">
-         <div class="popup-form-text"> Description </div>
-         <div class="popup-box-input"> <textarea name="edu_description" id="edu_description"> </textarea> </div>
-      </div>_
-      
-      <div class="popup-form-row">
-      
-      <div class="popup-form-text"> &nbsp; </div>
-   <!--     <div class="popup-box-input">
-         <input type="button" value="Save">
-         <input type="button" value="Save and Add More">
-         <input type="button" value="Cancle">
-        </div>
-       -->  
-      </div>
-      
-   </div>  
-  </div> <!-- popup-box -->
-  </div> <!-- popup-box-warpper -->
+  <!----> <!-- popup-box-warpper -->
 
 <div id="exper-dialog-form"  style="display:none" class="popup-box-warpper">
   <div class="popup-box"> 
@@ -709,12 +652,13 @@ function selectDate(id){
    <div class="popup-form">
    
       <div class="popup-form-row">
-         <div class="popup-form-text"> Company Name </div>
-         <div class="popup-box-input"> <input type="text"> </div>
+         <div class="popup-form-text"> Job Title </div>
+         <div class="popup-box-input"> <input type="text" id="job_title" name="job_title"> </div>
       </div>
+
       <div class="popup-form-row">
-         <div class="popup-form-text"> Role </div>
-         <div class="popup-box-input"> <select> <option> Independent Contributor </option> </select> </div>
+         <div class="popup-form-text"> Company Name </div>
+         <div class="popup-box-input"> <input type="text" id="company" name="company"> </div>
       </div>
       <div class="popup-form-row">
          <div class="popup-form-text"> From </div>
@@ -768,8 +712,8 @@ function selectDate(id){
          </select> </div>
       </div>
       <div class="popup-form-row">
-         <div class="popup-form-text"> Description </div>
-         <div class="popup-box-input"> <textarea> </textarea> </div>
+         <div class="popup-form-text"> Job Description </div>
+         <div class="popup-box-input"> <textarea id="job_description" name="job_description"> </textarea> </div>
       </div>
       
       <div class="popup-form-row">
