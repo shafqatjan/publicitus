@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 17, 2012 at 04:53 PM
--- Server version: 5.5.27
--- PHP Version: 5.4.7
+-- Host: localhost
+-- Generation Time: Nov 24, 2012 at 11:19 AM
+-- Server version: 5.5.8
+-- PHP Version: 5.3.5
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -164,6 +163,99 @@ CREATE TABLE IF NOT EXISTS `pub_experience` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
+--
+-- Dumping data for table `pub_experience`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pub_job_app`
+--
+
+CREATE TABLE IF NOT EXISTS `pub_job_app` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `job_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_cover_letter` longtext NOT NULL,
+  `user_rate` double NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='user apply for job will be save in this table' AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `pub_job_app`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pub_job_app_file`
+--
+
+CREATE TABLE IF NOT EXISTS `pub_job_app_file` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `file_type` int(11) NOT NULL COMMENT 'file type 1 for file belong post file and 2 for file belong to app file',
+  `file_type_id` int(11) NOT NULL COMMENT 'if file type id is 1 than filetypeid will be the job post id and if 2 than filetypeid will  be user id who is applying for the job :)',
+  `file_name` varchar(255) NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `pub_job_app_file`
+--
+
+INSERT INTO `pub_job_app_file` (`id`, `file_type`, `file_type_id`, `file_name`, `status`, `dated`) VALUES
+(1, 1, 17, 'sitedata/uploaded_post/1353717850_currency exchange.xlsx', 1, '2012-11-24 05:44:10');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pub_job_post`
+--
+
+CREATE TABLE IF NOT EXISTS `pub_job_post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `job_title` varchar(255) NOT NULL,
+  `job_desc` longtext NOT NULL,
+  `budget` double NOT NULL,
+  `media_id` int(11) NOT NULL,
+  `last_date` datetime NOT NULL,
+  `location` text NOT NULL,
+  `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+
+--
+-- Dumping data for table `pub_job_post`
+--
+
+INSERT INTO `pub_job_post` (`id`, `job_title`, `job_desc`, `budget`, `media_id`, `last_date`, `location`, `dated`, `status`, `user_id`) VALUES
+(1, 'PHP Developer required', 'this is php job description', 2, 2, '2012-11-27 23:41:40', 'php location', '2012-11-24 11:02:08', 1, 3),
+(2, 'Java Developer required', 'this is java job description', 2, 3, '2012-11-27 23:41:40', 'dasfasdffffvv', '2012-11-24 11:02:08', 1, 3),
+(3, 'C# developer required', 'this is C job description', 2, 3, '2012-11-27 23:41:40', 'dasfasdffffvv', '2012-11-24 11:29:51', 1, 1),
+(4, '.net developer required', 'asdfdasfffvvthis is netjob description', 2, 2, '2012-11-17 23:41:40', 'dasfasdffffvv', '2012-11-24 11:29:52', 1, 1),
+(5, 'PHP Developer required', 'this is php job description', 2, 2, '2012-11-27 23:41:40', 'php location', '2012-11-24 11:29:52', 1, 1),
+(6, 'Java Developer required', 'this is java job description', 2, 18, '2012-11-17 23:41:40', 'dasfasdffffvv', '2012-11-24 11:29:53', 1, 1),
+(7, 'C# developer required', 'this is C job description', 2, 6, '2012-11-27 23:41:40', 'dasfasdffffvv', '2012-11-24 11:29:53', 1, 1),
+(8, '.net developer required', 'asdfdasfffvvthis is netjob description', 2, 5, '2012-11-16 23:41:40', 'dasfasdffffvv', '2012-11-24 11:29:54', 1, 1),
+(9, 'abc', 'test', 12, 1, '2012-11-30 00:00:00', 'test', '2012-11-24 11:29:54', 1, 1),
+(10, 'ert', 'test', 34, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:29:55', 1, 1),
+(11, 'fg', 'test', 34, 1, '2012-11-27 00:00:00', 'test', '2012-11-24 11:29:56', 1, 1),
+(12, 'ty', 'test', 45, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:29:57', 1, 1),
+(13, '45', '65', 56, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:29:57', 1, 1),
+(14, '456yy', 'test', 77, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:29:59', 1, 1),
+(15, '456yy', 'test', 77, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:30:00', 1, 1),
+(16, 'rty', 'test', 45, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:02:21', 1, 3),
+(17, 'rty', 'test', 45, 1, '2012-11-29 00:00:00', 'test', '2012-11-24 11:02:24', 1, 3);
+
 -- --------------------------------------------------------
 
 --
@@ -176,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `pub_media_type` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `pub_media_type`
@@ -184,7 +276,61 @@ CREATE TABLE IF NOT EXISTS `pub_media_type` (
 
 INSERT INTO `pub_media_type` (`id`, `title`, `status`, `dated`) VALUES
 (1, 'media type1', 1, '2012-10-30 23:55:54'),
-(2, 'media type2', 1, '2012-10-30 23:56:18');
+(2, 'media type2', 1, '2012-10-30 23:56:18'),
+(3, 'media typw 3', 1, '2012-11-24 01:56:23'),
+(4, 'media type 4', 1, '2012-11-24 01:56:29'),
+(5, 'media type 5', 1, '2012-11-24 01:56:35');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pub_pakage_post`
+--
+
+CREATE TABLE IF NOT EXISTS `pub_pakage_post` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `media_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `budget` double DEFAULT NULL,
+  `pakage_title` varchar(250) DEFAULT NULL,
+  `duration` int(11) DEFAULT NULL,
+  `pakage_desc` text,
+  `status` tinyint(4) DEFAULT '1',
+  `dated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `pub_pakage_post`
+--
+
+INSERT INTO `pub_pakage_post` (`id`, `media_id`, `user_id`, `budget`, `pakage_title`, `duration`, `pakage_desc`, `status`, `dated`, `last_date`) VALUES
+(1, 1, 3, 23, 'rr', 20, 'ddd', 1, '2012-11-24 13:17:30', '2012-11-27 00:00:00'),
+(2, 2, 3, 34, 'ert', 45, 'test', 1, '2012-11-24 13:28:45', '2012-11-29 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pub_pakage_purchase`
+--
+
+CREATE TABLE IF NOT EXISTS `pub_pakage_purchase` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `pakage_id` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '1',
+  `dated` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `pub_pakage_purchase`
+--
+
+INSERT INTO `pub_pakage_purchase` (`id`, `pakage_id`, `user_id`, `status`, `dated`) VALUES
+(1, 2, 0, 1, '2012-11-24 15:33:45'),
+(2, 2, 3, 1, '2012-11-24 15:36:43');
 
 -- --------------------------------------------------------
 
@@ -213,30 +359,18 @@ CREATE TABLE IF NOT EXISTS `pub_users` (
   `verification_code` varchar(100) NOT NULL,
   `last_login` datetime NOT NULL,
   `current_login` datetime NOT NULL,
+  `image_name` varchar(250) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `pub_users`
 --
 
-INSERT INTO `pub_users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `cell`, `address`, `company`, `website`, `city`, `zipcode`, `country`, `state`, `user_type`, `status`, `dated`, `verification_code`, `last_login`, `current_login`) VALUES
-(1, 'Abdul', 'Sattar', 'abdulsattarpalli@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123213213', '12323232', 'address', 'company', 'website', 'Islamabad', '46000', 'country', 'Punjab', 1, 1, '2012-11-13 16:29:05', '714a3a324181f353893afca0a9860266', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(13, 'Abdul', 'Ahmed', 'abdulsattarpalli@yahoo.com', '123', '', '', '', '', '', '', '', '', '', 0, 3, '2012-11-05 07:07:35', 'a18b9087c790b94ea68c8af4ee0eee05', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(14, 'Abid', 'Ali', 'aspalli@comsats.net.pk', '1234', '', '', '', '', '', '', '', '', '', 0, 3, '2012-11-05 22:14:29', 'affc55d10c1f4a7b7d79522015a988fd', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(15, 'Abdul', '', 'irumnawaz21@yahoo.com', '123', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-10 02:16:46', '694df8d92f52abb24195161b10c1e8e1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(16, 'Fahad', '', 'fahadnizamani1988@gmail.com', '1234', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-10 02:39:32', 'c667247f4d63e6d2fa029af0a0dbbcd1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(17, 'Fahad', '', 'fahadni_zamani1988@yahoo.com', '1234', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-10 02:45:58', '5b8a9d0aebe3a0cf5eec691d8cc8c774', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(18, 'Noman', 'Ali', 'abdulsattarpalli@hotmail.com', '1234', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-10 02:48:18', '693cb3224c155da0750ca6fa5a82c277', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(19, 'Abdul', '', 'mnawaz21@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:28:16', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(20, 'Abdul', '', 'nawaz21@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:29:29', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(21, 'Abdul', '', 'nwaz21@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:30:50', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(22, 'Abdul', '', 'nwaz1@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:35:32', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(23, 'Abdul', '', 'waz1@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:37:56', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(24, 'Abdul', '', 'waz@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:48:23', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(25, 'Abdul', '', 'az@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 04:49:47', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(26, 'Abdul', '', 'zzzz@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 05:00:35', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(27, 'Abdul', '', 'abdulsp@yahoo.com', '202cb962ac59075b964b07152d234b70', '', '243424234', '', '', '', '', '', '', '', 0, 3, '2012-11-11 05:01:51', '0e0b5a4b008defc9d580585498a32416', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `pub_users` (`id`, `first_name`, `last_name`, `email`, `password`, `phone`, `cell`, `address`, `company`, `website`, `city`, `zipcode`, `country`, `state`, `user_type`, `status`, `dated`, `verification_code`, `last_login`, `current_login`, `image_name`) VALUES
+(1, 'Abdul', 'Sattar', 'abdulsattarpalli@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123213213', '12323232', 'address', 'company', 'website', 'Islamabad', '46000', 'country', 'Punjab', 1, 1, '2012-11-13 16:29:05', '714a3a324181f353893afca0a9860266', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(2, 'Shafqat Jan', 'Siddiqui', 'shafqatjan86@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '123213213', '12323232', 'address', 'company', 'website', 'Islamabad', '46000', 'country', 'Punjab', 1, 1, '2012-11-18 12:22:47', '714a3a324181f353893afca0a9860266', '0000-00-00 00:00:00', '0000-00-00 00:00:00', ''),
+(3, 'Ghalib', 'Raza', 'rurazza@gmail.com', '794761a765ceca759536a1bf39100142', '', '03335755897', '', 'excel', '', 'islamabad', '', '', '', 3, 1, '2012-11-24 15:08:26', 'f1b35b76f0a640cfb96f06f5a1faf479', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '');
 
 -- --------------------------------------------------------
 
@@ -251,7 +385,7 @@ CREATE TABLE IF NOT EXISTS `pub_users_categories_map` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `dated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=44 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `pub_users_categories_map`
@@ -300,7 +434,9 @@ INSERT INTO `pub_users_categories_map` (`id`, `user_id`, `category_id`, `status`
 (40, 1, 2, 1, '2012-11-10 10:52:05'),
 (41, 3, 4, 1, '2012-11-10 10:52:05'),
 (42, 1, 4, 1, '2012-11-10 12:33:45'),
-(43, 1, 3, 1, '2012-11-10 12:33:45');
+(43, 1, 3, 1, '2012-11-10 12:33:45'),
+(44, 3, 21, 1, '2012-11-24 01:09:19'),
+(45, 3, 4, 1, '2012-11-24 01:09:19');
 
 -- --------------------------------------------------------
 
@@ -331,7 +467,3 @@ INSERT INTO `pub_users_media_map` (`id`, `user_id`, `media_id`, `status`, `dated
 (8, 13, 1, 1, '2012-11-05 07:07:35'),
 (9, 14, 1, 1, '2012-11-05 22:14:29'),
 (10, 15, 1, 1, '2012-11-10 02:16:46');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

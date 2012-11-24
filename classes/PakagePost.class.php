@@ -1,30 +1,30 @@
 <?php
 
-class JobPost
+class PakagePost
 {
 
 	private $id; //int(11)
-	private $job_title; //varchar(70)
-	private $job_desc; //varchar(70)	
+	private $pakage_title; //varchar(70)
+	private $pakage_desc; //varchar(70)	
 	private $budget; //varchar(70)
 	private $media_id; //varchar(70)
 	private $last_date; //tinyint(3)
-	private $location;
 	private $status;
 	private $dated;
+	private $duration;
 	private $user_id;
 
 	public function __construct()
 	{
 		$this->id='';
-		$this->job_title= '';
-		$this->job_desc = '';
+		$this->pakage_title= '';
+		$this->pakage_desc = '';
 		$this->last_date = '';
 		$this->media_id= '';
-		$this->location = '';
+		$this->duration = '';
 		$this->status = '';
 		$this->dated = '';
-		$this->table = TBL_JOB_POST;
+		$this->table = TBL_PAKAGE_POST;
 		$this->user_id='';
 	}
 
@@ -49,20 +49,20 @@ class JobPost
 	public function validate()
 	{
 		$error='';
-		if($this->user_id == '')
-			$error .= '&nbsp;&bull;&nbsp;You are not login.<br>';
-		if($this->job_title == '')
-			$error .= '&nbsp;&bull;&nbsp;Job Title cannot be left blank.<br>';
-		if($this->job_desc == '')
-			$error .= '&nbsp;&bull;&nbsp;Job Description cannot be left blank.<br>';
+		if($this->pakage_title == '')
+			$error .= '&nbsp;&bull;&nbsp;Pakage Title cannot be left blank.<br>';
+		if($this->pakage_desc == '')
+			$error .= '&nbsp;&bull;&nbsp;Pakage Description cannot be left blank.<br>';
 		 if($this->media_id == '')
-			$error .= '&nbsp;&bull;&nbsp;Category can no blank.<br>';		
-		if($this->location == '')
-			$error .= '&nbsp;&bull;&nbsp;Address cannot be left blank.<br>';
+			$error .= '&nbsp;&bull;&nbsp;Media can no blank.<br>';		
 		if($this->budget == '')
 			$error .= '&nbsp;&bull;&nbsp;Budget cannot be left blank.<br>';
 		else if(!is_double($this->budget))
-			$error .= '&nbsp;&bull;&nbsp;String Not Allowed.<br>';
+			$error .= '&nbsp;&bull;&nbsp;Float Allowed.<br>';
+			if($this->duration == '')
+			$error .= '&nbsp;&bull;&nbsp;Duration cannot be left blank.<br>';
+			else if(!is_numeric($this->duration))
+			$error .= '&nbsp;&bull;&nbsp;Number Allowed.<br>';
 		if($this->last_date == '')
 			$error .= '&nbsp;&bull;&nbsp;Last Date cannot be left blank.<br>';
 		if(time()>=strtotime($this->last_date))
@@ -74,24 +74,24 @@ class JobPost
 	public function Add()
 	{
 		return "INSERT INTO ".$this->table." SET 
-		job_title = '".hlpMysqlRealScape($this->job_title)."', 
-		job_desc = '".hlpMysqlRealScape($this->job_desc)."', 
+		pakage_title = '".hlpMysqlRealScape($this->pakage_title)."', 
+		pakage_desc = '".hlpMysqlRealScape($this->pakage_desc)."', 
 		budget = '".hlpMysqlRealScape($this->budget)."', 
 		media_id = '".hlpMysqlRealScape($this->media_id)."', 
-		last_date = '".hlpMysqlRealScape($this->last_date)."', 
-		location = '".hlpMysqlRealScape($this->location)."', 
-		user_id = '".hlpMysqlRealScape($this->user_id)."',
+		last_date = '".hlpMysqlRealScape($this->last_date)."',
+		duration = '".hlpMysqlRealScape($this->duration)."',
+		user_id = '".hlpMysqlRealScape($this->user_id)."',  
 		status = '".hlpMysqlRealScape($this->status)."';";
 	}
 	public function Update()
 	{
 		return "UPDATE ".$this->table." SET 
-		job_title = '".hlpMysqlRealScape($this->job_title)."', 
-		job_desc = '".hlpMysqlRealScape($this->job_desc)."', 
+		pakage_title = '".hlpMysqlRealScape($this->pakage_title)."', 
+		pakage_desc = '".hlpMysqlRealScape($this->pakage_desc)."', 
 		budget = '".hlpMysqlRealScape($this->budget)."', 
 		media_id = '".hlpMysqlRealScape($this->media_id)."', 
 		last_date = '".hlpMysqlRealScape($this->last_date)."', 
-		location = '".hlpMysqlRealScape($this->location)."', 
+		duration = '".hlpMysqlRealScape($this->duration)."', 
 		status = '".hlpMysqlRealScape($this->status)."' 
 		WHERE id = ".intval($this->id);
 	}

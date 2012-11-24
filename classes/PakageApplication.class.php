@@ -1,28 +1,23 @@
 <?php
 
-class JobApplication
+class PakageApplication
 {
 
 	private $id; //int(11)
-	private $job_id; //varchar(70)
+	private $pakage_id; //varchar(70)
 	private $user_id; //varchar(70)	
-	private $user_cover_letter;
-	private $user_rate;
 	private $status;
-	private $agree;
 	private $dated;
+	private $agree;
 
 	public function __construct()
 	{
 		$this->id='';
-		$this->job_id= '';
+		$this->pakage_id= '';
 		$this->user_id = '';
-		$this->user_cover_letter = '';
-		$this->user_rate= '';
-		$this->status = '';
-		$this->agree = 'off';
+		$this->status = '1';
 		$this->dated = '';
-		$this->table = TBL_JOB_APP;
+		$this->table = TBL_PAKAGE_APP;
 	}
 
 
@@ -46,12 +41,12 @@ class JobApplication
 	public function validate()
 	{
 		$error='';
-		if($this->user_rate == '')
-			$error .= '&nbsp;&bull;&nbsp;Your rate cannot be left blank..<br>';
-		if($this->user_cover_letter == '')
-			$error .= '&nbsp;&bull;&nbsp;Cover Letter cannot be left blank.<br>';
-		if($this->agree=='off')
-			$error .= '&nbsp;&bull;&nbsp;Please agree upon term and condition.<br>';		
+		if($this->agree == '')
+			$error .= '&nbsp;&bull;&nbsp;Pleaze Agree to Term And condition.<br>';
+		if($this->pakage_id == '')
+			$error .= '&nbsp;&bull;&nbsp;Pakages cannot be left blank.<br>';
+		if($this->user_id == '')
+			$error .= '&nbsp;&bull;&nbsp;User cannot be left blank.<br>';
 			
 		return $error;
 	}
@@ -60,19 +55,15 @@ class JobApplication
 	public function Add()
 	{
 		return "INSERT INTO ".$this->table." SET 
-		job_id = '".hlpMysqlRealScape($this->job_id)."', 
-		user_id = '".hlpMysqlRealScape($this->user_rate)."', 
-		user_cover_letter = '".hlpMysqlRealScape($this->user_cover_letter)."', 
-		user_rate = '".hlpMysqlRealScape($this->user_rate)."', 
+		pakage_id = '".hlpMysqlRealScape($this->pakage_id)."', 
+		user_id = '".hlpMysqlRealScape($this->user_id)."',  
 		status = '".hlpMysqlRealScape($this->status)."';";
 	}
 	public function Update()
 	{
 		return "UPDATE ".$this->table." SET 
-		job_id = '".hlpMysqlRealScape($this->job_id)."', 
-		user_id = '".hlpMysqlRealScape($this->user_rate)."', 
-		user_cover_letter = '".hlpSafeString(hlpMysqlRealScape($this->user_cover_letter))."', 
-		user_rate = '".hlpMysqlRealScape($this->user_rate)."', 
+		pakage_id = '".hlpMysqlRealScape($this->pakage_id)."', 
+		user_id = '".hlpMysqlRealScape($this->user_rate)."',  
 		status = '".hlpMysqlRealScape($this->status)."
 		WHERE id = ".intval($this->id);
 	}
