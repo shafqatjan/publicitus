@@ -1,14 +1,17 @@
-<?php 
-include('settings/settings.php');
-include('helpers/helper.php');
+<?php
+include('../settings/settings.php');
+include('../helpers/helper.php');
 
-$objSession = new Session();
+$objSession = new Session(CLIENT_ROLE_EXPERT);
+$objSession->checkSession(CLIENT_ROLE_EXPERT,"../index.php") ;
+
  
 $objDb = new Database();
 $objDb->connect();
 
 $objCat = new Categories();
 $objJobPost = new JobPost();
+$objJobApplication = new JobApplication();
 
 $start 	= intval(isset($_GET['start'])?$_GET['start']:"");
 $act 	= isset($_GET['act'])?$_GET['act']:"";
@@ -24,26 +27,27 @@ $cat_Array = $objDb->getArray($sqlCat);
 //printArray($cat_Array);
 
 
-	$qry = ' AND status = 1 ';
+// 	$qry = ' AND id IN ('.$objJobApplication->PopulateGrid('job_id',' AND user_id='.$objSession->id).') AND status = 1 ';
+ 	$qry = ' AND  status = 1 AND user_id='.$objSession->id;
 	$_pageurl = '';
-	$linkURL = 'jobs.php?start='.$start;
-	
+	$linkURL = 'my-jobs.php?start='.$start;
+	$innerQry = ' AND status = 1 ';
 	if(count($catsrch)>0)
 	{
 		$mediaIds = '';
 		foreach($catsrch as $catsrchrow)
-		{
 			$mediaIds .= $catsrchrow.',';
-		}
+
 		$mediaIds = substr($mediaIds,0,-1);
-		$qry .= ' AND media_id IN ('.$mediaIds.')';
+		$innerQry .= ' AND media_id IN ('.$mediaIds.')';
 		//echo $mediaIds = trim($mediaIds,',');
 	}
 	if(isset($_POST['srch_cri']))
 	{
 		$srch_cri	= isset($_POST['srch_cri'])?$_POST['srch_cri']:"";
-		$qry .= ' AND job_title like "%'.$srch_cri.'%"';
+		$innerQry .= ' AND job_title like "%'.$srch_cri.'%"  AND status = 1 ';
 	}
+	$qry .= ' AND job_id IN('.$objJobPost->PopulateGrid('job_id',$innerQry).')';
 	if(!empty($act) and $sortby)
 	{		
 		$qry .= ' order by ';
@@ -62,8 +66,8 @@ $cat_Array = $objDb->getArray($sqlCat);
 	else 
 		$qry .= " order by id desc";		
 
-
-	$total = $objDb->GetCountSql($objJobPost->table,$qry); 
+//echo $qry;exit;
+	$total = $objDb->GetCountSql($objJobApplication->table,$qry); 
 	
 	$paginate = new ClientPaginate($page_limit, $total, $_pageurl, $max);
 	$paging   = $paginate->displayUl();
@@ -75,15 +79,16 @@ $cat_Array = $objDb->getArray($sqlCat);
 		$paginate->start=0;
 	} 
 	
-	$sqlJobPost = $objJobPost->PopulateGrid("*",$qry);
+	$sqlJobPost = $objJobApplication->PopulateGrid("*",$qry);
     $sqlJobPost .= " LIMIT $paginate->start,$paginate->limit ;";
+	//exit;
 	$Data_Array = array();
 	
 	if($objDb->query($sqlJobPost) and $objDb->get_num_rows()>0)
 		while($Temp_Row = $objDb->fetch_row_assoc())
 			array_push($Data_Array,$Temp_Row);
 
-	//printArray($Data_Array);exit;
+	//printArray($Data_Array);//exit;
 	/** Next previous limits for pagination **/
 		
 	$start = $paginate->start + 1;
@@ -103,10 +108,9 @@ $cat_Array = $objDb->getArray($sqlCat);
 <head>
 <meta charset="utf-8">
 <title><?php echo CLIENT_PAGE_TITLE;?></title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<link href="css/paginationclient.css" rel="stylesheet" type="text/css">
-<script src="js/lib/jquery.js"></script>
-<script src="js/modernizr.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/modernizr.js"></script>
 <script>
 function goToLink(obj) 
 {
@@ -114,24 +118,26 @@ function goToLink(obj)
 }
 </script>
 <!--[if IE 6]>
-<link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 7]>
-<link href="css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 8]>
-<link href="css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 </head>
 
 <body>
 <div id="warpper">
-  <?php include('includes/header.php');?>
+  <?php include('../includes/header.php');?>
   <div id="content">
+      <?php include("../includes/err-succ-info.php");  ?>
     <div id="profile-warrper">
+
       <div class="profile-blue-box"> <!-- first blue box -->
         <form method="post">
           <div class="search-bar-box">
@@ -219,23 +225,24 @@ function goToLink(obj)
 		{
 			foreach($Data_Array as $Data_row)
 			{
+				//printArray($Data_row);
 		?>
         <div class="profile-third-box-detail job-list-margin">
           <div class="eductaion-heading"> <span class="job-post-title">
-            <h3 onClick="window.location='job-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['job_title'];?>. </h3>
+            <h3 onClick="window.location='job-detail.php?job=<?php echo $Data_row['job_id']?>'" style="cursor:pointer;"> <?php echo $Data_row['job_id'];?>. </h3>
             </span> <span class="apply-for-job-btn">
             <?php if($objSession->id!=0 and $objSession->user_type==EXPERT){?>
-            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">
+            <!--<input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">-->
             <?php }else{
 				?>
-            <input type="button" value="Login to apply" onClick="window.location='login.php'">
+            <!--<input type="button" value="Login to apply" onClick="window.location='login.php'">-->
             <?php
 			}?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
             <p class="degree-year"> <span class="job-list-bold-text"> Fixed - Price </span> - Est, Budget: $<?php echo $Data_row['budget']?> - Posted on <?php echo hlpDateFormat($Data_row['dated']);?> </p>
-            <p class="degree-decribtion" style="margin-top:5px; margin-bottom:15px;"> <?php echo $Data_row['job_desc']?> </p>
-            <p class="degree-detail"> <span class="job-list-bold-text"> Last date: </span> <?php echo hlpDateFormat($Data_row['last_date']);?> </p>
+            <p class="degree-decribtion" style="margin-top:5px; margin-bottom:15px;"> <?php echo nl2br($Data_row['user_cover_letter']);?></p>
+            <p class="degree-detail"> <span class="job-list-bold-text"> <!--Last date: </span> <?php echo hlpDateFormat($Data_row['last_date']);?> --></p>
           </div>
         </div>
         <?php
@@ -261,7 +268,7 @@ function goToLink(obj)
   <!-- content --> 
   
   <!-- footer -->
-  <?php include('includes/footer.php');?>
+  <?php include('../includes/footer.php');?>
 </div>
 <!-- Warpper -->
 

@@ -26,6 +26,7 @@ class User
 	private $npassword;
 	private $cpassword;
 	private $rate;
+	private $image_name;
 
 	public function __construct()
 	{
@@ -49,7 +50,7 @@ class User
 		$this->verification_code = '';
 		$this->last_login = '';
 		$this->current_login = '';
-		
+		$this->image_name='';
 		
 		$this->table = TBL_USER;
     	$this->npassword = '';
@@ -144,6 +145,7 @@ class User
 		city = '".hlpMysqlRealScape($this->city)."', 
 		state = '".hlpMysqlRealScape($this->state)."', 
 		country = '".hlpMysqlRealScape($this->coduntry)."', 
+		image_name = '".hlpMysqlRealScape($this->image_name)."', 		
 		zipcode = '".hlpMysqlRealScape($this->zipcode)."';";
 	}
 	public function AddByUsertype()
@@ -168,6 +170,7 @@ class User
 		state =  '".hlpMysqlRealScape($this->state)."',
 		country = '".hlpMysqlRealScape($this->country)."',
 		rate = '".hlpMysqlRealScape($this->rate)."',
+		image_name = '".hlpMysqlRealScape($this->image_name)."', 				
 		zipcode = '".hlpMysqlRealScape($this->zipcode)."' WHERE id = ".intval($this->id);
 	}
 

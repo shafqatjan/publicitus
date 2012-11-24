@@ -109,8 +109,20 @@ if(isset($_POST['btn_save']))
 	if(count($categories)==0)		
 			$error .= '&nbsp;&bull;&nbsp;Select categoties.<br>';
 			//printArray($categories);exit;
+			
+			//width =200, height=200
 	if(empty($error))
 		{
+			hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR);
+			hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR.USER_IMG_DIR);
+			
+				if(!empty($_FILES['userfile']['name']))
+				{
+					$objImage = new SimpleImage();
+					$temp = $objImage->uploadFile('userfile',ADMIN_PREFIX.SITEDATA_DIR.USER_IMG_DIR, 1, 1, $thumbnailSize, $thumbnailSize, 0,200,200);			
+					$objUser->image_name = SITEDATA_DIR.USER_IMG_DIR.$temp['thumb'];
+				}
+
 			if($objDb->execute($objUser->Update()))
 			{
 				$latestId = $objSession->id;
@@ -178,136 +190,131 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 </head>
 
 <body>
-
 <div id="warpper">
   <?php include('../includes/header.php');?>
   <div id="content">
-    <form method="post" action="">
+    <form method="post" action="" enctype="multipart/form-data">
       <div id="form-warrper">
       <?php include("../includes/err-succ-info.php");  ?>
-	 
-        <div class="form-head">
-          <h3> Basic Information </h3>
+      <div class="form-head">
+        <h3> Basic Information </h3>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> First Name <span style="color:red">*</span></label>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> First Name <span style="color:red">*</span></label>
-          </div>
-          <div class="col-two">
-            <input type="text" name="firstName" id="firstName" value="<?php echo $firstName; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="col-two">
+          <input type="text" name="firstName" id="firstName" value="<?php echo $firstName; ?>">
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Last Name </label>
-          </div>
-          <div class="col-two">
-            <input type="text" name="lastName" id="lastName" value="<?php echo $lastName; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Last Name </label>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Company </label>
-          </div>
-          <div class="col-two">
-            <input type="text" name="company" id="company" value="<?php echo $company; ?>" >
-          </div>
-          <div class="error"></div>
+        <div class="col-two">
+          <input type="text" name="lastName" id="lastName" value="<?php echo $lastName; ?>">
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Website </label>
-          </div>
-          <div class="col-two">
-            <input type="text" name="website" id="website" value="<?php echo $website; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Company </label>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Address </label>
-          </div>
-          <div class="col-two">
-            <textarea name="address" id="address"><?php echo $address; ?></textarea>
-          </div>
-          <div class="error"></div>
+        <div class="col-two">
+          <input type="text" name="company" id="company" value="<?php echo $company; ?>" >
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Phone </label>
-          </div>
-          <div class="col-two">
-      <input type="text" name="phone" id="phone" value="<?php echo $phone; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Website </label>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Cell <span style="color:red">*</span></label>
-          </div>
-          <div class="col-two">
-      <input type="text" name="cell" id="cell" value="<?php echo $cell; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="col-two">
+          <input type="text" name="website" id="website" value="<?php echo $website; ?>">
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> City </label>
-          </div>
-          <div class="col-two">
-      <input type="text" name="city" id="city" value="<?php echo $city; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Address </label>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> State </label>
-          </div>
-          <div class="col-two">
-      <input type="text" name="state" id="state" value="<?php echo $state; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="col-two">
+          <textarea name="address" id="address"><?php echo $address; ?></textarea>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Zip Code </label>
-          </div>
-          <div class="col-two">
-      <input type="text" name="zipCode" id="zipCode" value="<?php echo $zipCode; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Phone </label>
         </div>
-        <div class="two-col">
-          <div class="col-one">
-            <label> Country </label>
-          </div>
-          <div class="col-two">
-      <input type=text name="country" id="country" value="<?php echo $country; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="col-two">
+          <input type="text" name="phone" id="phone" value="<?php echo $phone; ?>">
         </div>
-
-
-        <div class="two-col">
-          <div class="col-one">
-            <label> Rate ($/minute)</label>
-          </div>
-          <div class="col-two">
-      <input type=text name="rate" id="rate" value="<?php echo $rate; ?>">
-          </div>
-          <div class="error"></div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Cell <span style="color:red">*</span></label>
         </div>
-
-        <div class="two-col">
-          <div class="col-one">
-            <label> Media Type <span style="color:red">*</span></label>
-          </div>
-          <div class="col-two">
-            <select name="mediaType" id="mediaType">
-              <option value="0"> Select Type Of Media... </option>
-              <?php 
+        <div class="col-two">
+          <input type="text" name="cell" id="cell" value="<?php echo $cell; ?>">
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> City </label>
+        </div>
+        <div class="col-two">
+          <input type="text" name="city" id="city" value="<?php echo $city; ?>">
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> State </label>
+        </div>
+        <div class="col-two">
+          <input type="text" name="state" id="state" value="<?php echo $state; ?>">
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Zip Code </label>
+        </div>
+        <div class="col-two">
+          <input type="text" name="zipCode" id="zipCode" value="<?php echo $zipCode; ?>">
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Country </label>
+        </div>
+        <div class="col-two">
+          <input type=text name="country" id="country" value="<?php echo $country; ?>">
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Rate ($/minute)</label>
+        </div>
+        <div class="col-two">
+          <input type=text name="rate" id="rate" value="<?php echo $rate; ?>">
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="two-col">
+        <div class="col-one">
+          <label> Media Type <span style="color:red">*</span></label>
+        </div>
+        <div class="col-two">
+          <select name="mediaType" id="mediaType">
+            <option value="0"> Select Type Of Media... </option>
+            <?php 
 				if(count($Data_Array)>0)
 				{
 					foreach($Data_Array as $Data_row)
@@ -322,37 +329,39 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 				}
 				
 				?>
-            </select>
-          </div>
-          <div class="error"></div>
+          </select>
         </div>
-    <div class="form-head">  
-    	<h3> Categories </h3>
-    </div>
-    
-    <!--  Looop    echo '<pre>';print_r($_POST); -->
-        <div class="three-col">
-
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
-
-    <?php 
+        <div class="error"></div>
+      </div>
+      <div class="two-col" style="text-align:left;">
+        <div class="col-one">
+          <label> Profile Image </label>
+        </div>
+        <div class="col-two" style="width: 270px;">
+          <input type="file" type="userfile" name="userfile">
+          <p class="upfront-payment"> File size should be less than 5MB.</p>
+        </div>
+        <div class="error"></div>
+      </div>
+      <div class="form-head">
+        <h3> Categories </h3>
+      </div>
+      
+      <!--  Looop    echo '<pre>';print_r($_POST); -->
+      <div class="three-col">
+        <?php 
 
 // Retrieve Categories 
 
 	if(count($cat_Array)>0)
-	{ ?>   
-    <div class="form-head">  
-    	<h3> Experties </h3>
-    </div>
-    
-    <!--  Looop    echo '<pre>';print_r($_POST); -->
+	{ ?>
+        <div class="form-head">
+          <h3> Experties </h3>
+        </div>
+        
+        <!--  Looop    echo '<pre>';print_r($_POST); -->
         <div class="three-col">
-        <?php
+          <?php
 		$co = 0;
 		foreach($cat_Array as $Data_row)
 		{
@@ -365,36 +374,38 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
             <input type="checkbox" value="<?php echo $Data_row['id']?>" name="cat_<?php echo $co;?>" id="cat_<?php echo $co;?>" checked="checked">
             <?php } else { 
 			?>
-           <input type="checkbox" value="<?php echo $Data_row['id']?>" name="cat_<?php echo $co;?>" id="cat_<?php echo $co;?>"> 
+            <input type="checkbox" value="<?php echo $Data_row['id']?>" name="cat_<?php echo $co;?>" id="cat_<?php echo $co;?>">
             <?php	
 			}?>
             <label> <?php echo $Data_row['title'] ?> </label>
           </div>
           <?php
 		}
-		?>  </div><?php
+		?>
+        </div>
+        <?php
 	}
 	?>
-    
-    
-    <!--  End Looop   -->
         
- <input type="hidden" id="catCount" name="catCount" value="<?php echo $co;?>">
-    
-    <div class="submit-btn">
-    <input type="submit" id="btn_save"  name="btn_save" value="Update">
-              <input type="button" value="Cancel" onclick="window.location='<?php echo SITE_ROOT.'expert/';?>'">
-    </div>
-    
-   </div> <!-- 3 colum -->
-  </form>
-  </div><!-- form wrapper -->
-  </div> <!-- content -->
-  
-  <!-- footer -->
-    <?php include('../includes/footer.php');?>
- 
- </div> <!-- Warpper -->
+        <!--  End Looop   -->
+        
+        <input type="hidden" id="catCount" name="catCount" value="<?php echo $co;?>">
+        <div class="submit-btn">
+          <input type="submit" id="btn_save"  name="btn_save" value="Update">
+          <input type="button" value="Cancel" onclick="window.location='<?php echo SITE_ROOT.'expert/';?>'">
+        </div>
+      </div>
+      <!-- 3 colum -->
+    </form>
+  </div>
+  <!-- form wrapper --> 
+</div>
+<!-- content --> 
+
+<!-- footer -->
+<?php include('../includes/footer.php');?>
+</div>
+<!-- Warpper -->
 
 </body>
 </html>

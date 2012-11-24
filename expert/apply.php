@@ -1,7 +1,7 @@
 <?php 
 include('../settings/settings.php');
 include('../helpers/helper.php');
-
+fckInclude();
 
 $objSession = new Session(CLIENT_ROLE_EXPERT);
 $objSession->checkSession(CLIENT_ROLE_EXPERT,"../index.php") ;
@@ -18,43 +18,81 @@ $jobId = isset($_GET['job'])?$_GET['job']:'';
 
 $sqlJob = $objJobPost->PopulateGrid("*"," AND id= ".$jobId);  
 $jobInfoArray = $objDb->getArraySingle($sqlJob);
+$error ='';
+$totalApplied = $objDb->GetCountSql($objJobApplication->table, ' AND job_id='.$jobId);
+if($totalApplied>0)
+	$error .= '&nbsp;&bull;&nbsp;You have already applied for this job.<br>';
 //printArray($jobInfoArray);
 $yourrate = '';
 $coverletter = '';
 $agree='';
-$error ='';
+
 if($_POST['applybtn'])
 {
-	printArray($_POST);
-	printArray($_FILES);
-	$yourrate = isset($_POST['yourrate'])?$_POST['yourrate']:'';
-	$coverletter = isset($_POST['coverletter'])?$_POST['coverletter']:'';
-	$agree = isset($_POST['agree'])?$_POST['agree']:'';	
-	$objJobApplication->user_rate = $yourrate;
-	$objJobApplication->user_cover_latter = $coverletter;
-	$error .= $objJobApplication->validate();
-	if(empty($error))
+	if($totalApplied==0)
 	{
-		if($_FILES['file']['name']!="")	
+		//printArray($_POST);
+		//printArray($_FILES);
+		$yourrate = isset($_POST['yourrate'])?intval(hlpSafeString($_POST['yourrate'])):''; 
+		$coverletter = isset($_POST['coverletter'])?htmlspecialchars_decode(hlpSafeString($_POST['coverletter'])):'';
+
+		$agree = isset($_POST['agree'])?$_POST['agree']:'off';	
+		$objJobApplication->user_rate = $yourrate;
+		$objJobApplication->user_cover_letter = $coverletter;
+		$objJobApplication->agree = $agree;
+		$error .= $objJobApplication->validate();
+		//printArray($objJobApplication);exit;
+		if(empty($error))
 		{
-			if($_FILES['file']['error']==0)	
+			$objJobApplication->job_id = $jobId;
+			$objJobApplication->user_id = $objSession->id;
+			$objJobApplication->status = 1;		
+			if($_FILES['file']['name']!="")	
 			{
-				$allowExt = array('image/jpeg','image/png','image/gif','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/pdf','text/css','text/plain');
-				//printArray($allowExt); exit; 
-				
-				if(hlpValidImage('file',$allowExt))
+				if($_FILES['file']['error']==0)	
 				{
-					echo 'here';exit;;
-					hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR);
-					hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR.USER_APPLY_DIR);
+					$allowExt = array('image/jpeg','image/png','image/gif','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/pdf','text/css','text/plain','application/vnd.ms-excel');
+					//printArray($allowExt); ///exit; 
+					
+					//if(hlpValidImage('file',$allowExt))
+					if(in_array($_FILES['file']['type'],$allowExt))
+					{
+						//echo $objJobApplication->Add();exit;
+						if($objDb->execute($objJobApplication->Add()))
+						{
+							$objJobAppFile->file_type = 2;
+							$objJobAppFile->file_type_id = $objDb->insert_id(); 
+							
+							
+							hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR);
+							hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR.USER_APPLY_DIR);
+							
+							$objJobAppFile->file_name  = SITEDATA_DIR.USER_APPLY_DIR.''.hlpUploadFile('file',ADMIN_PREFIX.SITEDATA_DIR.USER_APPLY_DIR);
+							$objJobAppFile->status = 1;
+	//						printArray($objJobAppFile);						echo $objJobAppFile->Add();exit;
+							if($objDb->execute($objJobAppFile->Add()))
+							{
+								//echo 'here';exit;;
+								$objSession->setSessMsg('Job has been applied successfully.');							
+								$objSession->redirectTo(SITE_ROOT.'expert/my-jobs.php');
+							}
+						}
+					}
 				}
+				else
+					$error .= '&nbsp;&bull;&nbsp;File size should be 5MB.<br>';
 			}
 			else
-				$error .= '&nbsp;&bull;&nbsp;File size should be 5MB.<br>';
+			{
+				if($objDb->execute($objJobApplication->Add()))
+				{
+					$objSession->setSessMsg('Job has been applied successfully.');							
+					$objSession->redirectTo(SITE_ROOT.'/expert/my-jobs.php');							
+				}			
+			}
 		}
-		else
-			$error .= '&nbsp;&bull;&nbsp;Please select file.<br>';
 	}
+
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -91,7 +129,7 @@ if($_POST['applybtn'])
     <?php include("../includes/err-succ-info.php");  ?>   
     
     <div class="form-head">  
-    	<h3> Apply For Post </h3> <a href="job-detail.php?job=<?php echo $jobId;?>"> View Job Posting </a>
+    	<h3> Apply For Job </h3> <a href="job-detail.php?job=<?php echo $jobId;?>"> View Job Posting </a>
     </div>
    
 	<div class="two-col" style="text-align:left;margin: 15px 0;">
@@ -114,7 +152,15 @@ if($_POST['applybtn'])
     <div class="two-col" style="text-align:left;">
      <div class="col-one"> <label> Cover Letter </label> </div>     
      <div class="col-two"> 
-     <textarea style="height:200px;" id="coverletter" name="coverletter"><?php echo $coverletter;?></textarea>     
+		<?php
+            $oFCKeditor = new FCKeditor('coverletter',"custom");
+            $oFCKeditor->BasePath = SITE_ROOT."FCKeditor/";
+            $oFCKeditor->Value= html_entity_decode($coverletter);
+            $oFCKeditor->Height=350;
+            $oFCKeditor->Width=700;
+            $oFCKeditor->Create();
+        ?>     
+<!--     <textarea style="height:200px;" id="coverletter" name="coverletter"><?php echo $coverletter;?></textarea>     -->
      </div>
      <div class="error"></div>
     </div>
@@ -137,7 +183,7 @@ if($_POST['applybtn'])
     </div>
  
     <div class="submit-btn">
-     <input type="submit" value="Sign In" id="applybtn" name="applybtn">
+     <input type="submit" value="Apply" id="applybtn" name="applybtn" <?php if($totalApplied>0){echo 'disabled="disabled"'; echo 'style="opacity:0.3"';  }?>  >
     </div>
     
    </div> <!-- form warrper -->

@@ -208,6 +208,7 @@ exit;
 
 function hlpMakeDir($dir, $fileName = 'index.php')
 {	 
+//printArray(func_get_args());
 	$myData= '<style>
 body{
 background:#D2D2D2;
