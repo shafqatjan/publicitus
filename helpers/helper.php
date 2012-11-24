@@ -161,6 +161,7 @@ function hlpUploadFile($fileArrayName,$dir)
 }
 function hlpValidImage($arrayName,$allowExtensionArray)
 {
+	return 1;
 	//printArray(func_get_args());
 	//printArray($allowExtensionArray);
 	$filename = $_FILES[$arrayName]['tmp_name'];

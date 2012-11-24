@@ -256,11 +256,10 @@ class Database
 		$row = "";
 		$sql = "";
 			
-		$sql = "select ".$field." from ".$table." where ".$whr_clz;
+		 $sql = "select ".$field." from ".$table." where ".$whr_clz;
 		
 		$row = $this->getArraySingle($sql);
 
-		
 		if(!empty($row))
 		{
 			if($row_col == 1)
@@ -280,7 +279,7 @@ class Database
 			
 			if($whr_calues)
 			{
-				 $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
+				  $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
 			}
 			else
 			{

@@ -9,48 +9,48 @@ $objDb = new Database();
 $objDb->connect();
 #printArray($objSession);
 //exit;
-$objJobPost = new JobPost();
+$objPakagePost = new PakagePost();
 $objJobAppFile = new JobAppFile();
 
-$objCategory=new Categories();
-$sqlCategory = $objCategory->PopulateGrid("id,title",' AND status = 1 ','order by title asc');  
-$cat_Array = $objDb->getArray($sqlCategory);
+$objMedia=new MediaType();
+$sqlMedia = $objMedia->PopulateGrid("id,title",' AND status = 1 ','order by title asc');  
+$media_Array = $objDb->getArray($sqlMedia);
 
 #$sql = $objUser->PopulateGrid("*"," AND id= ".$objSession->id);  
 #$userInfo = $objDb->getArraySingle($sql);
 if($_POST['postjobbtn'])
 {
-	#printArray($_POST);
+	printArray($_POST);
 	#printArray($_FILES);
 	#print_r($_FILES);
-	#exit;
+	
 	$budget = isset($_POST['budget'])? doubleval($_POST['budget']):'';
 	$lastDate = isset($_POST['last_date'])?$_POST['last_date']:'';
 	$mediaId=isset($_POST['media_id'])? intval($_POST['media_id']):'';
-	$jobTitle=isset($_POST['job_title'])?$_POST['job_title']:'';
-	$jobDesc=isset($_POST['job_desc'])?$_POST['job_desc']:'';
-	$location=isset($_POST['location'])?$_POST['location']:'';
+	$jobTitle=isset($_POST['pakage_title'])?$_POST['pakage_title']:'';
+	$jobDesc=isset($_POST['pakage_desc'])?$_POST['pakage_desc']:'';
+	$duration=isset($_POST['duration'])?$_POST['duration']:'';
 	
 	$agree = isset($_POST['agree'])?$_POST['agree']:'';	
-	$objJobPost->job_title = $jobTitle;
-	$objJobPost->job_desc = $jobDesc;
-	$objJobPost->budget = $budget;
-	$objJobPost->media_id = $mediaId;
-	$objJobPost->last_date = $lastDate;
-	$objJobPost->location = $location;
-	$objJobPost->status = 1;
-	$objJobPost->user_id = $objSession->id;
-	$error .= $objJobPost->validate();
+	$objPakagePost->pakage_title = $jobTitle;
+	$objPakagePost->pakage_desc = $jobDesc;
+	$objPakagePost->budget = $budget;
+	$objPakagePost->media_id = $mediaId;
+	$objPakagePost->last_date = $lastDate;
+	$objPakagePost->duration = $duration;
+	$objPakagePost->status = 1;
+	$objPakagePost->user_id = $objSession->id;
+	$error .= $objPakagePost->validate();
 	#echo $error.'aa';
 	if(empty($error))
 	{
-		if($objDb->GetCountSql($objJobPost->table," AND job_title='".$jobTile."' and budget=$budget and media_id=$mediaId and last_date='$lastDate'")>0)
+		if($objDb->GetCountSql($objPakagePost->table," AND pakage_title='".$jobTile."' and budget=$budget and media_id=$mediaId and last_date='$lastDate'")>0)
 			$error .= '&nbsp;&bull;&nbsp;Email already exists.<br>';
 			
 			if(empty($error))
 			{
 				
-				if($_FILES['docFile']['name']!="")	
+				/*if($_FILES['docFile']['name']!="")	
 				{
 					
 					if($_FILES['docFile']['error']==0)	
@@ -85,12 +85,16 @@ if($_POST['postjobbtn'])
 				else
 					$error .= '&nbsp;&bull;&nbsp;File size should be 5MB.<br>';
 				}
-			else
-			{
-				$objDb->execute($objJobPost->Add());
-				$objSession->setSessMsg('Post has been applied successfully.');
-				$objSession->redirectTo(SITE_ROOT.'media/my-posts.php'); 
-			}
+			else*/
+				if($objDb->execute($objPakagePost->Add()))
+				{
+				$objSession->setSessMsg('Pakage has been applied successfully.');
+				$objSession->redirectTo(SITE_ROOT.'media/my-pakage-posts.php'); 
+				}
+				else
+				{
+					$error .= '&nbsp;&bull;&nbsp;Pakage not added.<br>';
+				}
 		}
 	}
 }
@@ -132,7 +136,7 @@ if($_POST['postjobbtn'])
     <?php include("../includes/err-succ-info.php");  ?>   
     
     <div class="form-head">  
-    	<h3> Post a job</h3> 
+    	<h3> Post a Pakage</h3> 
     </div>
    
     <div class="two-col" style="text-align:left;margin: 15px 0;">
@@ -153,11 +157,11 @@ if($_POST['postjobbtn'])
      <div class="error"></div>
     </div>
     <div class="two-col" style="text-align:left;">
-     <div class="col-one"> <label> Category </label> </div>     
+     <div class="col-one"> <label> Media </label> </div>     
      <div class="col-two">
      
      <select name="media_id" id="media_id" >
-     <? foreach($cat_Array as $key=>$value){ ?>
+     <? foreach($media_Array as $key=>$value){ ?>
      <option value="<?=$value['id']?>"><?=$value['title']?></option>
      <? } ?>
      </select>
@@ -166,9 +170,9 @@ if($_POST['postjobbtn'])
      <div class="error"></div>
     </div>
     <div class="two-col" style="text-align:left;">
-     <div class="col-one"> <label> Job Title </label> </div>     
+     <div class="col-one"> <label> Pakage Title </label> </div>     
      <div class="col-two">
-     <input type="text" maxlength="10" name="job_title" id="job_title" value=""  />
+     <input type="text" maxlength="10" name="pakage_title" id="job_title" value=""  />
        
      </div>
      <div class="error"></div>
@@ -178,7 +182,7 @@ if($_POST['postjobbtn'])
      <div class="col-one"> <label> Description </label> </div>     
      <div class="col-two"> 
      <?php
-                                            $oFCKeditor = new FCKeditor('job_desc',"custom");
+                                            $oFCKeditor = new FCKeditor('pakage_desc',"custom");
                                             $oFCKeditor->BasePath = SITE_ROOT."FCKeditor/";
                                             $oFCKeditor->Value= hlpHtmlSlashes($job_desc);
                                             $oFCKeditor->Height=350;
@@ -190,21 +194,21 @@ if($_POST['postjobbtn'])
      <div class="error"></div>
     </div>
     <div class="two-col" style="text-align:left;">
-     <div class="col-one"> <label> Address </label> </div>     
+     <div class="col-one"> <label> Duration </label> </div>     
      <div class="col-two"> 
-     <textarea name="location" id="location" cols="120" rows="10"></textarea>
+     <input type="text" name="duration" id="duration" value="" placeholder="Time in Second" />
       
      </div>
      <div class="error"></div>
     </div>
-    <div class="two-col" style="text-align:left;">
+    <!--<div class="two-col" style="text-align:left;">
      <div class="col-one"> <label> Attachment </label> </div>     
      <div class="col-two" style="width: 270px;"> 
      <input type="file" name="docFile" id="docFile">
      <p class="upfront-payment"> File size should be less than 5MB. Include work sample or other documents to suppot your application. Do not attach your resume. </p>   
      </div>
      <div class="error"></div>
-    </div>
+    </div>-->
     
     <div class="two-col" style="text-align:left;">
      <div class="col-one"> <label> Agree to Terms </label> </div>     

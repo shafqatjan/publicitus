@@ -1,6 +1,6 @@
 <?php
-include('settings/settings.php');
-include('helpers/helper.php');
+include('../settings/settings.php');
+include('../helpers/helper.php');
 
 $objSession = new Session();
 $objDb = new Database();
@@ -30,8 +30,8 @@ $objJopApp=new JobApplication();
 <head>
 <meta charset="utf-8">
 <title>Publicitus</title>
-<link href="css/style.css" rel="stylesheet" type="text/css">
-<script src="js/modernizr.js"></script>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<script src="../js/modernizr.js"></script>
 <!--[if IE 6]>
 <link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
@@ -50,7 +50,7 @@ $objJopApp=new JobApplication();
 
  <div id="warpper">
  
-  <?php include('includes/header.php');?>
+  <?php include('../includes/header.php');?>
   
   <div id="content">
   
@@ -60,7 +60,7 @@ $objJopApp=new JobApplication();
      
       <div class="job-detail-page-row-one">
        <div class="job-detail-page-row-one-col"> 
-        <a href="<?=SITE_ROOT?>jobs.php"> &lt; Back to Search Results </a> </div>
+        <a href="<?=SITE_ROOT?>/media/my-post.php"> &lt; Back to My Post Results </a> </div>
        <div class="job-detail-page-row-one-col" style="text-align:center;"> 
         <!--<a href="#"> Flag as inappropriate </a>--> </div>
        <div class="job-detail-page-row-one-col" style="text-align:right;"> 
@@ -74,13 +74,7 @@ $objJopApp=new JobApplication();
         <div class="job-detail-page-job-price"> <b> Fixed price Project </b> - Est. Budget $<?=$jop_Array['budget']?> - Posted <?=hlpDateFormat($jop_Array['dated'])?> </div>       </div>
        
        <div class="job-detail-page-apply-btn-box">
-        <div class="job-detail-page-apply-btn"><? if($applyJob==0){?><?php if($objSession->id!=0 and $objSession->user_type==EXPERT){?>
-            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">
-            <?php }else{
-				?>
-            <input type="button" value="Login to apply" onClick="window.location='login.php'">
-            <?php
-			} } ?> </div>
+        <div class="job-detail-page-apply-btn"><? /*if($applyJob==0){?> <input type="button" value="Apply to this job" onClick="window.location='<?=SITE_ROOT?>expert/apply.php?job=<?=$jop_Array['id']?>'"> <? } */?></div>
         <div class="job-detail-page-apply-btn-detail"> <!--Job applications remaining: 15 of 20--> </div>
        </div>
       

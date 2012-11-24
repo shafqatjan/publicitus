@@ -77,7 +77,7 @@ h3{
     margin-right: 120px;
     margin-top: 25px;
     text-align: right;
-    width: 40%;
+    width: 50%;
 }
 
 #header #nav ul li{
@@ -85,7 +85,7 @@ h3{
     display: inline-block;
     text-align: center;
     vertical-align: top;
-    width: 70px;
+    width: 20%;
 }
 
 #header #nav ul li a:link,a:visited,a:active{
@@ -785,18 +785,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-size:16px;
 }
 
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
+
+
+
 /************  Profile page ************/
 
 #profile-warrper{
@@ -810,18 +807,16 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	color:#fff;
 	font-size:20px;
 	font-family:'Arial';
-<<<<<<< HEAD
-=======
+
+
 	float: left;
-<<<<<<< HEAD
-=======
 
 
 
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
+
 }
 
 #profile-warrper .profile-blue-box{
@@ -1031,23 +1026,21 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 .profile-second-white-box .send-message{
 	float:left;
-<<<<<<< HEAD
+
 	margin-top:20px;
-=======
+
 	margin-top:144px;
-<<<<<<< HEAD
-	margin-top:20px;
-	margin-top:20px;
-=======
 
+	margin-top:20px;
 	margin-top:20px;
 
 
 	margin-top:20px;
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+	margin-top:20px;
+
+
 }
 
 .profile-second-white-box .send-message-btn input[type="button"] {
@@ -1116,17 +1109,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	text-align:left;
 	float:left;
 	margin-top:15px;
-<<<<<<< HEAD
-=======
+
+
 	clear: both;
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
+
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1164,8 +1155,8 @@ p.upfront-payment{
 }
 
 
-<<<<<<< HEAD
-=======
+
+
 .paid-to-you{
 	background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #CCCCCC;
@@ -1201,15 +1192,12 @@ p.upfront-payment{
     font-weight: bold;
     line-height: 29px;
 }
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
 /********** list of jobs ***********/
 
 .search-bar-box{
@@ -1253,17 +1241,15 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
+
+
+
+
  .search-bar-box .search-btn input[type='submit']{
 	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
@@ -1271,17 +1257,11 @@ p.upfront-payment{
     padding: 6px 15px;
 	cursor:pointer;
 }
-<<<<<<< HEAD
-=======
-
-<<<<<<< HEAD
-=======
 
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
 
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
 .search-bar-box .search-btn input[type='button']:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
@@ -1617,7 +1597,7 @@ p.upfront-payment{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
 
-<<<<<<< HEAD
+
 .job-detail-page-apply-btn-detail {
     color: #5B5B5B;
     font-family: arial;
@@ -1637,10 +1617,10 @@ p.upfront-payment{
     margin-bottom: 10px;
     margin-top: 20px;
 }
-=======
+
 /*********** Popup Box **************/
 
-<<<<<<< HEAD
+
 .popup-background{
 	display: block;
 	background: none repeat scroll 0 0 #000000;    
@@ -1742,8 +1722,6 @@ p.upfront-payment{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
   
-=======
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
 
 .job-detail-page-skill-required-detail{
     background: #CCE0FF;
@@ -1805,7 +1783,7 @@ table.job-detail-page-tabel td a:hover{
     margin-bottom: 10px;
 }
 
-<<<<<<< HEAD
+
 .job-detail-page-job-progress {
     font-style: italic;
     margin-bottom: 5px;
@@ -1820,6 +1798,3 @@ table.job-detail-page-tabel td a:hover{
 .job-detail-page-job-contractor a:hover{
 	text-decoration:underline;
 }
-=======
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a

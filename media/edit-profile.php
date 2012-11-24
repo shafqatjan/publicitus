@@ -16,7 +16,6 @@ $objUserCategoriesMap = new UserCategoriesMap();
 //get user info to edit
 $sql = $objUser->PopulateGrid("*"," AND id= ".$objSession->id);  
 $userInfo = $objDb->getArraySingle($sql);
-
 $firstName 				= $userInfo['first_name'];
 $lastName 				= $userInfo['last_name'];
 $email 					= $userInfo['email'];
@@ -34,13 +33,16 @@ $mediaType 				= $userInfo['mediaType'];
 
 $sqlUserCat = $objUserCategoriesMap->PopulateGrid("category_id"," AND status = 1 AND user_id= ".$objSession->id);  
 $ucategories = $objDb->getArray($sqlUserCat);
+
 $categories = array();
 foreach($ucategories as $ucat)
 array_push($categories, $ucat['category_id']);
-
-$sqlUserMedia = $objUserMediaMap->PopulateGrid("media_id"," AND status = 1 AND user_id= ".$objSession->id);  
+#printArray($objSession);
+$objUserMediaMap=new UserMediaMap();
+ $sqlUserMedia = $objUserMediaMap->PopulateGrid("media_id"," AND status = 1 AND user_id= ".$objSession->id);  
 $umedia = $objDb->getArray($sqlUserMedia);
 $mediaArr = array();
+
 foreach($umedia as $umedi)
 array_push($mediaArr, $umedi['media_id']);
 

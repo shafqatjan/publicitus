@@ -101,31 +101,32 @@
 	define(TBL_USER_MEDIA,"pub_users_media_map");
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
-<<<<<<< HEAD
-	define(TBL_JOB_POST,"pub_job_post");
-=======
-<<<<<<< HEAD
-
-	define(TBL_JOB_POST,"pub_job_post");
-=======
 
 	define(TBL_JOB_POST,"pub_job_post");
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
+
+	define(TBL_JOB_POST,"pub_job_post");
+
+
+	define(TBL_JOB_POST,"pub_job_post");
+
+
+	define(TBL_PAKAGE_POST,"pub_pakage_post");
+	define(TBL_PAKAGE_APP,"pub_pakage_purchase");
 	
 
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
 	define(TBL_JOB_POST,"pub_job_post");
 	define(TBL_JOB_APP,"pub_job_app");	
-	define(TBL_APP_FILE,"pub_app_file");		
-<<<<<<< HEAD
-=======
+	define(TBL_APP_FILE,"pub_job_app_file");		
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
->>>>>>> c281d24f2d27a3bc8dd3e7a49614f462f16af05a
+
+
+
+
+
+
 ?>

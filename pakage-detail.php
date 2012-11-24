@@ -7,20 +7,20 @@ $objDb = new Database();
 
 $objDb->connect();
 $objUser = new User();
-$objJobPost = new JobPost();
+$objPakagePost = new PakagePost();
 $jobId=isset($_GET['job']) ? intval($_GET['job']) : '';
-$sqlJobPost = $objJobPost->PopulateGrid("*",' AND status = 1 and id='.$jobId)."";  
-$jop_Array = $objDb->getArraySingle($sqlJobPost);
-#printArray($jop_Array);
-$mediaId=!empty($jop_Array['media_id']) ? intval($jop_Array['media_id']) : '';
+$sqlPakagePost = $objPakagePost->PopulateGrid("*",' AND status = 1 and id='.$jobId)."";  
+$pakage_array = $objDb->getArraySingle($sqlPakagePost);
+#printArray($pakage_array);
+$mediaId=!empty($pakage_array['media_id']) ? intval($pakage_array['media_id']) : '';
 
 
 $objMedia=new MediaType();
 $media_Title = $objDb->get_record($objMedia->table,"title", 'status = 1 and id='.$mediaId,  1);
 
-$objJopApp=new JobApplication();
+$objJopApp=new PakageApplication();
 
- $noOfApp=$objDb->GetCountSql($objJopApp->table,"and job_id=".$jobId);
+ $noOfApp=$objDb->GetCountSql($objJopApp->table,"and pakage_id=".$jobId);
  $objApplication=new JobApplication();
  $applyJob=$objDb->GetCountSql($objApplication->table,"and user_id=".$objSession->id." and job_id=".$jobId);;
 
@@ -60,7 +60,7 @@ $objJopApp=new JobApplication();
      
       <div class="job-detail-page-row-one">
        <div class="job-detail-page-row-one-col"> 
-        <a href="<?=SITE_ROOT?>jobs.php"> &lt; Back to Search Results </a> </div>
+        <a href="<?=SITE_ROOT?>pakages.php"> &lt; Back to Search Results </a> </div>
        <div class="job-detail-page-row-one-col" style="text-align:center;"> 
         <!--<a href="#"> Flag as inappropriate </a>--> </div>
        <div class="job-detail-page-row-one-col" style="text-align:right;"> 
@@ -70,30 +70,31 @@ $objJopApp=new JobApplication();
       <div class="job-detail-page-row-two">
       
        <div class="job-detail-page-job-heading-box">
-        <div class="job-detail-page-job-heading"> <?=$jop_Array['job_title']?> </div>
-        <div class="job-detail-page-job-price"> <b> Fixed price Project </b> - Est. Budget $<?=$jop_Array['budget']?> - Posted <?=hlpDateFormat($jop_Array['dated'])?> </div>       </div>
+        <div class="job-detail-page-job-heading"> <?=$pakage_array['pakage_title']?> </div>
+        <div class="job-detail-page-job-price"> <b> Fixed price Project </b> - Est. Budget $<?=$pakage_array['budget']?> - Posted <?=hlpDateFormat($pakage_array['dated'])?> </div>       </div>
        
        <div class="job-detail-page-apply-btn-box">
-        <div class="job-detail-page-apply-btn"><? if($applyJob==0){?><?php if($objSession->id!=0 and $objSession->user_type==EXPERT){?>
-            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">
+        <div class="job-detail-page-apply-btn"><? if($applyJob==0){?> 
+        <?php if($objSession->id!=0 and $objSession->user_type==ADVERTISER){?>
+            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>advertiser/apply.php?job=<?php echo $Data_row['id']?>'">
             <?php }else{
 				?>
             <input type="button" value="Login to apply" onClick="window.location='login.php'">
             <?php
-			} } ?> </div>
+			} } ?></div>
         <div class="job-detail-page-apply-btn-detail"> <!--Job applications remaining: 15 of 20--> </div>
        </div>
       
       </div> <!-- job-detail-page-row-two -->
       
       <div class="job-detail-page-row-title"> 
-      <div class="job-detail-page-row-title-text"> Job Description </div>
+      <div class="job-detail-page-row-title-text"> Pakage Description </div>
       </div>
       
       <div class="job-detail-page-row-description"> 
       
           <div class="job-detail-page-row-job-description"> 
-          <?=$jop_Array['job_desc']?> 
+          <?=$pakage_array['pakage_desc']?> 
           </div>
       
           <div class="job-detail-page-skill-required-box">
@@ -103,7 +104,7 @@ $objJopApp=new JobApplication();
           </div>
       
           <div class="job-detail-page-skill-required-box">
-            <div class="job-detail-page-skill-required-title"> Client Activity on this Job </div>  
+            <div class="job-detail-page-skill-required-title"> Purchaser Activity on this Job </div>  
                 <div class="job-detail-page-skill-required-detail" style="background:none;padding:0px;">
             
               <table class="job-detail-page-tabel">   
@@ -141,7 +142,7 @@ $objJopApp=new JobApplication();
       
       
        <div class="job-detail-page-row-title"> 
-      <div class="job-detail-page-row-title-text"> Job Overview </div>
+      <div class="job-detail-page-row-title-text"> Pakage Overview </div>
       </div>
       
       <div class="job-detail-page-row-description"> 
@@ -164,7 +165,7 @@ $objJopApp=new JobApplication();
                            Budget:
                           </th>
                           <td>
-                           $<?=$jop_Array['budget']?>
+                           $<?=$pakage_array['budget']?>
                           </td>
                        </tr>
                        <tr>
@@ -172,7 +173,7 @@ $objJopApp=new JobApplication();
                            Posted:
                           </th>
                           <td>
-                           <?=hlpDateFormat($jop_Array['dated'])?>
+                           <?=hlpDateFormat($pakage_array['dated'])?>
                           </td>
                        </tr>
                         <tr>
@@ -188,7 +189,7 @@ $objJopApp=new JobApplication();
                            Delivery Date:
                           </th>
                           <td>
-                           <?=hlpDateFormat($jop_Array['last_date'])?>
+                           <?=hlpDateFormat($pakage_array['last_date'])?>
                           </td>
                        </tr>
                        <tr>
@@ -209,15 +210,15 @@ $objJopApp=new JobApplication();
 
                           </td>
                        </tr>
-                       <!--<tr>
+                       <tr>
                           <th>
-                           Sub-Category:
+                           Duration:
                           </th>
                           <td>
-                           Web Programming
+                           <?=($pakage_array['duration'])?>
                           </td>
                        </tr>
--->                        
+                        
                        
                </table>
             </div>
