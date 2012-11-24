@@ -161,6 +161,7 @@ function hlpUploadFile($fileArrayName,$dir)
 }
 function hlpValidImage($arrayName,$allowExtensionArray)
 {
+	return 1;
 	//printArray(func_get_args());
 	//printArray($allowExtensionArray);
 	$filename = $_FILES[$arrayName]['tmp_name'];
@@ -208,6 +209,7 @@ exit;
 
 function hlpMakeDir($dir, $fileName = 'index.php')
 {	 
+//printArray(func_get_args());
 	$myData= '<style>
 body{
 background:#D2D2D2;

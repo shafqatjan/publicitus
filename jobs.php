@@ -19,7 +19,7 @@ $paging 	 = "";
 $max		 = 10;
 $page_limit  = 10;
 $total 		 = 0;
-$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 ')." order by title";  
+$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 '." order by title");  
 $cat_Array = $objDb->getArray($sqlCat);
 //printArray($cat_Array);
 

@@ -6,9 +6,10 @@ class JobApplication
 	private $id; //int(11)
 	private $job_id; //varchar(70)
 	private $user_id; //varchar(70)	
-	private $user_cover_letter; //varchar(70)
-	private $user_rate; //varchar(70)
+	private $user_cover_letter;
+	private $user_rate;
 	private $status;
+	private $agree;
 	private $dated;
 
 	public function __construct()
@@ -19,6 +20,7 @@ class JobApplication
 		$this->user_cover_letter = '';
 		$this->user_rate= '';
 		$this->status = '';
+		$this->agree = 'off';
 		$this->dated = '';
 		$this->table = TBL_JOB_APP;
 	}
@@ -46,8 +48,10 @@ class JobApplication
 		$error='';
 		if($this->user_rate == '')
 			$error .= '&nbsp;&bull;&nbsp;Your rate cannot be left blank..<br>';
-		if($this->user_cover_latter == '')
+		if($this->user_cover_letter == '')
 			$error .= '&nbsp;&bull;&nbsp;Cover Letter cannot be left blank.<br>';
+		if($this->agree=='off')
+			$error .= '&nbsp;&bull;&nbsp;Please agree upon term and condition.<br>';		
 			
 		return $error;
 	}
@@ -58,7 +62,7 @@ class JobApplication
 		return "INSERT INTO ".$this->table." SET 
 		job_id = '".hlpMysqlRealScape($this->job_id)."', 
 		user_id = '".hlpMysqlRealScape($this->user_rate)."', 
-		user_cover_letter = '".hlpSafeString(hlpMysqlRealScape($this->user_cover_letter))."', 
+		user_cover_letter = '".hlpMysqlRealScape($this->user_cover_letter)."', 
 		user_rate = '".hlpMysqlRealScape($this->user_rate)."', 
 		status = '".hlpMysqlRealScape($this->status)."';";
 	}

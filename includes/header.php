@@ -1,9 +1,8 @@
-<link href="colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="colorbox/jquery.colorbox.js" type="text/javascript"></script>
+<link href="<?=SITE_ROOT?>colorbox/colorbox.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="<?=SITE_ROOT?>colorbox/jquery.colorbox.js" type="text/javascript"></script>
 
 
 <script>
-
 window.fbAsyncInit = function() {
     FB.init({
         appId: '166495106822437',
@@ -91,11 +90,24 @@ function reloadMe()
   <div id="logo"><a href="<?php echo SITE_ROOT?>"><img id="logo-img" src="<?php echo SITE_ROOT?>images/logo.png" border="0" /></a></div>
   <div id="nav">
     <ul>
+<<<<<<< HEAD
       <li> <a href="<?php echo SITE_ROOT?>"> Home </a> </li>
       <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
       <li> <a href="<?php echo SITE_ROOT?>"> Home </a> </li>
       <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
 
+=======
+<<<<<<< HEAD
+
+      <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
+
+
+=======
+      <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
+
+
+>>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+>>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
       <!--<li> <a href=""> Join </a> </li>-->
       <?php
 	  if($objSession->id)

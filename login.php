@@ -38,22 +38,22 @@ if(isset($_POST['btn_login']))
 				$objSession->user_name = $chkLogin['last_name'];			
 				//1=expert,2=manager,3=advertiser,4=media
 				$redirecto = '';
-				if($chkLogin['user_type']=='1')
+				if($chkLogin['user_type']==EXPERT)
 				{
 					$objSession->role = CLIENT_ROLE_EXPERT;
 					$redirecto = 'expert';
 				}
-				if($chkLogin['user_type']=='2')
+				if($chkLogin['user_type']==PRM)
 				{
 					$objSession->role = CLIENT_ROLE_MANAGER;
 					$redirecto = 'manager';
 				}				
-				if($chkLogin['user_type']=='3')
+				if($chkLogin['user_type']==ADVERTISER)
 				{
 					$objSession->role = CLIENT_ROLE_ADVERTISER;
 					$redirecto = 'advertiser';
 				}
-				if($chkLogin['user_type']=='4')
+				if($chkLogin['user_type']==MEDIA)
 				{
 					$objSession->role = CLIENT_ROLE_MEDIA;
 					$redirecto = 'media';

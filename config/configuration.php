@@ -87,7 +87,7 @@
 	define(SITEDATA_DIR , "sitedata/"); 
 	define(USER_APPLY_DIR , "uploaded_apply/");
 	define(USER_POST_DIR , "uploaded_post/");	
-
+	define(USER_IMG_DIR , "uploaded_user_img/");	
 	
 	/************************************************************
 	DATEBASE TABLE CONSTANTS
@@ -99,15 +99,51 @@
 	define(TBL_USER,"pub_users");
 	define(TBL_USER_EXPERTISE,"pub_users_categories_map");
 	define(TBL_USER_MEDIA,"pub_users_media_map");
-
 	define(TBL_EDUCATION,"pub_education");
 	define(TBL_EXPERIENCE,"pub_experience");
+<<<<<<< HEAD
+	define(TBL_JOB_POST,"pub_job_post");
+	define(TBL_JOB_POST,"pub_job_post");
+=======
+<<<<<<< HEAD
 	define(TBL_JOB_POST,"pub_job_post");
 	define(TBL_JOB_POST,"pub_job_post");
 	define(TBL_JOB_POST,"pub_job_post");
-
+	define(TBL_JOB_POST,"pub_job_post");
 	define(TBL_JOB_APP,"pub_job_app");	
-	define(TBL_APP_FILE,"pub_app_file");		
+	define(TBL_APP_FILE,"pub_job_app_file");		
+=======
+
+	define(TBL_JOB_POST,"pub_job_post");
 
 
+
+>>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+	define(TBL_JOB_POST,"pub_job_post");
+
+
+	define(TBL_JOB_POST,"pub_job_post");
+
+
+	define(TBL_PAKAGE_POST,"pub_pakage_post");
+	define(TBL_PAKAGE_APP,"pub_pakage_purchase");
+	
+
+
+	define(TBL_JOB_POST,"pub_job_post");
+	define(TBL_JOB_APP,"pub_job_app");	
+	define(TBL_APP_FILE,"pub_job_app_file");		
+
+
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+
+>>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+>>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
 ?>

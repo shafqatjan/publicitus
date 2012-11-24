@@ -12,6 +12,7 @@ class JobPost
 	private $location;
 	private $status;
 	private $dated;
+	private $user_id;
 
 	public function __construct()
 	{
@@ -24,6 +25,7 @@ class JobPost
 		$this->status = '';
 		$this->dated = '';
 		$this->table = TBL_JOB_POST;
+		$this->user_id='';
 	}
 
 
@@ -47,20 +49,24 @@ class JobPost
 	public function validate()
 	{
 		$error='';
-		if($this->first_name == '')
-			$error .= '&nbsp;&bull;&nbsp;First name cannot be left blank.<br>';
-		if($this->email == '')
-			$error .= '&nbsp;&bull;&nbsp;Email cannot be left blank.<br>';
-		else if(!hlpValidEmail($this->email))
-			$error .= '&nbsp;&bull;&nbsp;Invalid email.<br>';		
-		if($this->password == '')
-			$error .= '&nbsp;&bull;&nbsp;Password cannot be left blank.<br>';
-		if($this->cpassword == '')
-			$error .= '&nbsp;&bull;&nbsp;Confirm password cannot be left blank.<br>';
-		else if($this->password != $this->cpassword)
-			$error .= '&nbsp;&bull;&nbsp;Password mismatch.<br>';
-		if($this->cell == '')
-			$error .= '&nbsp;&bull;&nbsp;Cell no cannot be left blank.<br>';
+		if($this->user_id == '')
+			$error .= '&nbsp;&bull;&nbsp;You are not login.<br>';
+		if($this->job_title == '')
+			$error .= '&nbsp;&bull;&nbsp;Job Title cannot be left blank.<br>';
+		if($this->job_desc == '')
+			$error .= '&nbsp;&bull;&nbsp;Job Description cannot be left blank.<br>';
+		 if($this->media_id == '')
+			$error .= '&nbsp;&bull;&nbsp;Category can no blank.<br>';		
+		if($this->location == '')
+			$error .= '&nbsp;&bull;&nbsp;Address cannot be left blank.<br>';
+		if($this->budget == '')
+			$error .= '&nbsp;&bull;&nbsp;Budget cannot be left blank.<br>';
+		else if(!is_double($this->budget))
+			$error .= '&nbsp;&bull;&nbsp;String Not Allowed.<br>';
+		if($this->last_date == '')
+			$error .= '&nbsp;&bull;&nbsp;Last Date cannot be left blank.<br>';
+		if(time()>=strtotime($this->last_date))
+			$error .= '&nbsp;&bull;&nbsp;Last Date cannot be less than from current date.<br>';
 		return $error;
 	}
 
@@ -74,6 +80,7 @@ class JobPost
 		media_id = '".hlpMysqlRealScape($this->media_id)."', 
 		last_date = '".hlpMysqlRealScape($this->last_date)."', 
 		location = '".hlpMysqlRealScape($this->location)."', 
+		user_id = '".hlpMysqlRealScape($this->user_id)."',
 		status = '".hlpMysqlRealScape($this->status)."';";
 	}
 	public function Update()

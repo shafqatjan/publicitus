@@ -10,9 +10,8 @@
           
           <script language="javascript">
          $(function() {  
-        $('#example5').datetimepicker({
-	showSecond: true,
-	timeFormat: 'hh:mm:ss'
+        $('#example5').datepicker({
+	dateFormat: 'yy-mm-dd'
  });
  
  });

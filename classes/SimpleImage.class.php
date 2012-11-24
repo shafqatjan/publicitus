@@ -5,27 +5,29 @@ class SimpleImage
 	var $image;
 	var $image_type;
 
-	function uploadFile($val,$fileName, $updDir, $isImage=1, $makeThumb=0, $w = 0, $h = 0, $keepMain = 0, $mW = 0, $mH=0, $oldImage='')
+	function uploadFile($fileName, $updDir, $isImage=1, $makeThumb=0, $w = 0, $h = 0, $keepMain = 0, $mW = 0, $mH=0, $oldImage='')
 	{
-		//printArray(func_get_args());
+		printArray(func_get_args());
 		$rtn = array();
 		$rtn['error'] = 1;
 		if(intval($rtn['error']))
 		{
 			$rtn['error'] = 0;
-			$ext = substr(strrchr($_FILES[$fileName]['name'][$val], '.'), 1);
+			$ext = substr(strrchr($_FILES[$fileName]['name'], '.'), 1);
 			$new_name = rand().'_'.time().'_'.date("Ydm").'.'.$ext;
-			//echo $_FILES[$fileName]['tmp_name'][$val];
-			list($org_width, $org_height, $type, $attr) = getimagesize($_FILES[$fileName]['tmp_name'][$val]);
+
+			list($org_width, $org_height, $type, $attr) = getimagesize($_FILES[$fileName]['tmp_name']);
 			
-			if(move_uploaded_file($_FILES[$fileName]['tmp_name'][$val], $updDir.$new_name))
+			if(move_uploaded_file($_FILES[$fileName]['tmp_name'], $updDir.$new_name))
 			{
+
 				if($makeThumb)
 				{
 					$this->load($updDir.$new_name);
 					$this->resize($w,$h);
 					$this->save($updDir.'thumb_'.$new_name);
-					$rtn['thumb'] = 'thumb_'.$new_name;
+					echo $rtn['thumb'] = 'thumb_'.$new_name;
+					echo $_FILES[$fileName]['tmp_name'];exit;					
 					sleep(2);
 					if($keepMain)
 					{
@@ -93,6 +95,7 @@ class SimpleImage
 	
 	function load($filename)
 	{
+		echo  $filename;
 		$image_info = getimagesize($filename);
 		$this->image_type = $image_info[2];
 		

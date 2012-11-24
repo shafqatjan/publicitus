@@ -1,9 +1,9 @@
 <?php
 session_start();
 error_reporting(E_ALL & ~E_NOTICE);
-//echo dirname(__FILE__);
+#echo dirname(__FILE__);
 $temp = explode("settings",dirname(__FILE__));
-//echo '<pre>';print_r($temp); 
+#echo '<pre>';print_r($temp); exit;
 define(BASE_PATH, $temp[0]);
 
 $temp = '';
@@ -19,14 +19,13 @@ define(SITE_TITLE, 'Welcome publicitus!');
 
 define(CLASSES_DIR, BASE_PATH.'classes\\');
 //define(CLASSES_DIR, BASE_PATH.'classes/');
-
-require_once(BASE_PATH."config/configuration.php");
-
+//echo BASE_PATH."config/configuration.php";
+include(BASE_PATH."config/configuration.php");
+//echo 'aa';exit;
 function __autoload($className)
 {
 	if (!class_exists($className, false))
 	{
-		
 		if(file_exists(CLASSES_DIR.$className.'.class.php'))
 			require_once(CLASSES_DIR.$className.'.class.php');
 			
