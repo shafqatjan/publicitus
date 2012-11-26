@@ -66,13 +66,13 @@ class Education
 
 
 
-    if($this->school == '' && $this->school == '')
-		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
-
 
     if($this->school == '' && $this->school == '')
 		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
 
+
+if($this->school == '' && $this->school == '')
+		$error .= '&nbsp;&bull;&nbsp;School cannot be left blank .<br>';
 
 
 
@@ -81,7 +81,9 @@ class Education
 		
 
 
-		return $error;
+
+
+return $error;
 	}
 
 	public function validateUpdate()

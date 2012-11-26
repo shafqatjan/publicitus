@@ -339,7 +339,7 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
           <label> Profile Image </label>
         </div>
         <div class="col-two" style="width: 270px;">
-          <input type="file" type="userfile" name="userfile">
+          <input type="file" id="userfile" name="userfile">
           <p class="upfront-payment"> File size should be less than 5MB.</p>
         </div>
         <div class="error"></div>
@@ -368,7 +368,9 @@ if($objDb->query($sqlMedia) and $objDb->get_num_rows()>0)
 
 
 
-    <?php 
+
+
+<?php 
 
 
 // Retrieve Categories 

@@ -280,10 +280,7 @@ class Database
 			if($whr_calues)
 				{
 				 $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
-			{
-				  $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
 			}
-				}
 			else
 				$sql = "select ".$field." from ".$table." where id = ".$id."";				
 			

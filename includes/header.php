@@ -91,15 +91,12 @@ function reloadMe()
   <div id="nav">
     <ul>
 
-           
-
-
-
       <li> <a href="<?php echo SITE_ROOT?>jobs.php"> Jobs </a> </li>      
+     
 
 
-<!--<li> <a href=""> Join </a> </li>-->
-      <?php
+      <!--<li> <a href=""> Join </a> </li>-->
+<?php
 	  if($objSession->id)
 	  {
 		  //printArray($objSession);

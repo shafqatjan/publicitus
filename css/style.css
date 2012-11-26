@@ -797,6 +797,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 
 
+
+
 /************  Profile page ************/
 
 #profile-warrper{
@@ -813,6 +815,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 
 	float: left;
+
+
 
 
 
@@ -1038,17 +1042,15 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 	margin-top:144px;
 
-	margin-top:20px;
-	margin-top:20px;
-
 
 	margin-top:20px;
 	margin-top:20px;
 
 
+margin-top:20px;
+	margin-top:20px;
 
-	margin-top:20px;
-	margin-top:20px;
+
 
 
 
@@ -1123,15 +1125,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	float:left;
 	margin-top:15px;
 
-	clear: both;
-
-
-
-
-
-	clear: both;
-
-
 
 	clear: both;
 
@@ -1139,8 +1132,11 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 
 
 
+	clear: both;
 
 
+
+	clear: both;
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1227,6 +1223,9 @@ p.upfront-payment{
 
 
 
+
+
+
 /********** list of jobs ***********/
 
 .search-bar-box{
@@ -1283,21 +1282,16 @@ p.upfront-payment{
 
 
 
+
 .search-bar-box .search-btn input[type='submit']{
-	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+
+ .search-bar-box .search-btn input[type='submit']{
+background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
 	border-radius: 3px;
     padding: 6px 15px;
 	cursor:pointer;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -1674,6 +1668,8 @@ table.gridtable {
 
 
 
+
+
 .popup-background{
 	display: block;
 	background: none repeat scroll 0 0 #000000;    
@@ -1781,6 +1777,7 @@ table.gridtable {
 
 
 
+
 .job-detail-page-skill-required-detail{
     background: #CCE0FF;
     border-radius: 3px 3px 3px 3px;
@@ -1795,7 +1792,9 @@ table.gridtable {
 }
 
 
->>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
+
+
+
 
 table.job-detail-page-tabel {
 	font-family: verdana,arial,sans-serif;
@@ -1884,5 +1883,7 @@ width: 98%;
 background-image: url('../images/success-message.png');
 background-repeat: no-repeat;
 background-position: 1% 49%;	
+
 	}
+
 
