@@ -278,13 +278,12 @@ class Database
 			$sql = "";
 			
 			if($whr_calues)
-<<<<<<< HEAD
+				{
 				 $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
-=======
 			{
 				  $sql = "select ".$field." from ".$table." where " . $whr_calues.""; 
 			}
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+				}
 			else
 				$sql = "select ".$field." from ".$table." where id = ".$id."";				
 			
@@ -310,7 +309,21 @@ class Database
 		
 		return 0;
 	}
-	
+	function GetCountJoinSql($field,$join,$whr_clz="")
+	{	
+		$sql = "select count($field) from ".$join." WHERE 1=1 ".$whr_clz;
+		
+		$this->query($sql);
+		$row = array();
+		if($this->get_num_rows()>0)
+		{
+			$row = $this->fetch_row();
+			return $row[0];
+		}
+		
+		return 0;
+	}
+
 	
 	// Increment / Decreament
 	function IncDecField($table, $field, $incDec, $whrClz)

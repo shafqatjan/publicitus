@@ -23,7 +23,7 @@ $media_Array = $objDb->getArray($sqlMedia);
 //printArray($media_Array);
 
 
-	$qry = ' AND status = 1 and user_id='.$objSession->id.' ';
+	$qry = ' AND status = 1 and id in(select pakage_id from pub_pakage_purchase where user_id='.$objSession->id.') ';
 	$_pageurl = '';
 	$linkURL = 'my-pakages.php?start='.$start;
 	
@@ -223,13 +223,13 @@ function goToLink(obj)
           <div class="eductaion-heading"> <span class="job-post-title">
             <h3 onClick="window.location='pakage-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['pakage_title'];?>. </h3>
             </span> <span class="apply-for-job-btn">
-            <?php if($objSession->id!=0 and $objSession->user_type==ADVERTISER){?>
+            <?php /*if($objSession->id!=0 and $objSession->user_type==ADVERTISER){?>
             <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>advertiser/apply.php?job=<?php echo $Data_row['id']?>'">
             <?php }else{
 				?>
             <input type="button" value="Login to apply" onClick="window.location='login.php'">
             <?php
-			} ?>
+			} */?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
             <p class="degree-year"> <span class="job-list-bold-text"> Fixed - Price </span> - Est, Budget: $<?php echo $Data_row['budget']?> - Posted on <?php echo hlpDateFormat($Data_row['dated']);?> </p>

@@ -178,7 +178,10 @@ class User
 	{ 
 		return "SELECT ".$pram." FROM ".$this->table." WHERE 1=1 ".$whr_clz;
 	}
-
+	public function PopulateJoinGrid($pram='*',$join,$whr_clz='',$groub_by='',$order_by='' )
+	{ 
+		return "SELECT ".$pram." FROM ".$join." WHERE 1=1 ".$whr_clz .$groub_by.$order_by;
+	}
 	public function Delete()
 	{
 		return "DELETE FROM ".$this->table." WHERE id = ".intval($this->id);

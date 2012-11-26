@@ -8,8 +8,8 @@ $objDb = new Database();
 $objDb->connect();
 $objUser = new User();
 $objPakagePost = new PakagePost();
-$jobId=isset($_GET['job']) ? intval($_GET['job']) : '';
-$sqlPakagePost = $objPakagePost->PopulateGrid("*",' AND status = 1 and id='.$jobId)."";  
+$pakageId=isset($_GET['pakage']) ? intval($_GET['pakage']) : '';
+$sqlPakagePost = $objPakagePost->PopulateGrid("*",' AND status = 1 and id='.$pakageId)."";  
 $pakage_array = $objDb->getArraySingle($sqlPakagePost);
 #printArray($pakage_array);
 $mediaId=!empty($pakage_array['media_id']) ? intval($pakage_array['media_id']) : '';
@@ -20,9 +20,9 @@ $media_Title = $objDb->get_record($objMedia->table,"title", 'status = 1 and id='
 
 $objJopApp=new PakageApplication();
 
- $noOfApp=$objDb->GetCountSql($objJopApp->table,"and pakage_id=".$jobId);
+ $noOfApp=$objDb->GetCountSql($objJopApp->table,"and pakage_id=".$pakageId);
  $objApplication=new JobApplication();
- $applyJob=$objDb->GetCountSql($objApplication->table,"and user_id=".$objSession->id." and job_id=".$jobId);;
+ $applyJob=$objDb->GetCountSql($objApplication->table,"and user_id=".$objSession->id." and job_id=".$pakageId);;
 
 ?>
 <!DOCTYPE html>

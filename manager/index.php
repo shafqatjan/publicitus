@@ -54,7 +54,10 @@ $objSession->checkSession(CLIENT_ROLE_MANAGER,"../index.php") ;
     <div class="three-col"><a href="change-password.php"><img src="../images/icons/schedule.png" > <p class="dashboard-text"> Change Password </p></a></div>
     <div class="three-col"><a href="profile.php"><img src="../images/icons/attendance.png" > <p class="dashboard-text"> View Profile </p></a></div>
     <div class="three-col"><a href="./"><img src="../images/icons/books.png" > <p class="dashboard-text"> Dashboard </p></a></div>
-    
+    <div class="three-col-row">
+    <div class="three-col"><a href="my-expert.php"><img src="../images/icons/my-expert.png" > <p class="dashboard-text"> My Expert Refer </p></a></div>
+    <div class="three-col"><a href="expert.php"><img src="../images/icons/find-expert.png" > <p class="dashboard-text"> Find Expert</p></a></div>
+    </div>
     </div>
 
     

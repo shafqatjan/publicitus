@@ -57,7 +57,10 @@ $objSession->checkSession(CLIENT_ROLE_ADVERTISER,"../index.php") ;
     
     </div>
 
-    
+    <div class="three-col-row">
+    <div class="three-col"><a href="../pakages.php"><img src="../images/icons/media-post.png" > <p class="dashboard-text"> Pakages  </p></a></div>
+    <div class="three-col"><a href="my-pakages.php"><img src="../images/icons/my-media-post.png" > <p class="dashboard-text"> My Pakage Box  </p></a></div>
+    </div>
    </div> <!-- form warrper -->
 
   

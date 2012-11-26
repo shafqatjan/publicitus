@@ -8,7 +8,14 @@ $objDb = new Database();
 $objDb->connect();
 
 $objCat = new Categories();
-$objJobPost = new JobPost();
+$objSession = new Session(CLIENT_ROLE_MANAGER);
+$objSession->checkSession(CLIENT_ROLE_MANAGER,"../index.php") ;
+
+$objMediaType = new MediaType();
+$objUser = new User();
+$objUserCategoriesMap = new UserCategoriesMap();
+
+//get user info to edit
 
 $start 	= intval(isset($_GET['start'])?$_GET['start']:"");
 $act 	= isset($_GET['act'])?$_GET['act']:"";
@@ -19,14 +26,14 @@ $paging 	 = "";
 $max		 = 10;
 $page_limit  = 10;
 $total 		 = 0;
-$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 ')." order by title";  
+$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 '." order by title");  
 $cat_Array = $objDb->getArray($sqlCat);
 //printArray($cat_Array);
 
 
-	$qry = ' AND status = 1 and user_id='.$objSession->id.' ';
+	$qry = "and pub_users.status=1 AND pub_users.user_type= ".EXPERT." and pub_expert_refer.user_id=".$objSession->id." " ;
 	$_pageurl = '';
-	$linkURL = 'my-posts.php?start='.$start;
+	$linkURL = 'expert.php?start='.$start;
 	
 	if(count($catsrch)>0)
 	{
@@ -36,7 +43,7 @@ $cat_Array = $objDb->getArray($sqlCat);
 			$mediaIds .= $catsrchrow.',';
 		}
 		$mediaIds = substr($mediaIds,0,-1);
-		$qry .= ' AND media_id IN ('.$mediaIds.')';
+		$qry .= ' AND pub_users_categories_map.category_id IN ('.$mediaIds.')';
 		//echo $mediaIds = trim($mediaIds,',');
 	}
 	if(isset($_POST['srch_cri']))
@@ -60,10 +67,18 @@ $cat_Array = $objDb->getArray($sqlCat);
 		$_pageurl .= "?act=sort&sortby=".$sortby;	
 	}
 	else 
-		$qry .= " order by id desc";		
+		$qry .= " order by pub_users.id desc";		
 
-
-	$total = $objDb->GetCountSql($objJobPost->table,$qry); 
+/* $sql = $objUser->PopulateJoinGrid("DISTINCT pub_users.*","publicitus.pub_users_categories_map
+    INNER JOIN publicitus.pub_users 
+        ON (pub_users_categories_map.user_id = pub_users.id)"," and pub_users.status=1 AND pub_users.user_type= ".EXPERT );  
+$userInfo = $objDb->getArray($sql);
+*/
+	 $total = $objDb->GetCountJoinSql('distinct pub_users.id',"pub_users_categories_map
+    INNER JOIN pub_users 
+        ON (pub_users_categories_map.user_id = pub_users.id)
+    INNER JOIN pub_expert_refer 
+        ON (pub_expert_refer.profile_id = pub_users.id) ",$qry); 
 	
 	$paginate = new ClientPaginate($page_limit, $total, $_pageurl, $max);
 	$paging   = $paginate->displayUl();
@@ -75,11 +90,15 @@ $cat_Array = $objDb->getArray($sqlCat);
 		$paginate->start=0;
 	} 
 	
-	$sqlJobPost = $objJobPost->PopulateGrid("*",$qry);
-    $sqlJobPost .= " LIMIT $paginate->start,$paginate->limit ;";
+	$sqlUser = $objUser->PopulateJoinGrid("distinct pub_users.*","pub_users_categories_map
+    INNER JOIN pub_users 
+        ON (pub_users_categories_map.user_id = pub_users.id)
+    INNER JOIN pub_expert_refer 
+        ON (pub_expert_refer.profile_id = pub_users.id) ",$qry);
+    $sqlUser .= " LIMIT $paginate->start,$paginate->limit ;";
 	$Data_Array = array();
 	
-	if($objDb->query($sqlJobPost) and $objDb->get_num_rows()>0)
+	if($objDb->query($sqlUser) and $objDb->get_num_rows()>0)
 		while($Temp_Row = $objDb->fetch_row_assoc())
 			array_push($Data_Array,$Temp_Row);
 
@@ -114,15 +133,15 @@ function goToLink(obj)
 }
 </script>
 <!--[if IE 6]>
-<link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 7]>
-<link href="css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 8]>
-<link href="css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 </head>
@@ -136,7 +155,7 @@ function goToLink(obj)
         <form method="post">
           <div class="search-bar-box">
             <div class="search-title">
-              <label> Search Jobs </label>
+              <label> Search Expert </label>
             </div>
             <div class="search-bar">
               <input type="text" id="srch_cri" name="srch_cri" value="<?php echo $srch_cri;?>">
@@ -201,7 +220,7 @@ function goToLink(obj)
       <div class="profile-third-white-box">
         <div class="job-list-all-job-box">
           <div class="job-list-search-result">
-            <p class="job-list-total-jobs"> <?php echo $total;?> jobs found </p>
+            <p class="job-list-total-jobs"> <?php echo $total;?> Expert found </p>
             <label> Sort by: </label>
             <select id="sortby" name="sortby" onChange="goToLink(this);">
               <option value="1" <?php if($sortby==1){echo "selected";}?>> Newest </option>
@@ -222,16 +241,16 @@ function goToLink(obj)
 		?>
         <div class="profile-third-box-detail job-list-margin">
           <div class="eductaion-heading"> <span class="job-post-title">
-            <h3 onClick="window.location='job-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['job_title'];?>. </h3>
+            <h3 onClick="window.location='view-profile.php?prifile_id=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['first_name']." ".$Data_row['last_name'];?>. </h3>
             </span> <span class="apply-for-job-btn">
-            <?php if($objSession->id!=0 and $objSession->user_type==MEDIA){?>
-            <input type="button" value="Edit" onclick="window.location='<?php echo SITE_ROOT;?>media/edit-post.php?job=<?php echo $Data_row['id']?>'">
-            <?php }?>
+            <?php /*if($objSession->id!=0 and $objSession->user_type==PRM){?>
+            <input type="button" value="Refer Expert" onclick="window.location='<?php echo SITE_ROOT;?>manager/refer-profile.php?profile_id=<?php echo $Data_row['id']?>'">
+            <?php }*/ ?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
-            <p class="degree-year"> <span class="job-list-bold-text"> Fixed - Price </span> - Est, Budget: $<?php echo $Data_row['budget']?> - Posted on <?php echo hlpDateFormat($Data_row['dated']);?> </p>
+            <p class="degree-year"> <span class="job-list-bold-text"> Email </span> : <?php echo $Data_row['email']?>  </p>
             <p class="degree-decribtion" style="margin-top:5px; margin-bottom:15px;"> <?php echo $Data_row['job_desc']?> </p>
-            <p class="degree-detail"> <span class="job-list-bold-text"> Last date: </span> <?php echo hlpDateFormat($Data_row['last_date']);?> </p>
+            <p class="degree-detail"> <span class="job-list-bold-text"> Phone: </span> <?php echo ($Data_row['phone']);?> </p>
           </div>
         </div>
         <?php
@@ -241,7 +260,7 @@ function goToLink(obj)
 		?>
         <div class="profile-third-box-detail job-list-margin">
           <div class="eductaion-heading"> <span class="job-post-title">
-            <h3>No jobs found. </h3>
+            <h3>No Expert found. </h3>
             </span> </div>
         </div>
         <?php	

@@ -1,6 +1,6 @@
 <?php 
-include('../settings/settings.php');
-include('../helpers/helper.php');
+include('settings/settings.php');
+include('helpers/helper.php');
 
 $objSession = new Session();
  
@@ -19,14 +19,14 @@ $paging 	 = "";
 $max		 = 10;
 $page_limit  = 10;
 $total 		 = 0;
-$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 ')." order by title";  
+$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 '." order by title");  
 $cat_Array = $objDb->getArray($sqlCat);
 //printArray($cat_Array);
 
 
-	$qry = ' AND status = 1 and user_id='.$objSession->id.' ';
+	$qry = ' AND status = 1 ';
 	$_pageurl = '';
-	$linkURL = 'my-posts.php?start='.$start;
+	$linkURL = 'jobs.php?start='.$start;
 	
 	if(count($catsrch)>0)
 	{
@@ -103,10 +103,10 @@ $cat_Array = $objDb->getArray($sqlCat);
 <head>
 <meta charset="utf-8">
 <title><?php echo CLIENT_PAGE_TITLE;?></title>
-<link href="../css/style.css" rel="stylesheet" type="text/css">
-<link href="../css/paginationclient.css" rel="stylesheet" type="text/css">
-<script src="../js/lib/jquery.js"></script>
-<script src="../js/modernizr.js"></script>
+<link href="css/style.css" rel="stylesheet" type="text/css">
+<link href="css/paginationclient.css" rel="stylesheet" type="text/css">
+<script src="js/lib/jquery.js"></script>
+<script src="js/modernizr.js"></script>
 <script>
 function goToLink(obj) 
 {
@@ -129,7 +129,7 @@ function goToLink(obj)
 
 <body>
 <div id="warpper">
-  <?php include('../includes/header.php');?>
+  <?php include('includes/header.php');?>
   <div id="content">
     <div id="profile-warrper">
       <div class="profile-blue-box"> <!-- first blue box -->
@@ -224,9 +224,13 @@ function goToLink(obj)
           <div class="eductaion-heading"> <span class="job-post-title">
             <h3 onClick="window.location='job-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['job_title'];?>. </h3>
             </span> <span class="apply-for-job-btn">
-            <?php if($objSession->id!=0 and $objSession->user_type==MEDIA){?>
-            <input type="button" value="Edit" onclick="window.location='<?php echo SITE_ROOT;?>media/edit-post.php?job=<?php echo $Data_row['id']?>'">
-            <?php }?>
+            <?php if($objSession->id!=0 and $objSession->user_type==EXPERT){?>
+            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">
+            <?php }else{
+				?>
+            <input type="button" value="Login to apply" onClick="window.location='login.php'">
+            <?php
+			}?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
             <p class="degree-year"> <span class="job-list-bold-text"> Fixed - Price </span> - Est, Budget: $<?php echo $Data_row['budget']?> - Posted on <?php echo hlpDateFormat($Data_row['dated']);?> </p>
@@ -257,7 +261,7 @@ function goToLink(obj)
   <!-- content --> 
   
   <!-- footer -->
-  <?php include('../includes/footer.php');?>
+  <?php include('includes/footer.php');?>
 </div>
 <!-- Warpper -->
 

@@ -785,8 +785,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
   font-size:16px;
 }
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -796,7 +794,9 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 
 
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+
+
 /************  Profile page ************/
 
 #profile-warrper{
@@ -813,19 +813,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 
 
 	float: left;
-<<<<<<< HEAD
-=======
 
 
 
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+
+
+
 }
 
 #profile-warrper .profile-blue-box{
@@ -1039,23 +1037,23 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffe3df', end
 	margin-top:20px;
 
 	margin-top:144px;
-<<<<<<< HEAD
-	margin-top:20px;
-	margin-top:20px;
-=======
 
 	margin-top:20px;
 	margin-top:20px;
 
 
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
 	margin-top:20px;
 	margin-top:20px;
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+	margin-top:20px;
+	margin-top:20px;
+
+
+
+
+
 }
 
 .profile-second-white-box .send-message-btn input[type="button"] {
@@ -1124,27 +1122,25 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', end
 	text-align:left;
 	float:left;
 	margin-top:15px;
-<<<<<<< HEAD
-	clear: both;
-=======
-<<<<<<< HEAD
-=======
-
 
 	clear: both;
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+
+
+
 
 
 	clear: both;
 
 
 
-<<<<<<< HEAD
-=======
+	clear: both;
 
 
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+
+
+
+
 }
 .profile-third-white-box .profile-third-box-detail .education-detail h4{
     color: #222222;
@@ -1219,18 +1215,18 @@ p.upfront-payment{
     font-weight: bold;
     line-height: 29px;
 }
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
+
+
+
+
+
+
 /********** list of jobs ***********/
 
 .search-bar-box{
@@ -1275,8 +1271,6 @@ p.upfront-payment{
 	cursor:pointer;
 }
 
-<<<<<<< HEAD
-=======
 
 
 
@@ -1284,31 +1278,29 @@ p.upfront-payment{
 
 
 
-<<<<<<< HEAD
-=======
 
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
- .search-bar-box .search-btn input[type='submit']{
+
+
+
+
+.search-bar-box .search-btn input[type='submit']{
 	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
 	border:1px solid #E9AD1B;
 	border-radius: 3px;
     padding: 6px 15px;
 	cursor:pointer;
 }
-<<<<<<< HEAD
-=======
 
 
 
 
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+
+
+
 .search-bar-box .search-btn input[type='button']:hover{
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
@@ -1524,7 +1516,7 @@ p.upfront-payment{
     width: 205px;
 }
 
-<<<<<<< HEAD
+
 table.gridtable {
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;
@@ -1533,12 +1525,12 @@ table.gridtable {
 	border-color: #666666;
 	border-collapse: collapse;
 	width:600px;
-=======
+
 .popup-box-input textarea {
     border: 1px solid #CCCCCC;
     height: 120px;
     width: 255px;
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
 }
 
 .popup-box-input select {
@@ -1678,10 +1670,10 @@ table.gridtable {
 
 /*********** Popup Box **************/
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+
+
 .popup-background{
 	display: block;
 	background: none repeat scroll 0 0 #000000;    
@@ -1783,14 +1775,11 @@ table.gridtable {
 	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
 }
   
-<<<<<<< HEAD
-=======
-=======
-<<<<<<< HEAD
 
-=======
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+
+
+
+
 
 .job-detail-page-skill-required-detail{
     background: #CCE0FF;
@@ -1805,9 +1794,9 @@ table.gridtable {
     float: left;
 }
 
-<<<<<<< HEAD
+
 >>>>>>> d2fca50db664a79f6d58e1d1186fe6b39079d53b
-=======
+
 table.job-detail-page-tabel {
 	font-family: verdana,arial,sans-serif;
 	font-size:11px;
@@ -1870,7 +1859,7 @@ table.job-detail-page-tabel td a:hover{
 .job-detail-page-job-contractor a:hover{
 	text-decoration:underline;
 }
-<<<<<<< HEAD
+
 
 #success-box{
 text-align: center;
@@ -1896,6 +1885,4 @@ background-image: url('../images/success-message.png');
 background-repeat: no-repeat;
 background-position: 1% 49%;	
 	}
-=======
->>>>>>> f9823146649213f4d9e2c63a6b00c440a2b073a8
->>>>>>> 02b71903bc3bbf9c6fc8faeaf171726f40165a14
+

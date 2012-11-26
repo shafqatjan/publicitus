@@ -221,15 +221,11 @@ function goToLink(obj)
 		?>
         <div class="profile-third-box-detail job-list-margin">
           <div class="eductaion-heading"> <span class="job-post-title">
-            <h3 onClick="window.location='pakage-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['pakage_title'];?>. </h3>
+            <h3 onClick="window.location='pakage-detail.php?pakage=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['pakage_title'];?>. </h3>
             </span> <span class="apply-for-job-btn">
-            <?php /*if($objSession->id!=0 and $objSession->user_type==EXPERT){?>
-            <input type="button" value="Apply Now" onclick="window.location='<?php echo SITE_ROOT;?>expert/apply.php?job=<?php echo $Data_row['id']?>'">
-            <?php }else{
-				?>
-            <input type="button" value="Login to apply" onClick="window.location='login.php'">
-            <?php
-			} */?>
+            <?php if($objSession->id!=0 and $objSession->user_type==MEDIA){?>
+            <input type="button" value="Edit" onclick="window.location='<?php echo SITE_ROOT;?>media/edit-pakage-post.php?pakage=<?php echo $Data_row['id']?>'">
+            <?php }?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
             <p class="degree-year"> <span class="job-list-bold-text"> Fixed - Price </span> - Est, Budget: $<?php echo $Data_row['budget']?> - Posted on <?php echo hlpDateFormat($Data_row['dated']);?> </p>

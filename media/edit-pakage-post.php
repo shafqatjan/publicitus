@@ -9,7 +9,11 @@ $objDb = new Database();
 $objDb->connect();
 #printArray($objSession);
 //exit;
+$pakageId=isset($_GET['pakage']) ? intval($_GET['pakage']) : '';
 $objPakagePost = new PakagePost();
+$sqlPakagePost = $objPakagePost->PopulateGrid("*",' AND status = 1 and id='.$pakageId,'');  
+$pakage_Array = $objDb->getArraySingle($sqlPakagePost); 
+
 $objJobAppFile = new JobAppFile();
 
 $objMedia=new MediaType();
@@ -20,10 +24,10 @@ $media_Array = $objDb->getArray($sqlMedia);
 #$userInfo = $objDb->getArraySingle($sql);
 if($_POST['postpakagebtn'])
 {
-	printArray($_POST);
+	#printArray($_POST);
 	#printArray($_FILES);
 	#print_r($_FILES);
-	
+	$id=isset($_POST['id']) ? intval($_POST['id']) : '';
 	$budget = isset($_POST['budget'])? doubleval($_POST['budget']):'';
 	$lastDate = isset($_POST['last_date'])?$_POST['last_date']:'';
 	$mediaId=isset($_POST['media_id'])? intval($_POST['media_id']):'';
@@ -31,7 +35,8 @@ if($_POST['postpakagebtn'])
 	$jobDesc=isset($_POST['pakage_desc'])?$_POST['pakage_desc']:'';
 	$duration=isset($_POST['duration'])?$_POST['duration']:'';
 	
-	$agree = isset($_POST['agree'])?$_POST['agree']:'';	
+	#$agree = isset($_POST['agree'])?$_POST['agree']:'';	
+	$objPakagePost->id = $id;
 	$objPakagePost->pakage_title = $jobTitle;
 	$objPakagePost->pakage_desc = $jobDesc;
 	$objPakagePost->budget = $budget;
@@ -44,58 +49,17 @@ if($_POST['postpakagebtn'])
 	#echo $error.'aa';
 	if(empty($error))
 	{
-		if($objDb->GetCountSql($objPakagePost->table," AND pakage_title='".$jobTile."' and budget=$budget and media_id=$mediaId and last_date='$lastDate'")>0)
-			$error .= '&nbsp;&bull;&nbsp;Email already exists.<br>';
-			
-			if(empty($error))
-			{
-				
-				/*if($_FILES['docFile']['name']!="")	
+		
+				if($objDb->execute($objPakagePost->Update()))
 				{
-					
-					if($_FILES['docFile']['error']==0)	
-					{
-						
-						$allowExt = array('image/jpeg','image/png','image/gif','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/pdf','text/css','text/plain');
-				//printArray($allowExt); exit; 
-				
-						if(hlpValidImage('docFile',$allowExt))
-						{
-							#echo 'here';exit;;
-							 	hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR);
-      							hlpMakeDir(ADMIN_PREFIX.SITEDATA_DIR.USER_POST_DIR);
-      
-     							$objJobAppFile->file_name  = SITEDATA_DIR.USER_POST_DIR.''.hlpUploadFile('docFile',ADMIN_PREFIX.SITEDATA_DIR.USER_POST_DIR);
-      							$objJobAppFile->status = 1;
-//      printArray($objJobAppFile);      echo $objJobAppFile->Add();exit;
-									if($objDb->execute($objJobPost->Add()))
-										{
-											$objJobAppFile->file_type = 1;
-											$objJobAppFile->file_type_id = $objDb->insert_id();
-											#echo $objJobAppFile->Add();exit;
-										 if($objDb->execute($objJobAppFile->Add()))
-											{
-			   //echo 'here';exit;;
-											$objSession->setSessMsg('Post has been Adeed successfully.');       
-											$objSession->redirectTo(SITE_ROOT.'media/my-posts.php');       
-											}
-										}
-						}
-					}
-				else
-					$error .= '&nbsp;&bull;&nbsp;File size should be 5MB.<br>';
-				}
-			else*/
-				if($objDb->execute($objPakagePost->Add()))
-				{
-				$objSession->setSessMsg('Pakage has been applied successfully.');
+				$objSession->setSessMsg('Pakage has been updated successfully.');
 				$objSession->redirectTo(SITE_ROOT.'media/my-pakage-posts.php'); 
 				}
 				else
 				{
-					$error .= '&nbsp;&bull;&nbsp;Pakage not added.<br>';
+					$error .= '&nbsp;&bull;&nbsp;Pakage not Updated.<br>';
 				}
-		}
+		
 	}
 }
 ?>
@@ -142,7 +106,7 @@ if($_POST['postpakagebtn'])
     <div class="two-col" style="text-align:left;margin: 15px 0;">
      <div class="col-one"> <label> Budget </label> </div>     
      <div class="col-two"> 
-     <input type="text" style="width:100px" id="budget" name="budget"> $
+     <input type="text" style="width:100px" id="budget" name="budget" value="<?=$pakage_Array['budget']?>"> $
      <p class="upfront-payment"> Limit your risk by requesting an upfront payment.</p>
      </div>
      <div class="error"></div>
@@ -151,7 +115,7 @@ if($_POST['postpakagebtn'])
      <div class="two-col" style="text-align:left;">
      <div class="col-one"> <label> Last Date </label> </div>     
      <div class="col-two">
-     <input type="text" maxlength="10" name="last_date" id="last_date" value="<?=date('Y-m-d')?>"  />
+     <input type="text" maxlength="10" name="last_date" id="last_date" value="<?=date('Y-m-d',strtotime($pakage_Array['last_date']))?>"  />
        
      </div>
      <div class="error"></div>
@@ -162,7 +126,8 @@ if($_POST['postpakagebtn'])
      
      <select name="media_id" id="media_id" >
      <? foreach($media_Array as $key=>$value){ ?>
-     <option value="<?=$value['id']?>"><?=$value['title']?></option>
+     
+     <option value="<?=$value['id']?>" <?=$pakage_Array['media_id']==$value['id'] ? 'selected="selected"' : '' ?>><?=$value['title']?></option>
      <? } ?>
      </select>
        
@@ -172,7 +137,7 @@ if($_POST['postpakagebtn'])
     <div class="two-col" style="text-align:left;">
      <div class="col-one"> <label> Pakage Title </label> </div>     
      <div class="col-two">
-     <input type="text" maxlength="10" name="pakage_title" id="job_title" value=""  />
+     <input type="text" maxlength="10" name="pakage_title" id="pakage_title" value="<?=$pakage_Array['pakage_title']?>"  />
        
      </div>
      <div class="error"></div>
@@ -184,7 +149,7 @@ if($_POST['postpakagebtn'])
      <?php
                                             $oFCKeditor = new FCKeditor('pakage_desc',"custom");
                                             $oFCKeditor->BasePath = SITE_ROOT."FCKeditor/";
-                                            $oFCKeditor->Value= hlpHtmlSlashes($job_desc);
+                                            $oFCKeditor->Value= hlpHtmlSlashes($pakage_Array['pakage_desc']);
                                             $oFCKeditor->Height=350;
                                             $oFCKeditor->Width=700;
                                             $oFCKeditor->Create();
@@ -196,7 +161,7 @@ if($_POST['postpakagebtn'])
     <div class="two-col" style="text-align:left;">
      <div class="col-one"> <label> Duration </label> </div>     
      <div class="col-two"> 
-     <input type="text" name="duration" id="duration" value="" placeholder="Time in Second" />
+     <input type="text" name="duration" id="duration" value="<?=$pakage_Array['duration']?>" placeholder="Time in Second" />
       
      </div>
      <div class="error"></div>
@@ -210,16 +175,10 @@ if($_POST['postpakagebtn'])
      <div class="error"></div>
     </div>-->
     
-    <div class="two-col" style="text-align:left;">
-     <div class="col-one"> <label> Agree to Terms </label> </div>     
-     <div class="col-two" style="width: 270px;"> 
-     <p class="upfront-payment"> <input type="checkbox"> I understanding and agree to the User Agreement and Incorporated polices. </p>   
-     </div>
-     <div class="error"></div>
-    </div>
+    
  
-    <div class="submit-btn">
-     <input type="submit" value="Save" name="postpakagebtn">
+    <div class="submit-btn"><input type="hidden" name="id" value="<?=$pakage_Array['id']?>" />
+     <input type="submit" value="Updage" name="postpakagebtn">
     </div>
     
    </div> <!-- form warrper -->

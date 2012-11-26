@@ -1,7 +1,6 @@
 <?php 
 include('../settings/settings.php');
 include('../helpers/helper.php');
-
 $objSession = new Session();
  
 $objDb = new Database();
@@ -9,6 +8,35 @@ $objDb->connect();
 
 $objCat = new Categories();
 $objJobPost = new JobPost();
+$objExpertRefer=new ExpertRefer();
+if(isset($_POST['referbtn']))
+{
+#printArray($_POST);exit;
+	$profileId=isset($_POST['profile_id']) ? intval($_POST['profile_id']) : '';
+	$jobId=isset($_POST['job_id']) ? intval($_POST['job_id']) : '';
+	$objExpertRefer->profile_id = $profileId;
+	$objExpertRefer->job_id = $jobId;
+	$objExpertRefer->user_id = $objSession->id;
+	$objExpertRefer->status = 1;
+	$error .= $objExpertRefer->validate();
+	#echo $error.'aa';exit;
+	if(empty($error))
+	{
+		
+				if($objDb->execute($objExpertRefer->Add()))
+				{
+				$objSession->setSessMsg('Profle has been updated successfully.');
+				$objSession->redirectTo(SITE_ROOT.'manager/my-refer.php'); 
+				}
+				else
+				{
+					$error .= '&nbsp;&bull;&nbsp;Profle not Refer.<br>';
+				}
+		
+	}
+
+
+}
 
 $start 	= intval(isset($_GET['start'])?$_GET['start']:"");
 $act 	= isset($_GET['act'])?$_GET['act']:"";
@@ -19,14 +47,15 @@ $paging 	 = "";
 $max		 = 10;
 $page_limit  = 10;
 $total 		 = 0;
-$sqlCat = $objCat->PopulateGrid("*",' AND status = 1 ')." order by title";  
+$profileId=isset($_REQUEST['profile_id']) ? intval($_REQUEST['profile_id']) : '';
+ $sqlCat = $objCat->PopulateGrid("*",' AND status = 1 and id in(select DISTINCT category_id FROM pub_users_categories_map a,pub_users b where a.user_id=b.id and b.user_type='.EXPERT." AND b.id=".$profileId.") order by title");  
 $cat_Array = $objDb->getArray($sqlCat);
 //printArray($cat_Array);
 
 
-	$qry = ' AND status = 1 and user_id='.$objSession->id.' ';
+	$qry = " AND status = 1 and media_id in (select DISTINCT category_id FROM pub_users_categories_map a,pub_users b where a.user_id=b.id and b.user_type=".EXPERT." AND b.id=".$profileId.") ";
 	$_pageurl = '';
-	$linkURL = 'my-posts.php?start='.$start;
+	$linkURL = 'refer-profile.php?start='.$start;
 	
 	if(count($catsrch)>0)
 	{
@@ -95,7 +124,6 @@ $cat_Array = $objDb->getArray($sqlCat);
 		$limit =  $total - $start;
 		$pagError=1;
 	}
-	
 
 ?>
 <!DOCTYPE html >
@@ -114,15 +142,15 @@ function goToLink(obj)
 }
 </script>
 <!--[if IE 6]>
-<link href="css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-6.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 7]>
-<link href="css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-7.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 <!--[if IE 8]>
-<link href="css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
+<link href="../css/IE/style-IE-8.css" rel="stylesheet" type="text/css">
 <![endif]-->
 
 </head>
@@ -224,8 +252,9 @@ function goToLink(obj)
           <div class="eductaion-heading"> <span class="job-post-title">
             <h3 onClick="window.location='job-detail.php?job=<?php echo $Data_row['id']?>'" style="cursor:pointer;"> <?php echo $Data_row['job_title'];?>. </h3>
             </span> <span class="apply-for-job-btn">
-            <?php if($objSession->id!=0 and $objSession->user_type==MEDIA){?>
-            <input type="button" value="Edit" onclick="window.location='<?php echo SITE_ROOT;?>media/edit-post.php?job=<?php echo $Data_row['id']?>'">
+            <?php if($objSession->id!=0 and $objSession->user_type==PRM){?>
+           <form method="post" action=""> <input type="submit" name="referbtn" value="Refer" ><input type="hidden" name="profile_id" value="<?=$_REQUEST['profile_id']?>">
+           <input type="hidden" name="job_id" value="<?php echo $Data_row['id']?>"></form>
             <?php }?>
             </span> </div>
           <div class="education-detail" style="margin-top:0px;">
