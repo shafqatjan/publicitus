@@ -2,8 +2,8 @@
 include('../settings/settings.php');
 include('../helpers/helper.php');
 
-$objSession = new Session();
- 
+$objSession = new Session(CLIENT_ROLE_ADVERTISER);
+ $objSession->checkSession(CLIENT_ROLE_ADVERTISER,"../index.php") ;
 $objDb = new Database();
 $objDb->connect();
 

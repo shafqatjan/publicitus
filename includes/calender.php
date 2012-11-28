@@ -223,7 +223,7 @@ function cal($month1,$year1,$vid,$avalArr)
 			
 			echo "<div class='calPlus'>";
 			echo "<a href='view-calendar.php?date=".$str."' title='edit this ".$str."'>
-			<img src='../../images/calEdit.gif' border=0 align='left' />
+			<img src='../images/calEdit.gif' border=0 align='left' />
 			</a>";
 			echo "</div>";
 			
@@ -259,9 +259,9 @@ $vendor_id = 1;
 $sqlCal= '';//$objCalendar->PopulateGrid('dated');
 
 
-$vendor_available_array = array();//$objDb->getArray($sqlCal);
+//$vendor_available_array = array();//$objDb->getArray($sqlCal);
 //	echo '<pre>';print_r($vendor_available_array);
-cal($month,$year,$vendor_id,$vendor_available_array);
+cal($month,$year,$vendor_id,$catArray);
 //cal(8,2011);
 
 function dayinweek($num)
