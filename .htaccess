@@ -1,4 +1,0 @@
-Options +FollowSymlinks
-RewriteEngine On
-# This allows you to redirect your entire website to any other domain
-Redirect 301 publicitus.com/ http://www.publicitus.com/
