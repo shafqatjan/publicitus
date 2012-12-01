@@ -1,0 +1,430 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+table.gridtable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #666666;
+	border-collapse: collapse;
+}
+table.gridtable th {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #D6D6D6;
+	background-color: #EFEFEF;
+}
+table.gridtable td {
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #D6D6D6;
+	background-color: #ffffff;
+}
+
+table.gridtable td a{
+	text-decoration:none;
+	color:#00F;
+}
+table.gridtable td a:hover{
+	text-decoration:underline;
+}
+
+#profile-warrper{
+	width:100%;
+    width: 600px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#profile-warrper h3{
+	color:#fff;
+	font-size:20px;
+	font-family:'Arial';
+}
+
+#profile-warrper .profile-blue-box{
+	width:100%;
+	padding: 20px 20px 30px;
+	border-radius:3px 3px 0px 0px;
+	background: linear-gradient(to bottom, #3979B7 0%, #2F649A 100%) repeat scroll 0 0 transparent;
+	float:left;
+}
+
+#profile-warrper .profile-blue-first{
+	width:100%;
+	float: left;
+    margin-bottom: 20px;
+}
+
+.profile-blue-heading{
+	float:left;
+}
+
+.profile-blue-close-btn{
+	float:right;
+	color:#fff;
+	font-size:18px;
+	font-family: "Corbel";
+	font-weight:800;
+	cursor:pointer;
+	margin-top: -10px;
+}
+
+.profile-blue-second{
+	width:96%;
+	float:left;
+	background:#fff;
+	border-radius:3px;
+	padding: 10px;
+}
+.profile-blue-second-btn{
+	background:#CCC;
+	border-radius:3px;
+	padding:5px 8px;
+	float:left;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	margin: 4px;
+	background: linear-gradient(to bottom, #EEEEEE 0%, #E6E6E6 100%) repeat scroll 0 0 transparent;
+}
+.profile-blue-second-btn-close{
+	padding-left:5px;
+	cursor:pointer;
+	font-size:11px;
+	font-family: "Corbel";
+	font-weight:500;
+}
+.profile-blue-second-btn-close:hover{
+	color:red;
+}
+.profile-blue-second-input{
+	background:none;
+	padding:4px;
+	float:left;
+}
+
+.profile-blue-second-input input[type='text']{
+	border: medium none;
+    color: gray;
+    width: 200px;
+}
+
+.profile-blue-third{
+	margin-top: 15px;
+	float:left;
+	 width: 94%;
+}
+
+.profile-blue-third .blue-box-endorse-btn input[type='button']{
+	background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+	border:1px solid #E9AD1B;
+	border-radius: 3px;
+    padding: 6px 15px;
+	cursor:pointer;
+}
+
+.profile-blue-third .blue-box-endorse-btn input[type='button']:hover{
+	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
+}
+
+.profile-blue-third .blue-box-skip-btn input[type='button']{
+	background: linear-gradient(to bottom, #EDEDED 0%, #D1D1D1 100%) repeat scroll 0 0 transparent;
+	border:1px solid #A7A7A7;
+	border-radius: 3px;
+    padding: 6px 15px;
+	cursor:pointer;
+}
+
+.profile-blue-third .blue-box-skip-btn input[type='button']:hover{
+	background: linear-gradient(to bottom, #f9f9f9 0%, #dfdfdf 100%) repeat scroll 0 0 transparent;
+}
+
+.profile-blue-third .blue-box-what-is-this{
+	float:right;
+}
+
+.profile-blue-third .blue-box-what-is-this a{
+	color: #FFFFFF;
+    font-family: "Corbel";
+    font-size: 14px;
+    text-decoration: none;
+}
+.profile-blue-third .blue-box-what-is-this a:hover{
+	text-decoration:underline;
+}
+
+/******* second white box ********/
+
+.profile-second-white-box{
+	width:100%;
+	border:1px solid #D2D2D2;
+	background:#fff;
+	float:left;
+	padding: 20px 19px 30px;
+	margin-top:20px;
+}
+
+.profile-second-white-box .profile-photo{
+	width:200px;
+	background:url(../images/profile_pic_bg.png) no-repeat;
+	height:200px;
+	padding-right:20px;
+	float:left;
+}
+
+.profile-second-white-box .profile-name{
+	width:300px;
+	float:left;
+	height:200px;
+}
+
+.profile-second-white-box .profile-cost{
+	width:65px;
+	float:right;
+}
+
+.profile-second-white-box .privious-heading{
+	float: left;
+    width: 70px;
+
+}
+
+.profile-second-white-box .privious-job-detial{
+	float: left;
+    width: 220px;
+}
+
+.profile-second-white-box .profile-company-address{
+	float:left;
+	margin-bottom:10px;
+}
+
+.profile-second-white-box h2{
+	color:#151515;
+	font-family:"Corbel";
+	font-size: 30px;
+}
+
+.profile-second-white-box h4{
+	color:#222222;
+	font-family:'Arial';
+	font-size: 15px;
+}
+
+.profile-second-white-box p{
+	color:#323232;
+	font-family:'Arial';
+	font-size: 13px;
+}
+
+.profile-second-white-box p.job-heading{
+	font-size:11px;
+	color:#999B9A;	
+}
+
+.profile-second-white-box p.job-detail{
+	font-size:12px;	
+}
+
+.profile-second-white-box .privious-job{
+	float: left;
+    margin-top: 5px;
+}
+
+.profile-second-white-box .cost-price{
+	color: #323232;
+    font-family: 'Arial';
+    font-size: 16px;
+    font-weight: 600;
+	background: linear-gradient(to bottom, #EEEEEE 0%, #E6E6E6 100%) repeat scroll 0 0 transparent;
+	padding:8px;
+	border-radius:2px;
+}
+
+.profile-second-white-box .send-message{
+	float:left;
+	margin-top:144px;
+}
+
+.profile-second-white-box .send-message-btn input[type="button"] {
+    background: linear-gradient(to bottom, #5C7DB8 0%, #2E55A2 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #204387;
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+    padding: 8px 15px;
+	color:#fff;
+	font-weight: bold;
+}
+
+.profile-second-white-box .send-message-btn input[type="button"]:hover{
+	border:1px solid #4b74c2;
+ background: rgb(110,144,201) !important; /* Old browsers */
+/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZlOTBjOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiMzODViYzQiIHN0b3Atb3BhY2l0eT0iMSIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+) !important;
+background: -moz-linear-gradient(top,  rgba(110,144,201,1) 0%, rgba(56,91,196,1) 100%) !important; /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(110,144,201,1)), color-stop(100%,rgba(56,91,196,1))) !important; /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(110,144,201,1) 0%,rgba(56,91,196,1) 100%) !important; /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(110,144,201,1) 0%,rgba(56,91,196,1) 100%) !important; /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(110,144,201,1) 0%,rgba(56,91,196,1) 100%) !important; /* IE10+ */
+background: linear-gradient(to bottom,  rgba(110,144,201,1) 0%,rgba(56,91,196,1) 100%) !important; /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6e90c9', endColorstr='#385bc4',GradientType=0 ) !important; /* IE6-8 */
+	
+}
+
+/* ----- third white box ----*/
+
+.profile-third-white-box{
+	width:100%;
+	border:1px solid #D2D2D2;
+	background:#fff;
+	float:left;
+	padding: 20px 19px 30px;
+	margin-top:20px;
+}
+.profile-third-white-box .profile-background{
+	position:relative;
+	top:-20px;
+	left:-19px;
+	background:#333333;
+	padding:12px 35px;
+	float:left;
+	color:#fff;
+	font-family: "Corbel";
+}
+
+.profile-third-white-box .profile-third-box-detail{
+	width:100%;
+	text-align:left;
+	float:left;
+	border-bottom:1px solid #CCC;
+	margin-top:10px;
+	padding-bottom: 20px;
+	padding-bottom: 20px;
+}
+.profile-third-white-box .profile-third-box-detail h3.background-heading{
+	color: #323232 !important;
+	font-family:'Arial' !important;
+	font-size:24px !important;
+	text-shadow:none !important;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail{
+	text-align:left;
+	float:left;
+	margin-top:15px;
+	clear: both;
+}
+.profile-third-white-box .profile-third-box-detail .education-detail h4{
+    color: #222222;
+    font-family: 'Arial';
+    font-size: 15px;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail p.degree-detail{
+    color: #323232;
+    font-family: 'Arial';
+    font-size: 14px;
+	margin-top: 3px;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail p.degree-year{
+	color: #999B9A;
+    font-family: 'Arial';
+    font-size: 14px;
+	margin-top: 2px;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail p.degree-decribtion{
+    color: #323232;
+    font-family: 'Arial';
+    font-size: 14px;
+	margin-top: 10px;
+}
+.add-info{
+	float:right;
+}
+
+.add-info input[type="button"] {
+    background: linear-gradient(to bottom, #F6E212 0%, #F8C80E 100%) repeat scroll 0 0 transparent;
+    border: 1px solid #E9AD1B;
+    border-radius: 3px 3px 3px 3px;
+    cursor: pointer;
+    padding: 6px 15px;
+}
+.add-info input[type='button']:hover{
+	background: linear-gradient(to bottom, #faeb4c 0%, #fbd12e 100%) repeat scroll 0 0 transparent;
+}
+
+/*
+.profile-third-white-box{
+	width:100%;
+	border:1px solid #D2D2D2;
+	background:#fff;
+	float:left;
+	padding: 20px 19px 30px;
+	margin-top:20px;
+}
+.profile-third-white-box .profile-background{
+	position:relative;
+	top:-20px;
+	left:-19px;
+	background:#333333;
+	padding:12px 35px;
+	float:left;
+	color:#fff;
+	font-family: "Corbel";
+}
+
+.profile-third-white-box .profile-third-box-detail{
+	width:100%;
+	text-align:left;
+	float:left;
+	border-bottom:1px solid #CCC;
+	margin-top:10px;
+	padding-bottom: 20px;
+	padding-bottom: 20px;
+}
+.profile-third-white-box .profile-third-box-detail h3.background-heading{
+	color: #323232 !important;
+	font-family:'Arial' !important;
+	font-size:24px !important;
+	text-shadow:none !important;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail{
+	text-align:left;
+	float:left;
+	margin-top:15px;
+}
+.profile-third-white-box .profile-third-box-detail .education-detail h4{
+    color: #222222;
+    font-family: 'Arial';
+    font-size: 15px;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail p.degree-detail{
+    color: #323232;
+    font-family: 'Arial';
+    font-size: 14px;
+	margin-top: 3px;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail p.degree-year{
+	color: #999B9A;
+    font-family: 'Arial';
+    font-size: 14px;
+	margin-top: 2px;
+}
+
+.profile-third-white-box .profile-third-box-detail .education-detail p.degree-decribtion{
+    color: #323232;
+    font-family: 'Arial';
+    font-size: 14px;
+	margin-top: 10px;
+}
+*/
+

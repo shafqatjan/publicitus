@@ -1,0 +1,9 @@
+
+/* Pagination */
+
+
+
+.paginationClass { clear:both; padding:10px 0px 17px 0px; text-align:center; text-decoration:none; }
+.paginationClass a { border:1px solid #aaaaaa; font-family:Arial; font-size:13px; color:#333333; padding:4px 10px 4px 10px; margin-right:1px; background-color:#ebebeb; text-decoration:none; }
+.paginationClass a:hover { border:1px solid #aaaaaa; font-family:Arial; font-size:13px; color:#333333; padding:4px 10px 4px 10px; margin-right:1px; background-color:#b4b4b4; text-decoration:none; }
+.paginationClass span { border:1px solid #666666; font-family:Arial; font-size:13px; color:#ffffff; font-weight:bold; padding:4px 10px 4px 10px; margin-right:1px; background-color:#b4b4b4; text-decoration:none; }
